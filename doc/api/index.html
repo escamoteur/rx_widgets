@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="made with love by dartdoc 0.18.0">
+  <meta name="description" content="rx_widgets API docs, for the Dart programming language.">
+  <title>rx_widgets - Dart API docs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/escamoteur/rx_widgets">rx_widgets package</a></li>
+  </ol>
+  <div class="self-name">rx_widgets</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5><span class="package-name">rx_widgets</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></li>
+    </ol>
+  </div>
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h1>rx_widgets</h1>
+<p><code>rx_widgets</code> is a package with stream based Flutter Widgets and Widget helper/convenience classes that facilitate an reactive programming style especially in combination with <a href="https://github.com/ReactiveX/rxdart">RxDart</a> and <a href="https://github.com/escamoteur/rx_command">RxCommands</a>.</p>
+<h2>Getting Started</h2>
+<p>Add to your <code>pubspec.yaml</code> dependencies to  <code>rx_widgets</code></p>
+<h2>Available Classes</h2>
+<h3>RxSpinner</h3>
+<p>Spinner/Busyindicator that reacts on the output of a <code>Stream&lt;bool&gt;</code> it starts running as soon as a <code>true</code> value is received until the next <code>false</code>is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as <code>normal</code> parameter. <code>RxSpinner</code> also adapts to the current or specified platform look. Needless to say that <code>RxSpinner</code> is ideal in combination with <code>RxCommand's</code> <code>isExecuting</code> Observable </p>
+<pre class="language-Dart"><code class="language-Dart">  /// Creates a new RxSpinner instance
+  /// `busyEvents` : `Stream&lt;bool&gt;` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget 
+  ///  and starts running undtil it receives a `false`value.
+  /// `platform`  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
+  /// `radius`    : radius of the Spinner  
+  /// `normal`    : Widget that should be displayed while the Spinner is not active. If this is null a `Container` will be created instead.
+  ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
+  ///  they are ignored if the platform style is iOS.
+  const RxSpinner({this.busyEvents, 
+                  this.platform, 
+                  this.radius = 20.0,  
+                  this.backgroundColor,
+                  this.value,
+                  this.valueColor,
+                  this.strokeWidth: 4.0,
+                  this.normal, 
+                  Key key }) 
+          :  assert(busyEvents != null), super(key: key);
+</code></pre>
+<h3>WidgetSelector</h3>
+<p><code>WidgetSelector</code>is a convenience class that will return one of two Widgets based on the output of a <code>Stream&lt;bool&gt;</code> This is pretty handy if you want to react to state change like enable/disable in you ViewModel and update the View accordingly.</p>
+<p>If you don't need builders for the alternative child widgets this class offers a more concise expression than <code>WidgetBuilderSelector</code></p>
+<pre class="language-Dart"><code class="language-Dart">  /// Creates a new WidgetSelector instance
+  /// `buildEvents` : `Stream&lt;bool&gt;`that signals that the this Widget should be updated
+  /// `onTrue` : Widget that should be returned if an item with value true is received
+  /// `onFalse`: Widget that should be returned if an item with value true is received
+  const WidgetSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key }) 
+          :   assert(buildEvents != null),assert(onTrue != null), 
+              assert(onFalse != null), super(key: key);
+</code></pre>
+<p>This is an example where it is used to enable/disable a Button</p>
+<pre class="language-Dart"><code class="language-Dart">new WidgetSelector(buildEvents: TheViewModel.of(context).updateWeatherCommand.canExecute, 
+    onTrue:  new RaisedButton(                               
+                    child: new Text("Update"), 
+                    color: new Color.fromARGB(255, 33, 150, 243),
+                    textColor: new Color.fromARGB(255, 255, 255, 255),
+                    onPressed: TheViewModel.of(context).updateWeatherCommand,
+                    ),
+    onFalse:  new RaisedButton(                               
+                    child: new Text("Update"), 
+                    color: new Color.fromARGB(255, 33, 150, 243),
+                    textColor: new Color.fromARGB(255, 255, 255, 255),
+                    onPressed: null,
+                    ),
+            
+        ),
+</code></pre>
+<h3>WidgetBuilderSelector</h3>
+<p> Like <code>WidgetSelector</code> but instead return Widgets it executes one of two provided builder functions. 
+ In comparison to <code>WidgetSelector</code> this is best used if the alternative child widgets are large so that you don't want to have them always created without using them. </p>
+<pre class="language-dart"><code>/// Creates a new WidgetBuilderSelector instance
+/// `buildEvents` : `Stream&lt;bool&gt;`that signals that the this Widget should be updated
+/// `onTrue` : builder that should be executed if an item with value true is received
+/// `onFalse`: builder that should be executed if an item with value true is received
+const WidgetBuilderSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key }) 
+        :  assert(buildEvents != null),assert(onTrue != null), assert(onFalse != null), super(key: key);
+</code></pre>
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="rx_widgets">
+              <span class="name"><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></span>
+            </dt>
+            <dd>
+              
+            </dd>          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    rx_widgets 1.0.0
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>

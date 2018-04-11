@@ -50,6 +50,10 @@ class WidgetBuilderSelector  extends StatelessWidget{
   final WidgetBuilder onTrue;
   final WidgetBuilder onFalse;
 
+  /// Creates a new WidgetBuilderSelector instance
+  /// `buildEvents` : `Stream<bool>`that signals that the this Widget should be updated
+  /// `onTrue` : builder that should be executed if an item with value true is received
+  /// `onFalse`: builder that should be executed if an item with value true is received
   const WidgetBuilderSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key }) 
           :  assert(buildEvents != null),assert(onTrue != null), assert(onFalse != null), super(key: key);
 

@@ -1,12 +1,13 @@
 name: rx_widgets
-description: A new flutter package project.
-version: 0.0.1
-author:
-homepage:
+description: Stream based Widgets and Widget convenience classes to support an reactive programming style
+version: 1.0.0
+author: Thomas Burkhart
+homepage: https://github.com/escamoteur/rx_widgets
+documentation:
+environment:
+  sdk: '>=2.0.0-dev <3.0.0'
 
 dependencies:
-  flutter:
-    sdk: flutter
 
 dev_dependencies:
   flutter_test:
