@@ -47,7 +47,7 @@
 <p>Add to your <code>pubspec.yaml</code> dependencies to  <code>rx_widgets</code></p>
 <h2>Available Classes</h2>
 <h3>RxSpinner</h3>
-<p>Spinner/Busyindicator that reacts on the output of a <code>Stream&lt;bool&gt;</code> it starts running as soon as a <code>true</code> value is received until the next <code>false</code>is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as <code>normal</code> parameter. <code>RxSpinner</code> also adapts to the current or specified platform look. Needless to say that <code>RxSpinner</code> is ideal in combination with <code>RxCommand's</code> <code>isExecuting</code> Observable </p>
+<p>Spinner/Busy indicator that reacts on the output of a <code>Stream&lt;bool&gt;</code> it starts running as soon as a <code>true</code> value is received until the next <code>false</code>is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as <code>normal</code> parameter. <code>RxSpinner</code> also adapts to the current or specified platform look. Needless to say that <code>RxSpinner</code> is ideal in combination with <code>RxCommand's</code> <code>isExecuting</code> Observable </p>
 <pre class="language-Dart"><code class="language-Dart">  /// Creates a new RxSpinner instance
   /// `busyEvents` : `Stream&lt;bool&gt;` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget 
   ///  and starts running undtil it receives a `false`value.
@@ -98,7 +98,7 @@
 <h3>WidgetBuilderSelector</h3>
 <p> Like <code>WidgetSelector</code> but instead return Widgets it executes one of two provided builder functions. 
  In comparison to <code>WidgetSelector</code> this is best used if the alternative child widgets are large so that you don't want to have them always created without using them. </p>
-<pre class="language-dart"><code>/// Creates a new WidgetBuilderSelector instance
+<pre class="language-Dart"><code class="language-Dart">/// Creates a new WidgetBuilderSelector instance
 /// `buildEvents` : `Stream&lt;bool&gt;`that signals that the this Widget should be updated
 /// `onTrue` : builder that should be executed if an item with value true is received
 /// `onFalse`: builder that should be executed if an item with value true is received

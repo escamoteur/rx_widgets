@@ -12,7 +12,7 @@ Add to your `pubspec.yaml` dependencies to  `rx_widgets`
 
 ### RxSpinner
 
-Spinner/Busyindicator that reacts on the output of a `Stream<bool>` it starts running as soon as a `true` value is received until the next `false`is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as `normal` parameter. `RxSpinner` also adapts to the current or specified platform look. Needless to say that `RxSpinner` is ideal in combination with `RxCommand's` `isExecuting` Observable 
+Spinner/Busy indicator that reacts on the output of a `Stream<bool>` it starts running as soon as a `true` value is received until the next `false`is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as `normal` parameter. `RxSpinner` also adapts to the current or specified platform look. Needless to say that `RxSpinner` is ideal in combination with `RxCommand's` `isExecuting` Observable 
 
 ```Dart
   /// Creates a new RxSpinner instance
@@ -79,7 +79,7 @@ new WidgetSelector(buildEvents: TheViewModel.of(context).updateWeatherCommand.ca
  In comparison to `WidgetSelector` this is best used if the alternative child widgets are large so that you don't want to have them always created without using them. 
 
 
-```
+```Dart
 /// Creates a new WidgetBuilderSelector instance
 /// `buildEvents` : `Stream<bool>`that signals that the this Widget should be updated
 /// `onTrue` : builder that should be executed if an item with value true is received
