@@ -2,6 +2,9 @@
 
 `rx_widgets` is a package with stream based Flutter Widgets and Widget helper/convenience classes that facilitate an reactive programming style especially in combination with [RxDart](https://github.com/ReactiveX/rxdart) and [RxCommands](https://github.com/escamoteur/rx_command).
 
+>If you have any ideas for additional stream based Widget, open an issue
+>PRs are always welcome ;-)
+
 
 ## Getting Started
 
