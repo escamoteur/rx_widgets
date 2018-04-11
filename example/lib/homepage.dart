@@ -26,19 +26,24 @@ import 'main.dart';
                               style: new TextStyle(
                                             fontSize: 20.0,
                                             color: new Color.fromARGB(255, 0, 0, 0)),
-                              onChanged: TheViewModel.of(context).onFilterEntryChanged,),
+                              onChanged: TheViewModel.of(context).textChangedCommand,),
                 ),
 
                 new Expanded( child: 
-                      // Handle events to show / hide spinner
-                      new WidgetSelector(buildEvents: TheViewModel.of(context).updateWeatherCommand.isExecuting, 
-                          onTrue: new Center(child: 
+/*                      // Handle events to show / hide spinner
+                      new WidgetBuilderSelector(buildEvents: TheViewModel.of(context).updateWeatherCommand.isExecuting, 
+                          onTrue:  (context) => new  Center(child: 
                                     new Container(width: 50.0, height:50.0, 
                                             child: new CircularProgressIndicator()
                                         )
                                     ), 
-                          onFalse: new WeatherListView()
+                          onFalse:  (context) => new WeatherListView()
                           )
+*/
+                    new RxSpinner(busyEvents: TheViewModel.of(context).updateWeatherCommand.isExecuting,
+                                  platform: TargetPlatform.android,
+                                  radius: 20.0,
+                                  normal: new WeatherListView(),) 
                 ), 
                                 
                 new Padding(padding: const EdgeInsets.all(8.0),
@@ -52,19 +57,19 @@ import 'main.dart';
                                               child: new Text("Update"), 
                                               color: new Color.fromARGB(255, 33, 150, 243),
                                               textColor: new Color.fromARGB(255, 255, 255, 255),
-                                              onPressed: TheViewModel.of(context).updateWeatherCommand.execute,
+                                              onPressed: TheViewModel.of(context).updateWeatherCommand,
                                               ),
                                 onFalse:  new RaisedButton(                               
                                                 child: new Text("Update"), 
                                                 color: new Color.fromARGB(255, 33, 150, 243),
                                                 textColor: new Color.fromARGB(255, 255, 255, 255),
-                                                onPressed: TheViewModel.of(context).updateWeatherCommand.execute,
+                                                onPressed: null,
                                               ),
                                       
                                   ),
                           ),
                                 new StateFullSwitch(state: true,
-                                    onChanged: TheViewModel.of(context).switchChangedCommand.execute)
+                                    onChanged: TheViewModel.of(context).switchChangedCommand)
                         ],
                       )                                              
                 
