@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rx_widgets/rx_widgets.dart';
+import 'package:rx_command/rx_command.dart';
 
 import 'listview.dart';
 import 'main.dart';
+import 'weather_viewmodel.dart';
 
 
  
@@ -40,12 +42,19 @@ import 'main.dart';
                           onFalse:  (context) => new WeatherListView()
                           )
 */
-                    new RxSpinner(busyEvents: TheViewModel.of(context).updateWeatherCommand.isExecuting,
+/*                     new RxSpinner(busyEvents: TheViewModel.of(context).updateWeatherCommand.isExecuting,
                                   platform: TargetPlatform.android,
                                   radius: 20.0,
                                   normal: new WeatherListView(),) 
                 ), 
-                                
+ */                                
+                   new RxLoader<List<WeatherEntry>>(commandResults: TheViewModel.of(context).updateWeatherCommand,
+                                platform: TargetPlatform.android,
+                                radius: 20.0,
+                                dataBuilder: (context, data) => new WeatherListView(data),) 
+                ), 
+                               
+
                 new Padding(padding: const EdgeInsets.all(8.0),
                     child: 
                         // We use a stream builder to toggle the enabled state of the button

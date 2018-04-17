@@ -1,34 +1,28 @@
 import 'package:flutter/material.dart';
 import 'detail_page.dart';
-import 'main.dart';
 import 'weather_viewmodel.dart';
 
 class WeatherListView extends StatelessWidget {
+  List<WeatherEntry> data;
 
 
-  WeatherListView();
+
+  WeatherListView(List<WeatherEntry> this.data);
+
     @override
     Widget build(BuildContext context) {
-      return new StreamBuilder<List<WeatherEntry>>(   // Streambuilder rebuilds its subtree on every item the stream issues
-              stream: TheViewModel.of(context).updateWeatherCommand.results,   //We access our ViewModel through the inherited Widget
-              builder: (BuildContext context, AsyncSnapshot<List<WeatherEntry>> snapshot)  // in Dart Lambdas with body don't use =>
-                  {
-                    // only if we get data
-                    if (snapshot.hasData && snapshot.data.length > 0)
-                    {
-                        return new ListView.builder(
-                                    itemCount: snapshot.data.length,
-                                    itemBuilder : (BuildContext context, int index) => 
-                                                      buildRow(context,index,snapshot.data)                                            
-                      );
-                    }
-                    else
-                    {
-                      return new Text("No items");
-                    }
-                }                                              
-              );
-                            
+      if (data.length > 0)
+      {
+          return new ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder : (BuildContext context, int index) => 
+                                        buildRow(context,index,data)                                            
+        );
+      }
+      else
+      {
+        return new Text("No items");
+      }                            
     }            
                   
     Widget buildRow(BuildContext context, int index, List<WeatherEntry> listData) {

@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:rx_command/rx_command.dart';
 import 'package:rx_widgets/src/widget_selector.dart';
 import 'package:flutter/material.dart';
 
@@ -70,5 +71,142 @@ class RxSpinner  extends StatelessWidget{
                               
                               );
 
+  }
+}
+
+
+typedef Widget BuilderFunction<T>(BuildContext context, T data);
+
+/// Spinner/Busyindicator that reacts on the output of a `Stream<CommandResult<T>>`. It's made especially to work together with
+/// `RxCommand` from the `rx_command`package. 
+/// it starts running as soon as an item with  `isExecuting==true` is received
+/// until `isExecuting==true` is received. 
+/// To react on other possible states (`data, nodata, error`) that can be emitted it offers three option `Builder` methods
+class RxLoader<T>  extends StatefulWidget{
+
+  final Stream<CommandResult<T>> commandResults;
+  final BuilderFunction<T> dataBuilder;
+  final BuilderFunction<Exception> errorBuilder;
+  final Builder placeHolderBuilder;
+
+  final TargetPlatform platform;
+
+  final double radius;
+
+  final Color backgroundColor;
+  final Animation<Color> valueColor;
+  final double strokeWidth;
+  final double value;
+
+
+  /// Creates a new `RxLoader` instance
+  /// [busyEvents] : `Stream<bool>` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget 
+  ///  and starts running undtil it receives a `false`value.
+  /// [platform]  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
+  /// [radius]    : radius of the Spinner  
+  /// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
+  /// If this is null a `Container` will be created instead.
+  /// [placeHolderBuilder] : Builder that will be called as soon as an event with `data==null` is received. 
+  /// If this is null a `Container` will be created instead.
+  /// [dataBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
+  /// If this is null a `Container` will be created instead.
+  ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
+  ///  they are ignored if the platform style is iOS.
+  const RxLoader({this.commandResults, 
+                  this.platform, 
+                  this.radius = 20.0,  
+                  this.backgroundColor,
+                  this.value,
+                  this.valueColor,
+                  this.strokeWidth: 4.0,
+                  this.dataBuilder, 
+                  this.placeHolderBuilder, 
+                  this.errorBuilder,
+                  Key key }) 
+          :  assert(commandResults != null), super(key: key);
+
+  @override
+  RxLoaderState createState() {
+    return new RxLoaderState<T>(commandResults);
+  }
+}
+
+class RxLoaderState<T> extends State<RxLoader> {
+
+  StreamSubscription subscription;
+
+  Stream<CommandResult<T>> commandResults;
+
+  CommandResult<T>  lastReceivedItem;
+
+  RxLoaderState(this.commandResults);
+
+  @override
+  void initState(){
+    super.initState();
+    
+    subscription = commandResults
+                      .listen((result) {
+                          setState(() { lastReceivedItem = result;}); 
+                        });
+  } 
+
+  @override
+  void didUpdateWidget(RxLoader<T> oldWidget)
+  {
+      super.didUpdateWidget(oldWidget);
+      subscription?.cancel();
+
+      subscription = commandResults
+                        .listen((result) {
+                            setState(() { lastReceivedItem = result;});
+                        }); 
+  }
+
+  @override
+  dispose()
+  {
+    super.dispose();
+    subscription?.cancel();      
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    var platformToUse = widget.platform != null ? widget.platform : defaultTargetPlatform;
+
+    
+    var spinner = (platformToUse == TargetPlatform.iOS) ? new CupertinoActivityIndicator(radius: this.widget.radius,) 
+                                                        : new CircularProgressIndicator(backgroundColor: widget.backgroundColor,
+                                                                                        strokeWidth: widget.strokeWidth,
+                                                                                        valueColor: widget.valueColor,
+                                                                                        value: widget.value
+                                                        ,);
+    if (lastReceivedItem.isExecuting)
+    {
+      return new  Center(child: 
+                          new Container(width: this.widget.radius * 2, height: this.widget.radius*2, 
+                                child: spinner
+                              )
+                        );
+    }
+    if (lastReceivedItem.hasData)
+    {
+      if (widget.dataBuilder != null)
+      {
+          return widget.dataBuilder(context, lastReceivedItem.data);
+      }
+    }
+    
+    if (lastReceivedItem.hasError)
+    {
+      if (widget.errorBuilder != null)
+      {
+          return widget.errorBuilder(context, lastReceivedItem.error);
+      }
+    }
+
+    return new Container();
   }
 }
