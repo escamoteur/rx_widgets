@@ -131,24 +131,24 @@ class RxLoader<T>  extends StatefulWidget{
   }
 }
 
-class RxLoaderState<T> extends State<RxLoader> {
+class RxLoaderState<T> extends State<RxLoader<T>> {
 
   StreamSubscription subscription;
 
   Stream<CommandResult<T>> commandResults;
 
-  CommandResult<T>  lastReceivedItem;
+  CommandResult<T>  lastReceivedItem = new CommandResult<T>(null,null,false);
 
   RxLoaderState(this.commandResults);
 
   @override
   void initState(){
-    super.initState();
     
     subscription = commandResults
-                      .listen((result) {
+                        .listen((result) {
                           setState(() { lastReceivedItem = result;}); 
                         });
+    super.initState();
   } 
 
   @override

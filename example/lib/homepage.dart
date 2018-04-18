@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:rx_widgets/rx_widgets.dart';
 import 'package:rx_command/rx_command.dart';
@@ -48,7 +50,7 @@ import 'weather_viewmodel.dart';
                                   normal: new WeatherListView(),) 
                 ), 
  */                                
-                   new RxLoader<List<WeatherEntry>>(commandResults: TheViewModel.of(context).updateWeatherCommand,
+                   new RxLoader<List<WeatherEntry>>(commandResults: TheViewModel.of(context).updateWeatherCommand as Stream<CommandResult<List<WeatherEntry>>>,
                                 platform: TargetPlatform.android,
                                 radius: 20.0,
                                 dataBuilder: (context, data) => new WeatherListView(data),) 
