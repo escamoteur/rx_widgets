@@ -39,6 +39,41 @@ Spinner/Busy indicator that reacts on the output of a `Stream<bool>` it starts r
 ```
 
 
+### RxLoader
+
+RxSpinner is great for simple Applications where you just want to show or hide a Spinner. But often especially when loading data you want to deal with errors and show an alternative Widget if no data arrived. Since `RxCommand` offers not only three separate Observables for state changes and results but is also an `Observable<CommandResult<T>` itself that emits  `CommandResult` that bundle all state and data in one Object `RxLoader`leverage this to support the Flutter update mechanic better.
+
+```Dart
+/// Creates a new `RxLoader` instance
+/// [busyEvents] : `Stream<bool>` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget 
+///  and starts running undtil it receives a `false`value.
+/// [platform]  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
+/// [radius]    : radius of the Spinner  
+/// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
+/// If this is null a `Container` will be created instead.
+/// [placeHolderBuilder] : Builder that will be called as soon as an event with `data==null` is received. 
+/// If this is null a `Container` will be created instead.
+/// [dataBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
+/// If this is null a `Container` will be created instead.
+///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
+///  they are ignored if the platform style is iOS.
+const RxLoader({this.commandResults, 
+                this.platform, 
+                this.radius = 20.0,  
+                this.backgroundColor,
+                this.value,
+                this.valueColor,
+                this.strokeWidth: 4.0,
+                this.dataBuilder, 
+                this.placeHolderBuilder, 
+                this.errorBuilder,
+                Key key }) 
+        :  assert(commandResults != null), super(key: key);
+```
+
+
+
+
 ### WidgetSelector
 `WidgetSelector`is a convenience class that will return one of two Widgets based on the output of a `Stream<bool>` This is pretty handy if you want to react to state change like enable/disable in you ViewModel and update the View accordingly.
 
