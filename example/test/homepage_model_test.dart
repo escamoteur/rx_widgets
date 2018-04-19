@@ -24,7 +24,7 @@ main() {
     test('should fetch with filter', () async {
       final service = new MockService();
       final model = new HomePageModel(service);
-      final future = new Future.sync(() => <WeatherEntry>[]);
+      final future = new Future.sync(() => <WeatherEntry>[WeatherEntry("London",10.0,30.0,"sunny",42)]);
 
       when(service.getWeatherEntriesForCity(typed(any)))
           .thenAnswer((_) => future);
@@ -32,7 +32,13 @@ main() {
       //updateWeatherCommand call on creation of the HomePageModel
       expect(model.updateWeatherCommand.results, emits([]));
 
-      model.updateWeatherCommand('A');
+      model.updateWeatherCommand.results.listen((data)
+      {
+         var l = data;
+          print(data);
+      });
+
+      model.updateWeatherCommand('B');
       expect(model.updateWeatherCommand.results, emits(['A']));
     });
 
