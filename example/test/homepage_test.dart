@@ -32,8 +32,8 @@ main() {
 
       when(model.updateWeatherCommand).thenReturn(command);
 
-      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
-      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
+   //   model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
+   //   model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
 
       print("Start pumping");
       await tester.pumpWidget(widget);// Build initial State
@@ -81,8 +81,8 @@ main() {
 
       when(model.updateWeatherCommand).thenReturn(command);
 
-      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
-      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
+    ///  model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
+    ///  model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
 
       print("Start pumping");
       await tester.pumpWidget(widget);// Build initial State
@@ -129,8 +129,8 @@ main() {
 
       when(model.updateWeatherCommand).thenReturn(command);
 
-      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
-      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
+//      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
+//      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
 
       print("Start pumping");
       await tester.pumpWidget(widget);// Build initial State
