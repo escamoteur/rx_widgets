@@ -350,10 +350,10 @@ packages:
   rx_command:
     dependency: "direct main"
     description:
-      path: "..\\..\\rx_command"
-      relative: true
-    source: path
-    version: "1.0.3"
+      name: rx_command
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.4"
   rx_widgets:
     dependency: "direct main"
     description:

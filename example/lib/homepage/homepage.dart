@@ -63,8 +63,8 @@ class HomePageState extends State<HomePage> {
                                             //onPressed: ModelProvider.of(context).updateWeatherCommand,
                                             onPressed: ()  
                                             {
-                                              var temp = ModelProvider.of(context).updateWeatherCommand;
-                                              temp();}
+                                              ModelProvider.of(context).updateWeatherCommand();
+                                            }
                                             ),
                             onFalse:  RaisedButton(                               
                                             key: AppKeys.updateButtonDisabled,                           
