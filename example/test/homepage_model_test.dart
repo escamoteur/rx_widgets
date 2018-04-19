@@ -21,20 +21,7 @@ main() {
       expect(model.updateWeatherCommand.results, emits([]));
     });
 
-    test('should fetch with filter', () async {
-      final service = new MockService();
-      final model = new HomePageModel(service);
-      final future = new Future.sync(() => <WeatherEntry>[]);
 
-      when(service.getWeatherEntriesForCity(typed(any)))
-          .thenAnswer((_) => future);
-
-      //updateWeatherCommand call on creation of the HomePageModel
-      expect(model.updateWeatherCommand.results, emits([]));
-
-      model.updateWeatherCommand('A');
-      expect(model.updateWeatherCommand.results, emits(['A']));
-    });
 
     test('should not fetch if switch is off', () async {
       final service = new MockService();
