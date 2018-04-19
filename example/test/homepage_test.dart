@@ -32,12 +32,10 @@ main() {
 
       when(model.updateWeatherCommand).thenReturn(command);
 
-      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
-      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
+//      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
+//      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
 
-      print("Start pumping");
       await tester.pumpWidget(widget);// Build initial State
-      print("pumping");
       await tester.pump(); 
 
       expect(find.byKey(AppKeys.loadingSpinner), findsNothing);
@@ -71,7 +69,7 @@ main() {
     });
 
 
-    testWidgets('Shows a loading spinner and disables the button while executing and shows place holder due to no data', (tester) async {
+    testWidgets('shows place holder due to no data', (tester) async {
       final model = new MockModel();
       final command = new MockCommand<String,List<WeatherEntry>>();
       final widget = new ModelProvider(
@@ -81,12 +79,10 @@ main() {
 
       when(model.updateWeatherCommand).thenReturn(command);
 
-      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
-      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
+ //     model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
+ //     model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
 
-      print("Start pumping");
       await tester.pumpWidget(widget);// Build initial State
-      print("pumping");
       await tester.pump(); 
 
       expect(find.byKey(AppKeys.loadingSpinner), findsNothing);
@@ -119,7 +115,7 @@ main() {
       expect(find.byKey(AppKeys.loaderPlaceHolder), findsOneWidget);
     });
 
-    testWidgets('Shows a loading spinner and disables the button while executing and shows error view due to no data', (tester) async {
+    testWidgets('Shows error view due to received error', (tester) async {
       final model = new MockModel();
       final command = new MockCommand<String,List<WeatherEntry>>();
       final widget = new ModelProvider(
@@ -129,12 +125,10 @@ main() {
 
       when(model.updateWeatherCommand).thenReturn(command);
 
-      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
-      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
+ //     model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
+ //     model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
 
-      print("Start pumping");
       await tester.pumpWidget(widget);// Build initial State
-      print("pumping");
       await tester.pump(); 
 
       expect(find.byKey(AppKeys.loadingSpinner), findsNothing);
@@ -190,8 +184,6 @@ main() {
       await tester.pumpWidget(widget); // Build initial State
       await tester.pump(); // Build after Stream delivers value
       await tester.tap(find.byKey(AppKeys.updateButtonEnabled));
-      await tester.pump(); // Build after Stream delivers value
-      await tester.pump(); // Build after Stream delivers value
 
 
     });
