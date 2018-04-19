@@ -29,6 +29,8 @@ class RxSpinner  extends StatelessWidget{
   final double strokeWidth;
   final double value;
 
+ 
+
   /// Creates a new RxSpinner instance
   /// `busyEvents` : `Stream<bool>` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget 
   ///  and starts running undtil it receives a `false`value.
@@ -75,7 +77,8 @@ class RxSpinner  extends StatelessWidget{
 }
 
 
-typedef Widget BuilderFunction<T>(BuildContext context, T data);
+typedef Widget BuilderFunction<T>(BuildContext context, data);
+typedef Widget BuilderFunction1(BuildContext context);
 
 /// Spinner/Busyindicator that reacts on the output of a `Stream<CommandResult<T>>`. It's made especially to work together with
 /// `RxCommand` from the `rx_command`package. 
@@ -87,7 +90,7 @@ class RxLoader<T>  extends StatefulWidget{
   final Stream<CommandResult<T>> commandResults;
   final BuilderFunction<T> dataBuilder;
   final BuilderFunction<Exception> errorBuilder;
-  final Builder placeHolderBuilder;
+  final BuilderFunction1 placeHolderBuilder;
 
   final TargetPlatform platform;
 
@@ -97,6 +100,8 @@ class RxLoader<T>  extends StatefulWidget{
   final Animation<Color> valueColor;
   final double strokeWidth;
   final double value;
+
+  final Key spinnerKey;
 
 
   /// Creates a new `RxLoader` instance
@@ -112,7 +117,9 @@ class RxLoader<T>  extends StatefulWidget{
   /// If this is null a `Container` will be created instead.
   ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
   ///  they are ignored if the platform style is iOS.
-  const RxLoader({this.commandResults, 
+  const RxLoader({Key key,
+                  this.spinnerKey, 
+                  this.commandResults, 
                   this.platform, 
                   this.radius = 20.0,  
                   this.backgroundColor,
@@ -122,7 +129,7 @@ class RxLoader<T>  extends StatefulWidget{
                   this.dataBuilder, 
                   this.placeHolderBuilder, 
                   this.errorBuilder,
-                  Key key }) 
+                  }) 
           :  assert(commandResults != null), super(key: key);
 
   @override
@@ -133,7 +140,7 @@ class RxLoader<T>  extends StatefulWidget{
 
 class RxLoaderState<T> extends State<RxLoader<T>> {
 
-  StreamSubscription subscription;
+  StreamSubscription<CommandResult<T>> subscription;
 
   Stream<CommandResult<T>> commandResults;
 
@@ -143,8 +150,9 @@ class RxLoaderState<T> extends State<RxLoader<T>> {
 
   @override
   void initState(){
-    
-    subscription = commandResults
+       
+
+    subscription = commandResults                       
                         .listen((result) {
                           setState(() { lastReceivedItem = result;}); 
                         });
@@ -177,8 +185,8 @@ class RxLoaderState<T> extends State<RxLoader<T>> {
     var platformToUse = widget.platform != null ? widget.platform : defaultTargetPlatform;
 
     
-    var spinner = (platformToUse == TargetPlatform.iOS) ? new CupertinoActivityIndicator(radius: this.widget.radius,) 
-                                                        : new CircularProgressIndicator(backgroundColor: widget.backgroundColor,
+    var spinner = (platformToUse == TargetPlatform.iOS) ? new CupertinoActivityIndicator(key: widget.spinnerKey, radius: this.widget.radius,) 
+                                                        : new CircularProgressIndicator(key: widget.spinnerKey,backgroundColor: widget.backgroundColor,
                                                                                         strokeWidth: widget.strokeWidth,
                                                                                         valueColor: widget.valueColor,
                                                                                         value: widget.value
@@ -198,6 +206,14 @@ class RxLoaderState<T> extends State<RxLoader<T>> {
           return widget.dataBuilder(context, lastReceivedItem.data);
       }
     }
+
+    if (!lastReceivedItem.hasData && !lastReceivedItem.hasError)
+    {
+      if (widget.placeHolderBuilder != null)
+      {
+          return widget.placeHolderBuilder(context);
+      }
+    }
     
     if (lastReceivedItem.hasError)
     {
@@ -207,6 +223,8 @@ class RxLoaderState<T> extends State<RxLoader<T>> {
       }
     }
 
+    // should never get here
+    assert(false,"never should get here");
     return new Container();
   }
 }

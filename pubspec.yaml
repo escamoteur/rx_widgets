@@ -11,7 +11,9 @@ dependencies:
  flutter:
     sdk: flutter
 
- rx_command: ^1.0.3   
+ #rx_command: ^1.0.3   
+ rx_command:
+    path: ..\rx_command\   
 
 dev_dependencies:
   flutter_test:

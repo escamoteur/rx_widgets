@@ -1,67 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:rx_widget_demo/homepage/homepage.dart';
+import 'package:rx_widget_demo/homepage/homepage_model.dart';
+import 'package:rx_widget_demo/model_provider.dart';
+import 'package:rx_widget_demo/service/weather_service.dart';
+import 'package:http/http.dart' as http;
 
-import 'homepage.dart';
-import 'weather_viewmodel.dart';
+void main() {
+  final weatherService = new WeatherService(new http.Client());
+  final homePageModel = new HomePageModel(weatherService);
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatefulWidget {
-  // This widget is the root of your application.
- 
-  @override
-  MyAppState createState() {
-    return new MyAppState();
-  }
+  runApp(new MyApp(
+    model: homePageModel,
+  ));
 }
 
+class MyApp extends StatelessWidget {
+  final HomePageModel model;
 
-class MyAppState extends State<MyApp> {
-
-  WeatherViewModel viewModelData;
-  
-  @override 
-  void initState() {
-
-      viewModelData = new WeatherViewModel();
-      super.initState();
-    }
+  const MyApp({Key key, this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Place the Inherited Widget at the very base of the Widget tree        
-    return new TheViewModel( 
-                  theModel:  viewModelData,
-                  child: 
-                  new MaterialApp(
-                    title: 'Flutter Demo',
-                    home: new HomePage()
-
- 
-                  ),
+    return new ModelProvider(
+      model: model,
+      child: new MaterialApp(
+        title: 'Flutter Demo',
+        theme: new ThemeData.dark().copyWith(
+          disabledColor: Colors.white12,
+          primaryColor: new Color(0xFF1C262A),
+          buttonColor: new Color(0xFF1C262A),
+          accentColor: new Color(0xFFA7D9D5),
+          scaffoldBackgroundColor: new Color.fromRGBO(38, 50, 56, 1.0),
+        ),
+        home: new HomePage(),
+      ),
     );
   }
 }
-
-
-// InheritedWidgets allow you to propagate values down the widgettree. 
-// it can then be accessed by just writing  TheViewModel.of(context)
-class TheViewModel extends InheritedWidget
-{
-  final WeatherViewModel theModel;
-
-  const TheViewModel({Key key, 
-                      @required 
-                      this.theModel, 
-                      @required 
-                      Widget child}) :  assert(theModel != null),assert(child != null),
-                      super(key: key, child: child);
-
-  static WeatherViewModel of(BuildContext context) => (context.inheritFromWidgetOfExactType(TheViewModel)as TheViewModel).theModel;                  
-
-
-  @override
-  bool updateShouldNotify(TheViewModel oldWidget) => theModel != oldWidget.theModel;
-  
-}
-
