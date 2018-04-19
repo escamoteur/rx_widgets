@@ -21,6 +21,8 @@ main() {
       expect(model.updateWeatherCommand.results, emits([]));
     });
 
+
+/*
     test('should fetch with filter', () async {
       final service = new MockService();
       final model = new HomePageModel(service);
@@ -41,7 +43,7 @@ main() {
       model.updateWeatherCommand('B');
       expect(model.updateWeatherCommand.results, emits(['A']));
     });
-
+*/
     test('should not fetch if switch is off', () async {
       final service = new MockService();
       final model = new HomePageModel(service);
