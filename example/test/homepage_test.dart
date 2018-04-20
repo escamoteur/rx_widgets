@@ -10,6 +10,7 @@ import 'package:rx_widget_demo/keys.dart';
 import 'package:rx_widget_demo/model_provider.dart';
 import 'package:rx_widget_demo/service/weather_entry.dart';
 import 'package:collection/collection.dart';
+import 'package:rxdart/rxdart.dart';
 
 
 
@@ -173,6 +174,7 @@ main() {
       );
 
       when(model.updateWeatherCommand).thenReturn(command);
+      when(model.updateWeatherCommand()).thenAnswer((_)=>command());
 
       command.queueResultsForNextExecuteCall([CommandResult<List<WeatherEntry>>(
                   [WeatherEntry("London", 10.0, 30.0, "sunny", 12)],null, false)]);
@@ -187,67 +189,115 @@ main() {
 
 
     });
-/*
-    testWidgets('update button updates using the text filter', (tester) async {
+
+    testWidgets('calls updateWeatherCommand after  text was entered in the textfield', (tester) async {
       final model = new MockModel();
-      final command = new MockCommand();
+      final commandUpdate = new MockCommand<String,List<WeatherEntry>>(); 
+      final commandTextChange = new MockCommand<String,String>();
       final widget = new ModelProvider(
         model: model,
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(command.canExecute).thenAnswer((_) => new Observable.just(true));
-      when(model.updateWeatherCommand).thenReturn(command);
-
+      when(model.updateWeatherCommand).thenReturn(commandUpdate); //Allways needed because RxLoader binds to it
+      when(model.textChangedCommand).thenReturn(commandTextChange);
+ 
       await tester.pumpWidget(widget); // Build initial State
-      await tester.enterText(find.byKey(AppKeys.textField), 'Berlin');
+      await tester.enterText(find.byKey(AppKeys.textField), 'London');
       await tester.pump(); // Build after text entered
-      await tester.tap(find.byKey(AppKeys.updateButton));
+      await tester.tap(find.byKey(AppKeys.updateButtonEnabled));
 
-      verify(model.updateWeatherCommand('Berlin'));
+      expect(commandTextChange.lastPassedValueToExecute,"London");
     });
 
-    testWidgets('cannot tap update button when disabled', (tester) async {
+
+
+    testWidgets('cannot tap update  when commandUpdate is  disabled', (tester) async {
       final model = new MockModel();
-      final command = new MockCommand();
+      final commandUpdate = new MockCommand<String,List<WeatherEntry>>(canExecute:  new Observable.just(false)); 
+
       final widget = new ModelProvider(
         model: model,
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(command.canExecute).thenAnswer((_) => new Observable.just(false));
-      when(model.updateWeatherCommand).thenReturn(command);
+      when(model.updateWeatherCommand).thenReturn(commandUpdate);
+      when(model.updateWeatherCommand()).thenAnswer((_)=>commandUpdate());
+
 
       await tester.pumpWidget(widget); // Build initial State
       await tester.pump(); // Build after Stream delivers value
-      await tester.tap(find.byKey(AppKeys.updateButton));
+      await tester.pump(); // Build after Stream delivers value
 
-      verifyNever(model.updateWeatherCommand(''));
+     expect(find.byKey(AppKeys.updateButtonDisabled), findsOneWidget); // should display disabled button
+     expect(find.byKey(AppKeys.updateButtonEnabled), findsNothing); // should not display enabled button
+
+
+      await tester.tap(find.byKey(AppKeys.updateButtonDisabled));
+
+      expect(commandUpdate.executionCount, 0);
     });
+
+
 
     testWidgets('tapping switch toggles model', (tester) async {
       final model = new MockModel();
-      final updateCommand = new MockCommand();
-      final switchCommand = new MockCommand();
+      final updateCommand = new MockCommand<String,List<WeatherEntry>>(canExecute:  new Observable.just(false)); 
+      final switchCommand = new MockCommand<bool,bool>();
       final widget = new ModelProvider(
         model: model,
         child: new MaterialApp(home: new HomePage()),
       );
 
       when(model.updateWeatherCommand).thenReturn(updateCommand);
-      when(updateCommand.isExecuting)
-          .thenAnswer((_) => new Observable.just(true));
       when(model.switchChangedCommand).thenReturn(switchCommand);
 
       await tester.pumpWidget(widget); // Build initial State
-      await tester.pumpWidget(widget); // Build initial State
+      await tester.pump(); 
+
       await tester.tap(find.byKey(AppKeys.updateSwitch));
 
       // Starts out true, tapping should go false
-      verify(switchCommand.call(false));
-    });*/
+      expect(switchCommand.lastPassedValueToExecute, false);
+      await tester.pump(); 
+
+      // tap again
+      await tester.tap(find.byKey(AppKeys.updateSwitch));
+
+      expect(switchCommand.lastPassedValueToExecute, true);
+    });
+
+
+    testWidgets('Tapping update button clears the filter field', (tester) async {
+      final model = new MockModel();
+      final command = new MockCommand<String,List<WeatherEntry>>();
+      final widget = new ModelProvider(
+        model: model,
+        child: new MaterialApp(home: new HomePage()),
+      );
+
+      when(model.updateWeatherCommand).thenReturn(command);
+
+
+      await tester.pumpWidget(widget); // Build initial State
+      await tester.enterText(find.byKey(AppKeys.textField), 'London');
+
+      await tester.pump(); // Build after Stream delivers value
+      await tester.tap(find.byKey(AppKeys.updateButtonEnabled));
+    
+      expect(tester.widget<TextField>(find.byKey(AppKeys.textField)).controller.text.length, 0);
+
+    });
+
+
+
   });
 }
+
+
+
+
+
 
 
   StreamMatcher crm(List<WeatherEntry> data, bool hasError, bool isExceuting)

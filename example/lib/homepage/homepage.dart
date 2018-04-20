@@ -60,13 +60,11 @@ class HomePageState extends State<HomePage> {
                             onTrue:  RaisedButton(    
                                             key: AppKeys.updateButtonEnabled,                           
                                             child: Text("Update"), 
-                                            //onPressed: ModelProvider.of(context).updateWeatherCommand,
                                             onPressed: ()  
-                                            {
-                                               _controller.clear();
-                                               var forUITests = ModelProvider.of(context).updateWeatherCommand;
-                                               forUITests();
-                                            }
+                                                {
+                                                  _controller.clear();
+                                                  ModelProvider.of(context).updateWeatherCommand();
+                                                }
                                         ),
                             onFalse:  RaisedButton(                               
                                             key: AppKeys.updateButtonDisabled,                           

@@ -77,8 +77,8 @@ class RxSpinner  extends StatelessWidget{
 }
 
 
-typedef Widget BuilderFunction<T>(BuildContext context, data);
-typedef Widget BuilderFunction1(BuildContext context);
+typedef BuilderFunction<T> = Widget Function(BuildContext context, T data);
+typedef BuilderFunction1 = Widget Function(BuildContext context);
 
 /// Spinner/Busyindicator that reacts on the output of a `Stream<CommandResult<T>>`. It's made especially to work together with
 /// `RxCommand` from the `rx_command`package. 
@@ -105,8 +105,7 @@ class RxLoader<T>  extends StatefulWidget{
 
 
   /// Creates a new `RxLoader` instance
-  /// [busyEvents] : `Stream<bool>` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget 
-  ///  and starts running undtil it receives a `false`value.
+  /// [commandResults] : `Stream<CommandResult<T>>` An RxCommand that issues `CommandResults`
   /// [platform]  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
   /// [radius]    : radius of the Spinner  
   /// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
@@ -115,6 +114,7 @@ class RxLoader<T>  extends StatefulWidget{
   /// If this is null a `Container` will be created instead.
   /// [dataBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
   /// If this is null a `Container` will be created instead.
+  /// [spinnerKey] Widget key of the Spinner Widget of the RxLoader. This can be usefull if you want to check in UI Tests if the Spinner is visible.
   ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
   ///  they are ignored if the platform style is iOS.
   const RxLoader({Key key,

@@ -22,8 +22,11 @@ class WeatherEntry {
         description = city.weather[0]?.description,
         weatherId = city.weather[0].id;
 
-
-   operator == (other) {
+   @override
+   bool operator == (other) {
      return cityName == other.cityName;
-   }     
+   } 
+
+   @override
+   int get hashCode => cityName.hashCode;
 }
