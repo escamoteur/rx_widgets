@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:mockito/mockito.dart';
+import 'package:mockito/src/mock.dart';
 import 'package:quiver/testing/async.dart';
 import 'package:rx_widget_demo/homepage/homepage_model.dart';
 import 'package:rx_widget_demo/service/weather_entry.dart';
@@ -15,7 +16,7 @@ main() {
       final service = new MockService();
       final model = new HomePageModel(service); // ignore: unused_local_variable
 
-      when(service.getWeatherEntriesForCity(typed(any)))
+      when(service.getWeatherEntriesForCity(typed(any as ArgMatcher)))
           .thenAnswer((_) => new Future.sync(() => <WeatherEntry>[]));
 
       expect(model.updateWeatherCommand.results, emits([]));
@@ -27,7 +28,7 @@ main() {
       final service = new MockService();
       final model = new HomePageModel(service);
 
-      when(service.getWeatherEntriesForCity(typed(any)))
+      when(service.getWeatherEntriesForCity(typed(any as ArgMatcher)))
           .thenAnswer((_) => new Future.sync(() => <WeatherEntry>[]));
 
       model.switchChangedCommand(false);
@@ -41,7 +42,7 @@ main() {
         final service = new MockService();
         final model = new HomePageModel(service);
 
-        when(service.getWeatherEntriesForCity(typed(any)))
+        when(service.getWeatherEntriesForCity(typed(any as ArgMatcher)))
             .thenAnswer((_) => new Future.sync(() => <WeatherEntry>[]));
 
         model.textChangedCommand('A');
@@ -57,7 +58,7 @@ main() {
         final service = new MockService();
         final model = new HomePageModel(service);
 
-        when(service.getWeatherEntriesForCity(typed(any)))
+        when(service.getWeatherEntriesForCity(typed(any as ArgMatcher)))
             .thenAnswer((_) => new Future.sync(() => <WeatherEntry>[]));
 
         model.textChangedCommand('A');

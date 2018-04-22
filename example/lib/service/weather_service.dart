@@ -17,7 +17,7 @@ class WeatherService {
     final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      return new WeatherInCities.fromJson(json.decode(response.body))
+      return new WeatherInCities.fromJson(json.decode(response.body) as Map<String,dynamic>)
           .cities
           .where((weatherInCity) =>
               filter == null ||
