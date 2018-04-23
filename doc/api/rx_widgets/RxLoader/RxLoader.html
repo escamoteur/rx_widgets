@@ -25,7 +25,7 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="index.html">rx_widgets</a></li>
     <li><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></li>
-    <li><a href="rx_widgets/RxLoader-class.html">RxLoader<span class="signature">&lt;T&gt;</span></a></li>
+    <li><a href="rx_widgets/RxLoader-class.html">RxLoader<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></a></li>
     <li class="self-crumb">RxLoader const constructor</li>
   </ol>
   <div class="self-name">RxLoader</div>
@@ -52,6 +52,7 @@
       <li><a href="rx_widgets/RxLoader/placeHolderBuilder.html">placeHolderBuilder</a></li>
       <li><a href="rx_widgets/RxLoader/platform.html">platform</a></li>
       <li><a href="rx_widgets/RxLoader/radius.html">radius</a></li>
+      <li><a href="rx_widgets/RxLoader/spinnerKey.html">spinnerKey</a></li>
       <li><a href="rx_widgets/RxLoader/strokeWidth.html">strokeWidth</a></li>
       <li><a href="rx_widgets/RxLoader/value.html">value</a></li>
       <li><a href="rx_widgets/RxLoader/valueColor.html">valueColor</a></li>
@@ -80,17 +81,16 @@
   </div><!--/.sidebar-offcanvas-left-->
 
   <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>RxLoader&lt;T&gt; constructor</h1>
+    <h1>RxLoader&lt;<wbr><span class="type-parameter">T</span>&gt; constructor</h1>
 
     <section class="multi-line-signature">
       const
-      <span class="name ">RxLoader&lt;T&gt;</span>(<wbr>{<span class="parameter" id="-param-commandResults"><span class="type-annotation">Stream<span class="signature">&lt;CommandResult<span class="signature">&lt;T&gt;</span>&gt;</span></span> <span class="parameter-name">commandResults</span>, </span> <span class="parameter" id="-param-platform"><span class="type-annotation">TargetPlatform</span> <span class="parameter-name">platform</span>, </span> <span class="parameter" id="-param-radius"><span class="type-annotation">double</span> <span class="parameter-name">radius</span>: <span class="default-value">20.0</span>, </span> <span class="parameter" id="-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation">double</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-valueColor"><span class="type-annotation">Animation<span class="signature">&lt;Color&gt;</span></span> <span class="parameter-name">valueColor</span>, </span> <span class="parameter" id="-param-strokeWidth"><span class="type-annotation">double</span> <span class="parameter-name">strokeWidth</span>: <span class="default-value">4.0</span>, </span> <span class="parameter" id="-param-dataBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;T&gt;</span></span> <span class="parameter-name">dataBuilder</span>, </span> <span class="parameter" id="-param-placeHolderBuilder"><span class="type-annotation">Builder</span> <span class="parameter-name">placeHolderBuilder</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;Exception&gt;</span></span> <span class="parameter-name">errorBuilder</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span></span> })
+      <span class="name ">RxLoader&lt;<wbr><span class="type-parameter">T</span>&gt;</span>(<wbr>{<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-spinnerKey"><span class="type-annotation">Key</span> <span class="parameter-name">spinnerKey</span>, </span> <span class="parameter" id="-param-commandResults"><span class="type-annotation">Stream<span class="signature">&lt;<wbr><span class="type-parameter">CommandResult<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">commandResults</span>, </span> <span class="parameter" id="-param-platform"><span class="type-annotation">TargetPlatform</span> <span class="parameter-name">platform</span>, </span> <span class="parameter" id="-param-radius"><span class="type-annotation">double</span> <span class="parameter-name">radius</span>: <span class="default-value">20.0</span>, </span> <span class="parameter" id="-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation">double</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-valueColor"><span class="type-annotation">Animation<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span> <span class="parameter-name">valueColor</span>, </span> <span class="parameter" id="-param-strokeWidth"><span class="type-annotation">double</span> <span class="parameter-name">strokeWidth</span>: <span class="default-value">4.0</span>, </span> <span class="parameter" id="-param-dataBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">dataBuilder</span>, </span> <span class="parameter" id="-param-placeHolderBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></span> <span class="parameter-name">placeHolderBuilder</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">Exception</span>&gt;</span></span> <span class="parameter-name">errorBuilder</span></span> })
     </section>
 
     <section class="desc markdown">
       <p>Creates a new <code>RxLoader</code> instance
-<code>busyEvents</code> : <code>Stream&lt;bool&gt;</code> that controls the activity of the Spinner. On receiving <code>true</code> it replaces the <code>normal</code> widget 
- and starts running undtil it receives a <code>false</code>value.
+<code>commandResults</code> : <code>Stream&lt;CommandResult&lt;T&gt;&gt;</code> or a <code>RxCommand&lt;T&gt;</code> that issues <code>CommandResults</code>
 <code>platform</code>  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
 <code>radius</code>    : radius of the Spinner<br>
 <code>dataBuilder</code> : Builder that will be called as soon as an event with data is received. It will get passed the <code>data</code> feeld of the CommandResult.
@@ -99,13 +99,16 @@ If this is null a <code>Container</code> will be created instead.
 If this is null a <code>Container</code> will be created instead.
 <code>dataBuilder</code> : Builder that will be called as soon as an event with an <code>error</code> is received. It will get passed the <code>error</code> feeld of the CommandResult.
 If this is null a <code>Container</code> will be created instead.
+<code>spinnerKey</code> Widget key of the Spinner Widget of the RxLoader. This can be usefull if you want to check in UI Tests if the Spinner is visible.
  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
  they are ignored if the platform style is iOS.</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span> </h2>
-      <pre class="language-dart"><code class="language-dart">const RxLoader({this.commandResults,
+      <pre class="language-dart"><code class="language-dart">const RxLoader({Key key,
+                this.spinnerKey,
+                this.commandResults,
                 this.platform,
                 this.radius = 20.0,
                 this.backgroundColor,
@@ -115,7 +118,7 @@ If this is null a <code>Container</code> will be created instead.
                 this.dataBuilder,
                 this.placeHolderBuilder,
                 this.errorBuilder,
-                Key key })
+                })
         :  assert(commandResults != null), super(key: key);</code></pre>
     </section>
 
@@ -128,7 +131,7 @@ If this is null a <code>Container</code> will be created instead.
 
 <footer>
   <span class="no-break">
-    rx_widgets 1.0.0
+    rx_widgets 1.0.2
   </span>
 
 </footer>

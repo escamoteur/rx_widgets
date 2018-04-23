@@ -125,3 +125,35 @@ new WidgetSelector(buildEvents: TheViewModel.of(context).updateWeatherCommand.ca
 const WidgetBuilderSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key }) 
         :  assert(buildEvents != null),assert(onTrue != null), assert(onFalse != null), super(key: key);
 ```
+
+
+### RxCommandBuilder
+
+If you are working with `RxCommands` this is a special Builder that lets you define different builder for the different states an RxCommand can issue.
+If you don't specify one of the builders it will create a `Container` for that state.
+
+```
+/// Creates a new `RxCommandBuilder` instance
+/// [commandResults] : `Stream<CommandResult<T>>` or a `RxCommand<T>` that issues `CommandResults`
+/// [busyBuilder] : Builder that will be called as soon as an event with `isExecuting==true`.
+/// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
+/// If this is null a `Container` will be created instead.
+/// [placeHolderBuilder] : Builder that will be called as soon as an event with `data==null` is received. 
+/// If this is null a `Container` will be created instead.
+/// [dataBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
+/// If this is null a `Container` will be created instead.
+const RxCommandBuilder({Key key,
+                this.commandResults, 
+                this.platform, 
+                this.radius = 20.0,  
+                this.backgroundColor,
+                this.value,
+                this.valueColor,
+                this.strokeWidth: 4.0,
+                this.busyBuilder,
+                this.dataBuilder, 
+                this.placeHolderBuilder, 
+                this.errorBuilder,
+                }) 
+        :  assert(commandResults != null), super(key: key);
+```

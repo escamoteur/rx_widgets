@@ -25,7 +25,7 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="index.html">rx_widgets</a></li>
     <li><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></li>
-    <li><a href="rx_widgets/RxLoader-class.html">RxLoader<span class="signature">&lt;T&gt;</span></a></li>
+    <li><a href="rx_widgets/RxLoader-class.html">RxLoader<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></a></li>
     <li class="self-crumb">createState method</li>
   </ol>
   <div class="self-name">createState</div>
@@ -52,6 +52,7 @@
       <li><a href="rx_widgets/RxLoader/placeHolderBuilder.html">placeHolderBuilder</a></li>
       <li><a href="rx_widgets/RxLoader/platform.html">platform</a></li>
       <li><a href="rx_widgets/RxLoader/radius.html">radius</a></li>
+      <li><a href="rx_widgets/RxLoader/spinnerKey.html">spinnerKey</a></li>
       <li><a href="rx_widgets/RxLoader/strokeWidth.html">strokeWidth</a></li>
       <li><a href="rx_widgets/RxLoader/value.html">value</a></li>
       <li><a href="rx_widgets/RxLoader/valueColor.html">valueColor</a></li>
@@ -88,7 +89,7 @@
           <li>@override</li>
         </ol>
       </div>
-      <span class="returntype"><a href="rx_widgets/RxLoaderState-class.html">RxLoaderState</a></span>
+      <span class="returntype">_RxLoaderState</span>
       <span class="name ">createState</span>
 (<wbr>)
     </section>
@@ -111,8 +112,8 @@ again to create a fresh <code>State</code> object, simplifying the lifecycle of
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span> </h2>
       <pre class="language-dart"><code class="language-dart">@override
-RxLoaderState createState() {
-  return new RxLoaderState&lt;T&gt;(commandResults);
+_RxLoaderState createState() {
+  return new _RxLoaderState&lt;T&gt;(commandResults);
 }</code></pre>
     </section>
 
@@ -125,7 +126,7 @@ RxLoaderState createState() {
 
 <footer>
   <span class="no-break">
-    rx_widgets 1.0.0
+    rx_widgets 1.0.2
   </span>
 
 </footer>

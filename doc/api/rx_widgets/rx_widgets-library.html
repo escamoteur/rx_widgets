@@ -50,8 +50,8 @@
       <h2>Classes</h2>
 
       <dl>
-        <dt id="RxLoader">
-          <span class="name "><a href="rx_widgets/RxLoader-class.html">RxLoader</a><span class="signature">&lt;T&gt;</span></span>
+        <dt id="RxCommandBuilder">
+          <span class="name "><a href="rx_widgets/RxCommandBuilder-class.html">RxCommandBuilder</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
         </dt>
         <dd>
           Spinner/Busyindicator that reacts on the output of a <code>Stream&lt;CommandResult&lt;T&gt;&gt;</code>. It's made especially to work together with
@@ -60,11 +60,15 @@ it starts running as soon as an item with  <code>isExecuting==true</code> is rec
 until <code>isExecuting==true</code> is received. 
 To react on other possible states (<code>data, nodata, error</code>) that can be emitted it offers three option <code>Builder</code> methods
         </dd>
-        <dt id="RxLoaderState">
-          <span class="name "><a href="rx_widgets/RxLoaderState-class.html">RxLoaderState</a><span class="signature">&lt;T&gt;</span></span>
+        <dt id="RxLoader">
+          <span class="name "><a href="rx_widgets/RxLoader-class.html">RxLoader</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
         </dt>
         <dd>
-          
+          Spinner/Busyindicator that reacts on the output of a <code>Stream&lt;CommandResult&lt;T&gt;&gt;</code>. It's made especially to work together with
+<code>RxCommand</code> from the <code>rx_command</code>package. 
+it starts running as soon as an item with  <code>isExecuting==true</code> is received
+until <code>isExecuting==true</code> is received. 
+To react on other possible states (<code>data, nodata, error</code>) that can be emitted it offers three option <code>Builder</code> methods
         </dd>
         <dt id="RxSpinner">
           <span class="name "><a href="rx_widgets/RxSpinner-class.html">RxSpinner</a></span>
@@ -106,7 +110,16 @@ If you don't need builders for the alternative child widgets this class offers a
 
       <dl class="callables">
         <dt id="BuilderFunction" class="callable">
-          <span class="name"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a></span><span class="signature">&lt;T&gt;</span><span class="signature">(<wbr><span class="parameter" id="BuilderFunction-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span>, </span> <span class="parameter" id="BuilderFunction-param-data"><span class="type-annotation">T</span> <span class="parameter-name">data</span></span>)
+          <span class="name"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="BuilderFunction-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span>, </span> <span class="parameter" id="BuilderFunction-param-data"><span class="type-annotation">T</span> <span class="parameter-name">data</span></span>)
+            <span class="returntype parameter">&#8594; Widget</span>
+          </span>
+        </dt>
+        <dd>
+          
+          
+</dd>
+        <dt id="BuilderFunction1" class="callable">
+          <span class="name"><a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></span><span class="signature">(<wbr><span class="parameter" id="BuilderFunction1-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span></span>)
             <span class="returntype parameter">&#8594; Widget</span>
           </span>
         </dt>
@@ -124,8 +137,8 @@ If you don't need builders for the alternative child widgets this class offers a
     <h5>rx_widgets library</h5>
     <ol>
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#classes">Classes</a></li>
+      <li><a href="rx_widgets/RxCommandBuilder-class.html">RxCommandBuilder</a></li>
       <li><a href="rx_widgets/RxLoader-class.html">RxLoader</a></li>
-      <li><a href="rx_widgets/RxLoaderState-class.html">RxLoaderState</a></li>
       <li><a href="rx_widgets/RxSpinner-class.html">RxSpinner</a></li>
       <li><a href="rx_widgets/WidgetBuilderSelector-class.html">WidgetBuilderSelector</a></li>
       <li><a href="rx_widgets/WidgetSelector-class.html">WidgetSelector</a></li>
@@ -136,6 +149,7 @@ If you don't need builders for the alternative child widgets this class offers a
     
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#typedefs">Typedefs</a></li>
       <li><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a></li>
+      <li><a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></li>
     
     </ol>
   </div><!--/sidebar-offcanvas-right-->
@@ -144,7 +158,7 @@ If you don't need builders for the alternative child widgets this class offers a
 
 <footer>
   <span class="no-break">
-    rx_widgets 1.0.0
+    rx_widgets 1.0.2
   </span>
 
 </footer>

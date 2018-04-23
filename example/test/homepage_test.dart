@@ -31,7 +31,7 @@ main() {
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(model.updateWeatherCommand).thenReturn(command);
+      when(model.updateWeatherCommand).thenAnswer((_)=>command);
 
 //      model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
 //      model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
@@ -78,7 +78,7 @@ main() {
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(model.updateWeatherCommand).thenReturn(command);
+      when(model.updateWeatherCommand).thenAnswer((_)=>command);
 
  //     model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
  //     model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
@@ -124,7 +124,7 @@ main() {
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(model.updateWeatherCommand).thenReturn(command);
+      when(model.updateWeatherCommand).thenAnswer((_)=>command);
 
  //     model.updateWeatherCommand.canExecute.listen((b) => print("Can exceute: $b"));
  //     model.updateWeatherCommand.isExecuting.listen((b) => print("Is Exceuting: $b"));
@@ -173,7 +173,7 @@ main() {
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(model.updateWeatherCommand).thenReturn(command);
+      when(model.updateWeatherCommand).thenAnswer((_)=>command);
       when(model.updateWeatherCommand()).thenAnswer((_)=>command());
 
       command.queueResultsForNextExecuteCall([CommandResult<List<WeatherEntry>>(
@@ -199,8 +199,8 @@ main() {
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(model.updateWeatherCommand).thenReturn(commandUpdate); //Allways needed because RxLoader binds to it
-      when(model.textChangedCommand).thenReturn(commandTextChange);
+      when(model.updateWeatherCommand).thenAnswer((_)=>commandUpdate); //Allways needed because RxLoader binds to it
+      when(model.textChangedCommand).thenAnswer((_)=>commandTextChange);
  
       await tester.pumpWidget(widget); // Build initial State
       await tester.enterText(find.byKey(AppKeys.textField), 'London');
@@ -221,7 +221,7 @@ main() {
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(model.updateWeatherCommand).thenReturn(commandUpdate);
+      when(model.updateWeatherCommand).thenAnswer((_)=>commandUpdate); //Allways needed because RxLoader binds to it
       when(model.updateWeatherCommand()).thenAnswer((_)=>commandUpdate());
 
 
@@ -249,8 +249,8 @@ main() {
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(model.updateWeatherCommand).thenReturn(updateCommand);
-      when(model.switchChangedCommand).thenReturn(switchCommand);
+      when(model.updateWeatherCommand).thenAnswer((_) => updateCommand);
+      when(model.switchChangedCommand).thenAnswer((_) => switchCommand);
 
       await tester.pumpWidget(widget); // Build initial State
       await tester.pump(); 
@@ -276,7 +276,7 @@ main() {
         child: new MaterialApp(home: new HomePage()),
       );
 
-      when(model.updateWeatherCommand).thenReturn(command);
+      when(model.updateWeatherCommand).thenAnswer((_) =>command);
 
 
       await tester.pumpWidget(widget); // Build initial State

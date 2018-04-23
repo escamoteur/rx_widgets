@@ -105,7 +105,7 @@ class RxLoader<T>  extends StatefulWidget{
 
 
   /// Creates a new `RxLoader` instance
-  /// [commandResults] : `Stream<CommandResult<T>>` An RxCommand that issues `CommandResults`
+  /// [commandResults] : `Stream<CommandResult<T>>` or a `RxCommand<T>` that issues `CommandResults`
   /// [platform]  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
   /// [radius]    : radius of the Spinner  
   /// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
@@ -133,12 +133,12 @@ class RxLoader<T>  extends StatefulWidget{
           :  assert(commandResults != null), super(key: key);
 
   @override
-  RxLoaderState createState() {
-    return new RxLoaderState<T>(commandResults);
+  _RxLoaderState createState() {
+    return new _RxLoaderState<T>(commandResults);
   }
 }
 
-class RxLoaderState<T> extends State<RxLoader<T>> {
+class _RxLoaderState<T> extends State<RxLoader<T>> {
 
   StreamSubscription<CommandResult<T>> subscription;
 
@@ -146,7 +146,7 @@ class RxLoaderState<T> extends State<RxLoader<T>> {
 
   CommandResult<T>  lastReceivedItem = new CommandResult<T>(null,null,false);
 
-  RxLoaderState(this.commandResults);
+  _RxLoaderState(this.commandResults);
 
   @override
   void initState(){

@@ -39,8 +39,8 @@
     <h5>rx_widgets library</h5>
     <ol>
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#classes">Classes</a></li>
+      <li><a href="rx_widgets/RxCommandBuilder-class.html">RxCommandBuilder</a></li>
       <li><a href="rx_widgets/RxLoader-class.html">RxLoader</a></li>
-      <li><a href="rx_widgets/RxLoaderState-class.html">RxLoaderState</a></li>
       <li><a href="rx_widgets/RxSpinner-class.html">RxSpinner</a></li>
       <li><a href="rx_widgets/WidgetBuilderSelector-class.html">WidgetBuilderSelector</a></li>
       <li><a href="rx_widgets/WidgetSelector-class.html">WidgetSelector</a></li>
@@ -51,6 +51,7 @@
     
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#typedefs">Typedefs</a></li>
       <li><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a></li>
+      <li><a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></li>
     
     </ol>
   </div>
@@ -71,7 +72,7 @@ Needless to say that <code>RxSpinner</code> is ideal in combination with <code>R
 
       <dl class="constructor-summary-list">
         <dt id="RxSpinner" class="callable">
-          <span class="name"><a href="rx_widgets/RxSpinner/RxSpinner.html">RxSpinner</a></span><span class="signature">({<span class="parameter" id="-param-busyEvents"><span class="type-annotation">Stream<span class="signature">&lt;bool&gt;</span></span> <span class="parameter-name">busyEvents</span>, </span> <span class="parameter" id="-param-platform"><span class="type-annotation">TargetPlatform</span> <span class="parameter-name">platform</span>, </span> <span class="parameter" id="-param-radius"><span class="type-annotation">double</span> <span class="parameter-name">radius</span>: <span class="default-value">20.0</span>, </span> <span class="parameter" id="-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation">double</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-valueColor"><span class="type-annotation">Animation<span class="signature">&lt;Color&gt;</span></span> <span class="parameter-name">valueColor</span>, </span> <span class="parameter" id="-param-strokeWidth"><span class="type-annotation">double</span> <span class="parameter-name">strokeWidth</span>: <span class="default-value">4.0</span>, </span> <span class="parameter" id="-param-normal"><span class="type-annotation">Widget</span> <span class="parameter-name">normal</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span></span> })</span>
+          <span class="name"><a href="rx_widgets/RxSpinner/RxSpinner.html">RxSpinner</a></span><span class="signature">({<span class="parameter" id="-param-busyEvents"><span class="type-annotation">Stream<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span> <span class="parameter-name">busyEvents</span>, </span> <span class="parameter" id="-param-platform"><span class="type-annotation">TargetPlatform</span> <span class="parameter-name">platform</span>, </span> <span class="parameter" id="-param-radius"><span class="type-annotation">double</span> <span class="parameter-name">radius</span>: <span class="default-value">20.0</span>, </span> <span class="parameter" id="-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation">double</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-valueColor"><span class="type-annotation">Animation<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span> <span class="parameter-name">valueColor</span>, </span> <span class="parameter" id="-param-strokeWidth"><span class="type-annotation">double</span> <span class="parameter-name">strokeWidth</span>: <span class="default-value">4.0</span>, </span> <span class="parameter" id="-param-normal"><span class="type-annotation">Widget</span> <span class="parameter-name">normal</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span></span> })</span>
         </dt>
         <dd>
           Creates a new RxSpinner instance
@@ -101,7 +102,7 @@ Needless to say that <code>RxSpinner</code> is ideal in combination with <code>R
 </dd>
         <dt id="busyEvents" class="property">
           <span class="name"><a href="rx_widgets/RxSpinner/busyEvents.html">busyEvents</a></span>
-          <span class="signature">&#8594; Stream<span class="signature">&lt;bool&gt;</span></span>
+          <span class="signature">&#8594; Stream<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
         </dt>
         <dd>
           
@@ -149,7 +150,7 @@ Needless to say that <code>RxSpinner</code> is ideal in combination with <code>R
 </dd>
         <dt id="valueColor" class="property">
           <span class="name"><a href="rx_widgets/RxSpinner/valueColor.html">valueColor</a></span>
-          <span class="signature">&#8594; Animation<span class="signature">&lt;Color&gt;</span></span>
+          <span class="signature">&#8594; Animation<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span>
         </dt>
         <dd>
           
@@ -205,7 +206,7 @@ Needless to say that <code>RxSpinner</code> is ideal in combination with <code>R
 </dd>
         <dt id="debugDescribeChildren" class="callable inherited">
           <span class="name"><a href="rx_widgets/RxSpinner/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; List<span class="signature">&lt;DiagnosticsNode&gt;</span></span>
+            <span class="returntype parameter">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">DiagnosticsNode</span>&gt;</span></span>
           </span>
         </dt>
         <dd class="inherited">
@@ -344,7 +345,7 @@ tools and by <a href="rx_widgets/RxSpinner/toStringDeep.html">toStringDeep</a>. 
 
 <footer>
   <span class="no-break">
-    rx_widgets 1.0.0
+    rx_widgets 1.0.2
   </span>
 
 </footer>

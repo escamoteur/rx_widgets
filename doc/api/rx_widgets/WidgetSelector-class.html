@@ -39,8 +39,8 @@
     <h5>rx_widgets library</h5>
     <ol>
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#classes">Classes</a></li>
+      <li><a href="rx_widgets/RxCommandBuilder-class.html">RxCommandBuilder</a></li>
       <li><a href="rx_widgets/RxLoader-class.html">RxLoader</a></li>
-      <li><a href="rx_widgets/RxLoaderState-class.html">RxLoaderState</a></li>
       <li><a href="rx_widgets/RxSpinner-class.html">RxSpinner</a></li>
       <li><a href="rx_widgets/WidgetBuilderSelector-class.html">WidgetBuilderSelector</a></li>
       <li><a href="rx_widgets/WidgetSelector-class.html">WidgetSelector</a></li>
@@ -51,6 +51,7 @@
     
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#typedefs">Typedefs</a></li>
       <li><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a></li>
+      <li><a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></li>
     
     </ol>
   </div>
@@ -71,7 +72,7 @@ If you don't need builders for the alternative child widgets this class offers a
 
       <dl class="constructor-summary-list">
         <dt id="WidgetSelector" class="callable">
-          <span class="name"><a href="rx_widgets/WidgetSelector/WidgetSelector.html">WidgetSelector</a></span><span class="signature">({<span class="parameter" id="-param-buildEvents"><span class="type-annotation">Stream<span class="signature">&lt;bool&gt;</span></span> <span class="parameter-name">buildEvents</span>, </span> <span class="parameter" id="-param-onTrue"><span class="type-annotation">Widget</span> <span class="parameter-name">onTrue</span>, </span> <span class="parameter" id="-param-onFalse"><span class="type-annotation">Widget</span> <span class="parameter-name">onFalse</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span></span> })</span>
+          <span class="name"><a href="rx_widgets/WidgetSelector/WidgetSelector.html">WidgetSelector</a></span><span class="signature">({<span class="parameter" id="-param-buildEvents"><span class="type-annotation">Stream<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span> <span class="parameter-name">buildEvents</span>, </span> <span class="parameter" id="-param-onTrue"><span class="type-annotation">Widget</span> <span class="parameter-name">onTrue</span>, </span> <span class="parameter" id="-param-onFalse"><span class="type-annotation">Widget</span> <span class="parameter-name">onFalse</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span></span> })</span>
         </dt>
         <dd>
           Creates a new WidgetSelector instance
@@ -89,7 +90,7 @@ If you don't need builders for the alternative child widgets this class offers a
       <dl class="properties">
         <dt id="buildEvents" class="property">
           <span class="name"><a href="rx_widgets/WidgetSelector/buildEvents.html">buildEvents</a></span>
-          <span class="signature">&#8594; Stream<span class="signature">&lt;bool&gt;</span></span>
+          <span class="signature">&#8594; Stream<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span>
         </dt>
         <dd>
           
@@ -161,7 +162,7 @@ If you don't need builders for the alternative child widgets this class offers a
 </dd>
         <dt id="debugDescribeChildren" class="callable inherited">
           <span class="name"><a href="rx_widgets/WidgetSelector/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; List<span class="signature">&lt;DiagnosticsNode&gt;</span></span>
+            <span class="returntype parameter">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">DiagnosticsNode</span>&gt;</span></span>
           </span>
         </dt>
         <dd class="inherited">
@@ -295,7 +296,7 @@ tools and by <a href="rx_widgets/WidgetSelector/toStringDeep.html">toStringDeep<
 
 <footer>
   <span class="no-break">
-    rx_widgets 1.0.0
+    rx_widgets 1.0.2
   </span>
 
 </footer>

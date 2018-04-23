@@ -1,7 +1,7 @@
 name: rx_widgets
 description: Stream based Widgets and Widget convenience classes to support an reactive programming style
-version: 1.0.1
-author: Thomas Burkhart
+version: 1.0.2
+author: Thomas Burkhart <burkhartsengineering@gmail.com>
 homepage: https://github.com/escamoteur/rx_widgets
 documentation:
 environment:
@@ -11,9 +11,10 @@ dependencies:
  flutter:
     sdk: flutter
 
- #rx_command: ^1.0.3   
- rx_command:
-    path: ..\rx_command\   
+ rx_command: ^1.0.7   
+    
+# rx_command:
+    #path: ..\rx_command\   
 
 dev_dependencies:
   flutter_test:

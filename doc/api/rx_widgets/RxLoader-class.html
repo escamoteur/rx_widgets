@@ -25,7 +25,7 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="index.html">rx_widgets</a></li>
     <li><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></li>
-    <li class="self-crumb">RxLoader<span class="signature">&lt;T&gt;</span> class</li>
+    <li class="self-crumb">RxLoader<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span> class</li>
   </ol>
   <div class="self-name">RxLoader</div>
   <form class="search navbar-right" role="search">
@@ -39,8 +39,8 @@
     <h5>rx_widgets library</h5>
     <ol>
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#classes">Classes</a></li>
+      <li><a href="rx_widgets/RxCommandBuilder-class.html">RxCommandBuilder</a></li>
       <li><a href="rx_widgets/RxLoader-class.html">RxLoader</a></li>
-      <li><a href="rx_widgets/RxLoaderState-class.html">RxLoaderState</a></li>
       <li><a href="rx_widgets/RxSpinner-class.html">RxSpinner</a></li>
       <li><a href="rx_widgets/WidgetBuilderSelector-class.html">WidgetBuilderSelector</a></li>
       <li><a href="rx_widgets/WidgetSelector-class.html">WidgetSelector</a></li>
@@ -51,12 +51,13 @@
     
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#typedefs">Typedefs</a></li>
       <li><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a></li>
+      <li><a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></li>
     
     </ol>
   </div>
 
   <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>RxLoader&lt;T&gt; class</h1>
+    <h1>RxLoader&lt;<wbr><span class="type-parameter">T</span>&gt; class</h1>
 
     <section class="desc markdown">
       <p>Spinner/Busyindicator that reacts on the output of a <code>Stream&lt;CommandResult&lt;T&gt;&gt;</code>. It's made especially to work together with
@@ -72,12 +73,11 @@ To react on other possible states (<code>data, nodata, error</code>) that can be
 
       <dl class="constructor-summary-list">
         <dt id="RxLoader" class="callable">
-          <span class="name"><a href="rx_widgets/RxLoader/RxLoader.html">RxLoader</a></span><span class="signature">({<span class="parameter" id="-param-commandResults"><span class="type-annotation">Stream<span class="signature">&lt;CommandResult<span class="signature">&lt;T&gt;</span>&gt;</span></span> <span class="parameter-name">commandResults</span>, </span> <span class="parameter" id="-param-platform"><span class="type-annotation">TargetPlatform</span> <span class="parameter-name">platform</span>, </span> <span class="parameter" id="-param-radius"><span class="type-annotation">double</span> <span class="parameter-name">radius</span>: <span class="default-value">20.0</span>, </span> <span class="parameter" id="-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation">double</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-valueColor"><span class="type-annotation">Animation<span class="signature">&lt;Color&gt;</span></span> <span class="parameter-name">valueColor</span>, </span> <span class="parameter" id="-param-strokeWidth"><span class="type-annotation">double</span> <span class="parameter-name">strokeWidth</span>: <span class="default-value">4.0</span>, </span> <span class="parameter" id="-param-dataBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;T&gt;</span></span> <span class="parameter-name">dataBuilder</span>, </span> <span class="parameter" id="-param-placeHolderBuilder"><span class="type-annotation">Builder</span> <span class="parameter-name">placeHolderBuilder</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;Exception&gt;</span></span> <span class="parameter-name">errorBuilder</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span></span> })</span>
+          <span class="name"><a href="rx_widgets/RxLoader/RxLoader.html">RxLoader</a></span><span class="signature">({<span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-spinnerKey"><span class="type-annotation">Key</span> <span class="parameter-name">spinnerKey</span>, </span> <span class="parameter" id="-param-commandResults"><span class="type-annotation">Stream<span class="signature">&lt;<wbr><span class="type-parameter">CommandResult<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span> <span class="parameter-name">commandResults</span>, </span> <span class="parameter" id="-param-platform"><span class="type-annotation">TargetPlatform</span> <span class="parameter-name">platform</span>, </span> <span class="parameter" id="-param-radius"><span class="type-annotation">double</span> <span class="parameter-name">radius</span>: <span class="default-value">20.0</span>, </span> <span class="parameter" id="-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>, </span> <span class="parameter" id="-param-value"><span class="type-annotation">double</span> <span class="parameter-name">value</span>, </span> <span class="parameter" id="-param-valueColor"><span class="type-annotation">Animation<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span> <span class="parameter-name">valueColor</span>, </span> <span class="parameter" id="-param-strokeWidth"><span class="type-annotation">double</span> <span class="parameter-name">strokeWidth</span>: <span class="default-value">4.0</span>, </span> <span class="parameter" id="-param-dataBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">dataBuilder</span>, </span> <span class="parameter" id="-param-placeHolderBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></span> <span class="parameter-name">placeHolderBuilder</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation"><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">Exception</span>&gt;</span></span> <span class="parameter-name">errorBuilder</span></span> })</span>
         </dt>
         <dd>
           Creates a new <code>RxLoader</code> instance
-<code>busyEvents</code> : <code>Stream&lt;bool&gt;</code> that controls the activity of the Spinner. On receiving <code>true</code> it replaces the <code>normal</code> widget 
- and starts running undtil it receives a <code>false</code>value.
+<code>commandResults</code> : <code>Stream&lt;CommandResult&lt;T&gt;&gt;</code> or a <code>RxCommand&lt;T&gt;</code> that issues <code>CommandResults</code>
 <code>platform</code>  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
 <code>radius</code>    : radius of the Spinner<br>
 <code>dataBuilder</code> : Builder that will be called as soon as an event with data is received. It will get passed the <code>data</code> feeld of the CommandResult.
@@ -86,6 +86,7 @@ If this is null a <code>Container</code> will be created instead.
 If this is null a <code>Container</code> will be created instead.
 <code>dataBuilder</code> : Builder that will be called as soon as an event with an <code>error</code> is received. It will get passed the <code>error</code> feeld of the CommandResult.
 If this is null a <code>Container</code> will be created instead.
+<code>spinnerKey</code> Widget key of the Spinner Widget of the RxLoader. This can be usefull if you want to check in UI Tests if the Spinner is visible.
  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
  they are ignored if the platform style is iOS.
           <div class="constructor-modifier features">const</div>
@@ -107,7 +108,7 @@ If this is null a <code>Container</code> will be created instead.
 </dd>
         <dt id="commandResults" class="property">
           <span class="name"><a href="rx_widgets/RxLoader/commandResults.html">commandResults</a></span>
-          <span class="signature">&#8594; Stream<span class="signature">&lt;CommandResult<span class="signature">&lt;T&gt;</span>&gt;</span></span>
+          <span class="signature">&#8594; Stream<span class="signature">&lt;<wbr><span class="type-parameter">CommandResult<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>&gt;</span></span>
         </dt>
         <dd>
           
@@ -115,7 +116,7 @@ If this is null a <code>Container</code> will be created instead.
 </dd>
         <dt id="dataBuilder" class="property">
           <span class="name"><a href="rx_widgets/RxLoader/dataBuilder.html">dataBuilder</a></span>
-          <span class="signature">&#8594; <a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;T&gt;</span></span>
+          <span class="signature">&#8594; <a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
         </dt>
         <dd>
           
@@ -123,7 +124,7 @@ If this is null a <code>Container</code> will be created instead.
 </dd>
         <dt id="errorBuilder" class="property">
           <span class="name"><a href="rx_widgets/RxLoader/errorBuilder.html">errorBuilder</a></span>
-          <span class="signature">&#8594; <a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;Exception&gt;</span></span>
+          <span class="signature">&#8594; <a href="rx_widgets/BuilderFunction.html">BuilderFunction</a><span class="signature">&lt;<wbr><span class="type-parameter">Exception</span>&gt;</span></span>
         </dt>
         <dd>
           
@@ -131,7 +132,7 @@ If this is null a <code>Container</code> will be created instead.
 </dd>
         <dt id="placeHolderBuilder" class="property">
           <span class="name"><a href="rx_widgets/RxLoader/placeHolderBuilder.html">placeHolderBuilder</a></span>
-          <span class="signature">&#8594; Builder</span>
+          <span class="signature">&#8594; <a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></span>
         </dt>
         <dd>
           
@@ -148,6 +149,14 @@ If this is null a <code>Container</code> will be created instead.
         <dt id="radius" class="property">
           <span class="name"><a href="rx_widgets/RxLoader/radius.html">radius</a></span>
           <span class="signature">&#8594; double</span>
+        </dt>
+        <dd>
+          
+          <div class="features">final</div>
+</dd>
+        <dt id="spinnerKey" class="property">
+          <span class="name"><a href="rx_widgets/RxLoader/spinnerKey.html">spinnerKey</a></span>
+          <span class="signature">&#8594; Key</span>
         </dt>
         <dd>
           
@@ -171,7 +180,7 @@ If this is null a <code>Container</code> will be created instead.
 </dd>
         <dt id="valueColor" class="property">
           <span class="name"><a href="rx_widgets/RxLoader/valueColor.html">valueColor</a></span>
-          <span class="signature">&#8594; Animation<span class="signature">&lt;Color&gt;</span></span>
+          <span class="signature">&#8594; Animation<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span>
         </dt>
         <dd>
           
@@ -209,7 +218,7 @@ If this is null a <code>Container</code> will be created instead.
       <dl class="callables">
         <dt id="createState" class="callable">
           <span class="name"><a href="rx_widgets/RxLoader/createState.html">createState</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; <a href="rx_widgets/RxLoaderState-class.html">RxLoaderState</a></span>
+            <span class="returntype parameter">&#8594; _RxLoaderState</span>
           </span>
         </dt>
         <dd>
@@ -227,7 +236,7 @@ If this is null a <code>Container</code> will be created instead.
 </dd>
         <dt id="debugDescribeChildren" class="callable inherited">
           <span class="name"><a href="rx_widgets/RxLoader/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; List<span class="signature">&lt;DiagnosticsNode&gt;</span></span>
+            <span class="returntype parameter">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">DiagnosticsNode</span>&gt;</span></span>
           </span>
         </dt>
         <dd class="inherited">
@@ -337,6 +346,7 @@ tools and by <a href="rx_widgets/RxLoader/toStringDeep.html">toStringDeep</a>. <
       <li><a href="rx_widgets/RxLoader/placeHolderBuilder.html">placeHolderBuilder</a></li>
       <li><a href="rx_widgets/RxLoader/platform.html">platform</a></li>
       <li><a href="rx_widgets/RxLoader/radius.html">radius</a></li>
+      <li><a href="rx_widgets/RxLoader/spinnerKey.html">spinnerKey</a></li>
       <li><a href="rx_widgets/RxLoader/strokeWidth.html">strokeWidth</a></li>
       <li><a href="rx_widgets/RxLoader/value.html">value</a></li>
       <li><a href="rx_widgets/RxLoader/valueColor.html">valueColor</a></li>
@@ -368,7 +378,7 @@ tools and by <a href="rx_widgets/RxLoader/toStringDeep.html">toStringDeep</a>. <
 
 <footer>
   <span class="no-break">
-    rx_widgets 1.0.0
+    rx_widgets 1.0.2
   </span>
 
 </footer>
