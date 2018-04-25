@@ -10,3 +10,7 @@
 
 * Added RxCommandBuilder.
 
+## [1.0.3] - 23.4.2018
+
+* Updated to RxCommand 1.0.8
+
