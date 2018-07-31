@@ -11,14 +11,14 @@ dependencies:
  flutter:
     sdk: flutter
 
- rx_command: ^1.0.8   
+ rx_command: ^2.0.3   
     
-# rx_command:
-    #path: ..\rx_command\   
+#  rx_command:
+#     path: ..\rx_command\   
 
 dev_dependencies:
   flutter_test:
-    sdk: flutter
+    sdk: flutter 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
