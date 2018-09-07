@@ -25,13 +25,13 @@ class HomePageModel {
     // the updateWeatherCommand
     final _updateWeatherCommand =
         RxCommand.createAsync3<String, List<WeatherEntry>>(
-            service.getWeatherEntriesForCity, canExecute:  _switchChangedCommand.results);
+            service.getWeatherEntriesForCity, canExecute:  _switchChangedCommand);
 
     // Will be called on every change of the search field
     final _textChangedCommand = RxCommand.createSync3<String, String>((s) => s);
 
     // When the user starts typing
-    _textChangedCommand.results
+    _textChangedCommand
         // Wait for the user to stop typing for 500ms
         .debounce(new Duration(milliseconds: 500))
         // Then call the updateWeatherCommand

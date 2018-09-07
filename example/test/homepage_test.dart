@@ -179,9 +179,9 @@ main() {
       command.queueResultsForNextExecuteCall([CommandResult<List<WeatherEntry>>(
                   [WeatherEntry("London", 10.0, 30.0, "sunny", 12)],null, false)]);
 
-      expect(command, emitsInOrder([ crm([WeatherEntry("London", 10.0, 30.0, "sunny", 12)], false, false) ]));
+      expect(command.results, emitsInOrder([ crm([WeatherEntry("London", 10.0, 30.0, "sunny", 12)], false, false) ]));
 
-      command.listen((data)=> print("Received: " + data.data.toString()));
+      command.results.listen((data)=> print("Received: " + data.data.toString()));
 
       await tester.pumpWidget(widget); // Build initial State
       await tester.pump(); // Build after Stream delivers value

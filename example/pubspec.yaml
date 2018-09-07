@@ -8,21 +8,21 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.0
-  rxdart : ^0.18.0
-  json_annotation: ^0.2.3
+  rxdart : ^0.18.1
+  json_annotation: ^1.1.0
   http: "^0.11.3+16" 
-  rx_command: ^2.0.3   
+  rx_command: ^3.0.0   
   # rx_command:
   #   path: ..\..\rx_command\ 
   rx_widgets: 
     path: ..\
  
 dev_dependencies: 
-  test: ^0.12.32
-  mockito: ^3.0.0-alpha+4
-  quiver: ^0.29.0  
-  build_runner: ^0.8.0
-  json_serializable: ^0.5.0
+  test: ^1.3.0
+  mockito: ^3.0.0
+  quiver: ^2.0.0+1  
+  build_runner: ^0.10.1
+  json_serializable: ^1.2.1
   flutter_test:
     sdk: flutter
 

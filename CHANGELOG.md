@@ -18,3 +18,7 @@
 
 * Updated to RxCommand 2.0.3
 
+## [2.0.0] - 07.9.2018
+
+* Updated to RxCommand 3.0.0
+

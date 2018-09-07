@@ -41,7 +41,7 @@ class HomePageState extends State<HomePage> {
                 RxLoader<List<WeatherEntry>>(
                         spinnerKey: AppKeys.loadingSpinner,
                         radius: 25.0,
-                        commandResults: ModelProvider.of(context).updateWeatherCommand,
+                        commandResults: ModelProvider.of(context).updateWeatherCommand.results,
                         dataBuilder: (context, data) => WeatherListView(data ,key: AppKeys.weatherList),
                         placeHolderBuilder: (context) => Center(key: AppKeys.loaderPlaceHolder, child: Text("No Data")),
                         errorBuilder: (context, ex) => Center(key: AppKeys.loaderError, child: Text("Error: ${ex.toString()}")),
