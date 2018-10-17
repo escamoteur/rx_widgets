@@ -11,7 +11,7 @@ dependencies:
  flutter:
     sdk: flutter
 
- rx_command: ^3.0.0   
+ rx_command: ^4.0.0   
     
 #  rx_command:
 #     path: ..\rx_command\   

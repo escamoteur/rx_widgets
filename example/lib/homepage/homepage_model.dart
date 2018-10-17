@@ -19,16 +19,16 @@ class HomePageModel {
   factory HomePageModel(WeatherService service ) {
     // Command expects a bool value when executed and issues the value on it's
     // result Observable (stream)
-    final _switchChangedCommand = RxCommand.createSync3<bool, bool>((b) => b);
+    final _switchChangedCommand = RxCommand.createSync<bool, bool>((b) => b);
 
     // We pass the result of switchChangedCommand as canExecute Observable to
     // the updateWeatherCommand
     final _updateWeatherCommand =
-        RxCommand.createAsync3<String, List<WeatherEntry>>(
+        RxCommand.createAsync<String, List<WeatherEntry>>(
             service.getWeatherEntriesForCity, canExecute:  _switchChangedCommand);
 
     // Will be called on every change of the search field
-    final _textChangedCommand = RxCommand.createSync3<String, String>((s) => s);
+    final _textChangedCommand = RxCommand.createSync<String, String>((s) => s);
 
     // When the user starts typing
     _textChangedCommand
