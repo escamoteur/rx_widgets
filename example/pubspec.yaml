@@ -8,10 +8,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.0
-  rxdart : ^0.18.1
+  rxdart : ^0.19.0
   json_annotation: ^1.1.0
   http: any 
-  rx_command: ^4.0.0   
+  rx_command: ^4.0.1   
   # rx_command:
   #   path: ..\..\rx_command\ 
   rx_widgets: 
