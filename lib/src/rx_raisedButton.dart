@@ -51,7 +51,7 @@ class RxRaisedButton extends RaisedButton {
   @override
   Widget build(BuildContext context) {
      return StreamBuilder(
-      stream: rxCommand.canExecute,
+      stream: rxCommand.canExecute.startWith(false),
       builder: (context, snapshot) {
         return RaisedButton(
           key: key,
