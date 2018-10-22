@@ -13,6 +13,56 @@ Add to your `pubspec.yaml` dependencies to  `rx_widgets`
 
 ## Available Classes
 
+### RxRaisedButton
+Creates a RaisedButton that has an rxCommand instead of onPressed. It gets disabled if the command has canExecute:false or when isExecuting:true
+
+```Dart
+/// an extended `RaisedButton` where the `onPressed` is replaced with `rxCommand`
+/// and it gets disabled if the `rxCommand` has the `canExecute` set to `false` or when it is executing
+const RxRaisedButton({
+    @required this.rxCommand,
+    Key key,
+    ValueChanged<bool> onHighlightChanged,
+    ButtonTextTheme textTheme,
+    Color textColor,
+    Color disabledTextColor,
+    Color color,
+    Color disabledColor,
+    Color highlightColor,
+    Color splashColor,
+    Brightness colorBrightness,
+    double elevation,
+    double highlightElevation,
+    double disabledElevation,
+    EdgeInsetsGeometry padding,
+    ShapeBorder shape,
+    Clip clipBehavior = Clip.none,
+    MaterialTapTargetSize materialTapTargetSize,
+    Duration animationDuration,
+    Widget child,
+  }) : super(
+          key: key,
+          onPressed: null,
+          onHighlightChanged: onHighlightChanged,
+          textTheme: textTheme,
+          textColor: textColor,
+          disabledTextColor: disabledTextColor,
+          color: color,
+          disabledColor: disabledColor,
+          highlightColor: highlightColor,
+          splashColor: splashColor,
+          colorBrightness: colorBrightness,
+          elevation: elevation,
+          highlightElevation: highlightElevation,
+          disabledElevation: disabledElevation,
+          padding: padding,
+          shape: shape,
+          clipBehavior: clipBehavior,
+          materialTapTargetSize: materialTapTargetSize,
+          animationDuration: animationDuration,
+          child: child,
+        );
+```
 ### RxSpinner
 
 Spinner/Busy indicator that reacts on the output of a `Stream<bool>` it starts running as soon as a `true` value is received until the next `false`is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as `normal` parameter. `RxSpinner` also adapts to the current or specified platform look. Needless to say that `RxSpinner` is ideal in combination with `RxCommand's` `isExecuting` Observable 
