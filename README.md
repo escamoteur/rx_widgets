@@ -63,6 +63,27 @@ const RxRaisedButton({
           child: child,
         );
 ```
+
+
+### RxText
+a Text that takes in a `Stream<String>` and displays it. An example of usage can be when showing status message , or results of some requests. 
+```Dart
+    RxText(
+    this.stream, {
+    Key key,
+    this.style,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
+    this.overflow,
+    this.textScaleFactor,
+    this.maxLines,
+    this.semanticsLabel,
+  })  : assert(stream != null && stream is Stream<String>),
+        textSpan = null,
+        super(key: key);
+```
 ### RxSpinner
 
 Spinner/Busy indicator that reacts on the output of a `Stream<bool>` it starts running as soon as a `true` value is received until the next `false`is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as `normal` parameter. `RxSpinner` also adapts to the current or specified platform look. Needless to say that `RxSpinner` is ideal in combination with `RxCommand's` `isExecuting` Observable 
