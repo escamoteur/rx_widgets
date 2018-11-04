@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="made with love by dartdoc 0.18.1">
+  <meta name="generator" content="made with love by dartdoc 0.20.1">
   <meta name="description" content="rx_widgets API docs, for the Dart programming language.">
   <title>rx_widgets - Dart API docs</title>
 
@@ -49,6 +49,72 @@ PRs are always welcome ;-)</p></blockquote>
 <h2>Getting Started</h2>
 <p>Add to your <code>pubspec.yaml</code> dependencies to  <code>rx_widgets</code></p>
 <h2>Available Classes</h2>
+<h3>RxRaisedButton</h3>
+<p>Creates a RaisedButton that has an rxCommand instead of onPressed. It gets disabled if the command has canExecute:false or when isExecuting:true</p>
+<pre class="language-Dart"><code class="language-Dart">/// an extended `RaisedButton` where the `onPressed` is replaced with `rxCommand`
+/// and it gets disabled if the `rxCommand` has the `canExecute` set to `false` or when it is executing
+const RxRaisedButton({
+    @required this.rxCommand,
+    Key key,
+    ValueChanged&lt;bool&gt; onHighlightChanged,
+    ButtonTextTheme textTheme,
+    Color textColor,
+    Color disabledTextColor,
+    Color color,
+    Color disabledColor,
+    Color highlightColor,
+    Color splashColor,
+    Brightness colorBrightness,
+    double elevation,
+    double highlightElevation,
+    double disabledElevation,
+    EdgeInsetsGeometry padding,
+    ShapeBorder shape,
+    Clip clipBehavior = Clip.none,
+    MaterialTapTargetSize materialTapTargetSize,
+    Duration animationDuration,
+    Widget child,
+  }) : super(
+          key: key,
+          onPressed: null,
+          onHighlightChanged: onHighlightChanged,
+          textTheme: textTheme,
+          textColor: textColor,
+          disabledTextColor: disabledTextColor,
+          color: color,
+          disabledColor: disabledColor,
+          highlightColor: highlightColor,
+          splashColor: splashColor,
+          colorBrightness: colorBrightness,
+          elevation: elevation,
+          highlightElevation: highlightElevation,
+          disabledElevation: disabledElevation,
+          padding: padding,
+          shape: shape,
+          clipBehavior: clipBehavior,
+          materialTapTargetSize: materialTapTargetSize,
+          animationDuration: animationDuration,
+          child: child,
+        );
+</code></pre>
+<h3>RxText</h3>
+<p>a Text that takes in a <code>Stream&lt;String&gt;</code> and displays it. An example of usage can be when showing status message , or results of some requests. </p>
+<pre class="language-Dart"><code class="language-Dart">    RxText(
+    this.stream, {
+    Key key,
+    this.style,
+    this.textAlign,
+    this.textDirection,
+    this.locale,
+    this.softWrap,
+    this.overflow,
+    this.textScaleFactor,
+    this.maxLines,
+    this.semanticsLabel,
+  })  : assert(stream != null &amp;&amp; stream is Stream&lt;String&gt;),
+        textSpan = null,
+        super(key: key);
+</code></pre>
 <h3>RxSpinner</h3>
 <p>Spinner/Busy indicator that reacts on the output of a <code>Stream&lt;bool&gt;</code> it starts running as soon as a <code>true</code> value is received until the next <code>false</code>is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as <code>normal</code> parameter. <code>RxSpinner</code> also adapts to the current or specified platform look. Needless to say that <code>RxSpinner</code> is ideal in combination with <code>RxCommand's</code> <code>isExecuting</code> Observable </p>
 <pre class="language-Dart"><code class="language-Dart">  /// Creates a new RxSpinner instance
@@ -182,7 +248,7 @@ const RxCommandBuilder({Key key,
 
 <footer>
   <span class="no-break">
-    rx_widgets 1.0.2
+    rx_widgets 2.0.1
   </span>
 
 </footer>

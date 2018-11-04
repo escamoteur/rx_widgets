@@ -70,6 +70,13 @@ it starts running as soon as an item with  <code>isExecuting==true</code> is rec
 until <code>isExecuting==true</code> is received. 
 To react on other possible states (<code>data, nodata, error</code>) that can be emitted it offers three option <code>Builder</code> methods
         </dd>
+        <dt id="RxRaisedButton">
+          <span class="name "><a href="rx_widgets/RxRaisedButton-class.html">RxRaisedButton</a></span>
+        </dt>
+        <dd>
+          a reimplementation of a  <code>RaisedButton</code> where the <code>onPressed</code> is replaced with <code>rxCommand</code>
+so the button gets disabled if the <code>rxCommand</code> has the <code>canExecute</code> set to <code>false</code> or when it is executing
+        </dd>
         <dt id="RxSpinner">
           <span class="name "><a href="rx_widgets/RxSpinner-class.html">RxSpinner</a></span>
         </dt>
@@ -78,6 +85,13 @@ To react on other possible states (<code>data, nodata, error</code>) that can be
 until the next <code>false</code>is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as <code>normal</code> parameter.
 <code>RxSpinner</code> also adapts to the current or specified platform look.
 Needless to say that <code>RxSpinner</code> is ideal in combination with <code>RxCommand's</code> <code>isExecuting</code> Observable
+        </dd>
+        <dt id="RxText">
+          <span class="name "><a href="rx_widgets/RxText-class.html">RxText</a></span>
+        </dt>
+        <dd>
+          A reimplementation of <code>Text</code> so it takes a <code>Stream&lt;String&gt;</code> instead of <code>String</code> as data
+and reacts on it.
         </dd>
         <dt id="WidgetBuilderSelector">
           <span class="name "><a href="rx_widgets/WidgetBuilderSelector-class.html">WidgetBuilderSelector</a></span>
@@ -139,7 +153,9 @@ If you don't need builders for the alternative child widgets this class offers a
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#classes">Classes</a></li>
       <li><a href="rx_widgets/RxCommandBuilder-class.html">RxCommandBuilder</a></li>
       <li><a href="rx_widgets/RxLoader-class.html">RxLoader</a></li>
+      <li><a href="rx_widgets/RxRaisedButton-class.html">RxRaisedButton</a></li>
       <li><a href="rx_widgets/RxSpinner-class.html">RxSpinner</a></li>
+      <li><a href="rx_widgets/RxText-class.html">RxText</a></li>
       <li><a href="rx_widgets/WidgetBuilderSelector-class.html">WidgetBuilderSelector</a></li>
       <li><a href="rx_widgets/WidgetSelector-class.html">WidgetSelector</a></li>
     
@@ -158,7 +174,7 @@ If you don't need builders for the alternative child widgets this class offers a
 
 <footer>
   <span class="no-break">
-    rx_widgets 1.0.2
+    rx_widgets 2.0.1
   </span>
 
 </footer>

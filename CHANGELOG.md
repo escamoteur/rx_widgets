@@ -1,3 +1,7 @@
+## [2.2.0] - 07.9.2018
+
+* Merged PR from Ahmad ElMadi adding RxRaisedButton and RxTextWidget
+
 ## [2.0.1] - 07.9.2018
 
 * Updated to RxCommand 4.0.1

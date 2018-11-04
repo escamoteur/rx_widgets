@@ -5,7 +5,6 @@ import 'package:rx_command/rx_command.dart';
 /// so the button gets disabled if the `rxCommand` has the `canExecute` set to `false` or when it is executing
 class RxRaisedButton extends StatelessWidget {
   final RxCommand<BuildContext, void> rxCommand;
-  final Key key;
   final ValueChanged<bool> onHighlightChanged;
   final ButtonTextTheme textTheme;
   final Color textColor;
@@ -25,7 +24,7 @@ class RxRaisedButton extends StatelessWidget {
   final Duration animationDuration;
   final Widget child;
   RxRaisedButton({
-    this.key,
+    Key key,
     this.onHighlightChanged,
     this.textTheme,
     this.textColor,
@@ -51,7 +50,6 @@ class RxRaisedButton extends StatelessWidget {
       stream: rxCommand.canExecute,
       builder: (context, snapshot) {
         return RaisedButton(
-          key: key,
           onPressed: snapshot.data ? rxCommand : null,
           onHighlightChanged: onHighlightChanged,
           textTheme: textTheme,
