@@ -17,11 +17,14 @@ Add to your `pubspec.yaml` dependencies to  `rx_widgets`
 Creates a  `TextField` widget that takes an `RxCommand<String,String>` as an argument where it takes the input texts and returns the validation message if there is a validation error. 
 
 ```Dart
- RxEntry(
+
+
+RxEntry(
       {this.hintText = "",
       this.filledColor = Colors.transparent,
       this.fieldName,
-      @required this.onChanged,
+      this.textStream,
+      this.validationStream,
       this.obscureText = false,
       this.icon,
       this.focusedBorderColor = Colors.transparent,
@@ -30,7 +33,15 @@ Creates a  `TextField` widget that takes an `RxCommand<String,String>` as an arg
       this.unfocusedBorderWidth = 0,
       this.borderRadius = 0});
 ```
-
+Example: 
+ ```Dart
+   RxEntry(
+          icon: Icons.person,
+          fieldName: "Username",
+          validationStream: usernameValidation
+         textStream: usernameChanged);
+```
+Where `usernameChanged` and `usernameValidation` are of type  `RxCommand<String,String>`
 
 ### RxRaisedButton
 Creates a `RaisedButton` that has an rxCommand instead of onPressed. It gets disabled if the command has canExecute:false or when isExecuting:true

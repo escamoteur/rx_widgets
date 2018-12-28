@@ -3,15 +3,15 @@ import 'package:rx_command/rx_command.dart';
 
 ///A `TextField` based widget that takes `RxCommand<String,String>` as input stream and another optional `RxCommand<String,String>` for validation.
 /// ```
-///       Entry(
+///       RxEntry(
 ///              icon: Icons.person,
 ///              fieldName: "Username",
 ///              validationStream: usernameValidation,
 ///             textStream: usernameChanged);
 /// ```
 /// Where `usernameChanged` and `usernameValidation` are of type  `RxCommand<String,String>`
-class Entry extends StatelessWidget {
-  Entry(
+class RxEntry extends StatelessWidget {
+  RxEntry(
       {this.hintText = "",
       this.filledColor = Colors.transparent,
       this.fieldName,
