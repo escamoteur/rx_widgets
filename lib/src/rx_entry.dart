@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:rx_command/rx_command.dart';
 
-///A `TextField` based widget that reacts to `RxCommand<String,String>` where it keeps the text to input and the validation result.
-class RxEntry extends StatelessWidget {
-  RxEntry(
+///A `TextField` based widget that takes `RxCommand<String,String>` as input stream and another optional `RxCommand<String,String>` for validation.
+/// ```
+///       Entry(
+///              icon: Icons.person,
+///              fieldName: "Username",
+///              validationStream: usernameValidation,
+///             textStream: usernameChanged);
+/// ```
+/// Where `usernameChanged` and `usernameValidation` are of type  `RxCommand<String,String>`
+class Entry extends StatelessWidget {
+  Entry(
       {this.hintText = "",
       this.filledColor = Colors.transparent,
       this.fieldName,
-      @required this.onChanged,
+      this.textStream,
+      this.validationStream,
       this.obscureText = false,
       this.icon,
       this.focusedBorderColor = Colors.transparent,
@@ -18,13 +27,16 @@ class RxEntry extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: onChanged,
+      stream: validationStream,
       initialData: "",
       builder: (context, snapshot) {
-        if (snapshot.hasData) if (snapshot.data.isEmpty)
+        if (!snapshot.hasData || snapshot.data.isEmpty)
           return TextField(
             obscureText: obscureText,
-            onChanged: onChanged,
+            onChanged: (s) {
+              textStream(s);
+              validationStream(s);
+            },
             decoration: InputDecoration(
               hintText: hintText,
               fillColor: filledColor,
@@ -65,7 +77,10 @@ class RxEntry extends StatelessWidget {
         else
           return TextField(
             obscureText: obscureText,
-            onChanged: onChanged,
+            onChanged: (s) {
+              textStream(s);
+              validationStream(s);
+            },
             decoration: InputDecoration(
               hintText: hintText,
               errorText: snapshot.data,
@@ -108,20 +123,21 @@ class RxEntry extends StatelessWidget {
     );
   }
 
-  /*Title of the entry that would show above the text*/
+  ///Title of the entry that would show above the text
   final String fieldName;
+
   /**
-  * `RxCommand<String,String>` where the input is the text entered, and the output is the validation text
+  * `RxCommand<String,String>` where the input is the text entered, and the output is the validation text.
+  * If there is not validation then this can be set to null; 
   * For exmaple:  
   *```
   * String username;
-  * RxCommand<String, String> usernameChanged;
+  * RxCommand<String, String> usernameValidation;
   * MyClass() 
   * {
-  *     username = ""; 
-  *     usernameChanged = RxCommand.createSync<String, String>((s) 
+  *    
+  *     usernameValidation = RxCommand.createSync<String, String>((s) 
   *     {
-  *       username = s; 
   *       if (s.isEmpty) 
   *         return "Cannot be empty";
   *       if (s.length==3)
@@ -130,7 +146,14 @@ class RxEntry extends StatelessWidget {
   *  });
   *```
   */
-  final RxCommand onChanged;
+  final RxCommand validationStream;
+
+
+  /// a stream of type `RxCommand<String,String>` that would take the user's input 
+  final RxCommand textStream;
+
+  
+
 
   /// To hide the text (mainly used for passwords)
   final bool obscureText;
