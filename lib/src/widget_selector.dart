@@ -114,12 +114,12 @@ class RxCommandBuilder<T>  extends StatefulWidget{
           :  assert(commandResults != null), super(key: key);
 
   @override
-  _RxCommandBuidlerState createState() {
-    return new  _RxCommandBuidlerState<T>();
+  _RxCommandBuilderState createState() {
+    return new  _RxCommandBuilderState<T>();
   }
 }
 
-class _RxCommandBuidlerState<T> extends State<RxCommandBuilder<T>> {
+class _RxCommandBuilderState<T> extends State<RxCommandBuilder<T>> {
 
   @override
   Widget build(BuildContext context) {
