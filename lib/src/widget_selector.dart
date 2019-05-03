@@ -114,68 +114,44 @@ class RxCommandBuilder<T>  extends StatefulWidget{
           :  assert(commandResults != null), super(key: key);
 
   @override
-  _RxCommandBuidlerState createState() {
-    return new  _RxCommandBuidlerState<T>(commandResults);
+  _RxCommandBuilderState createState() {
+    return new  _RxCommandBuilderState<T>();
   }
 }
 
-class _RxCommandBuidlerState<T> extends State<RxCommandBuilder<T>> {
-
-  StreamSubscription<CommandResult<T>> subscription;
-
-  Stream<CommandResult<T>> commandResults;
-  
-  CommandResult<T>  lastReceivedItem = new CommandResult<T>(null,null,false);
-
-  _RxCommandBuidlerState(this.commandResults);
-
-  @override
-  void initState(){
-       
-
-    subscription = commandResults                       
-                        .listen((result) {
-                          setState(() { lastReceivedItem = result;}); 
-                        });
-    super.initState();
-  } 
-
-  @override
-  void didUpdateWidget(RxCommandBuilder<T> oldWidget)
-  {
-      super.didUpdateWidget(oldWidget);
-      subscription?.cancel();
-
-      subscription = commandResults
-                        .listen((result) {
-                            setState(() { lastReceivedItem = result;});
-                        }); 
-  }
-
-  @override
-  dispose()
-  {
-    super.dispose();
-    subscription?.cancel();      
-  }
-
+class _RxCommandBuilderState<T> extends State<RxCommandBuilder<T>> {
 
   @override
   Widget build(BuildContext context) {
-    
-    if (lastReceivedItem.isExecuting)
+    return StreamBuilder<CommandResult<T>>(
+      stream: widget.commandResults,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final item = snapshot.data;
+          return _processItem(item);
+        } else if (snapshot.hasError) {
+          return widget.errorBuilder(context, snapshot.error);
+        } else {
+          return widget.placeHolderBuilder(context);
+        }
+      },
+    );
+  }
+
+  Widget _processItem(CommandResult<T> item) {
+    if (item.isExecuting)
     {
       return widget.busyBuilder(context);
     }
-    if (lastReceivedItem.hasData)
+    if (item.hasData)
     {
       if (widget.dataBuilder != null)
       {
-          return widget.dataBuilder(context, lastReceivedItem.data);
+          return widget.dataBuilder(context, item.data);
       }
     }
 
-    if (!lastReceivedItem.hasData && !lastReceivedItem.hasError)
+    if (!item.hasData && !item.hasError)
     {
       if (widget.placeHolderBuilder != null)
       {
@@ -183,16 +159,12 @@ class _RxCommandBuidlerState<T> extends State<RxCommandBuilder<T>> {
       }
     }
     
-    if (lastReceivedItem.hasError)
+    if (item.hasError)
     {
       if (widget.errorBuilder != null)
       {
-          return widget.errorBuilder(context, lastReceivedItem.error);
+          return widget.errorBuilder(context, item.error);
       }
     }
-
-    // should never get here
-    assert(false,"never should get here");
-    return new Container();
   }
 }
