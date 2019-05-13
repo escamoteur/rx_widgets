@@ -13,8 +13,38 @@ Add to your `pubspec.yaml` dependencies to  `rx_widgets`
 
 ## Available Classes
 
+### RxEntry
+Creates a  `TextField` widget that takes an `RxCommand<String,String>` as an argument where it takes the input texts and returns the validation message if there is a validation error. 
+
+```Dart
+
+
+RxEntry(
+      {this.hintText = "",
+      this.filledColor = Colors.transparent,
+      this.fieldName,
+      this.textStream,
+      this.validationStream,
+      this.obscureText = false,
+      this.icon,
+      this.focusedBorderColor = Colors.transparent,
+      this.focusedBorderWidth = 0,
+      this.unfocusedBorderColor = Colors.transparent,
+      this.unfocusedBorderWidth = 0,
+      this.borderRadius = 0});
+```
+Example: 
+ ```Dart
+   RxEntry(
+          icon: Icons.person,
+          fieldName: "Username",
+          validationStream: usernameValidation
+         textStream: usernameChanged);
+```
+Where `usernameChanged` and `usernameValidation` are of type  `RxCommand<String,String>`
+
 ### RxRaisedButton
-Creates a RaisedButton that has an rxCommand instead of onPressed. It gets disabled if the command has canExecute:false or when isExecuting:true
+Creates a `RaisedButton` that has an rxCommand instead of onPressed. It gets disabled if the command has canExecute:false or when isExecuting:true
 
 ```Dart
 /// an extended `RaisedButton` where the `onPressed` is replaced with `rxCommand`
@@ -62,6 +92,46 @@ const RxRaisedButton({
           animationDuration: animationDuration,
           child: child,
         );
+
+         /*Title of the entry that would show above the text*/
+  final String fieldName;
+  /**
+  * `RxCommand<String,String>` where the input is the text entered, and the output is the validation text
+  * For exmaple:  
+  *```
+  * String username;
+  * RxCommand<String, String> usernameChanged;
+  * MyClass() 
+  * {
+  *     username = ""; 
+  *     usernameChanged = RxCommand.createSync<String, String>((s) 
+  *     {
+  *       username = s; 
+  *       if (s.isEmpty) 
+  *         return "Cannot be empty";
+  *       if (s.length==3)
+  *         return "Cannot be 3 characters";         
+  *      return ""; 
+  *  });
+  *```
+  */
+  final RxCommand onChanged;
+
+  /// To hide the text (mainly used for passwords)
+  final bool obscureText;
+
+  /// Icon which would be placed to the left of the text
+  final IconData icon;
+
+  final double focusedBorderWidth;
+  final Color focusedBorderColor;
+  final double unfocusedBorderWidth;
+  final Color unfocusedBorderColor;
+  final double borderRadius;
+  final Color filledColor;
+
+  /// The place holder
+  final String hintText;
 ```
 
 
