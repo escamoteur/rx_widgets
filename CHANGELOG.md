@@ -1,6 +1,6 @@
 ## [2.2.0+1] - 26.6.2019
 
-* small fixes in example
+* Small fixes in Example App
 
 ## [2.2.0] - 07.9.2018
 
