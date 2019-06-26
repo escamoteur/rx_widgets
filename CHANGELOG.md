@@ -1,3 +1,7 @@
+## [2.2.0+1] - 26.6.2019
+
+* small fixes in example
+
 ## [2.2.0] - 07.9.2018
 
 * Merged PR from Ahmad ElMadi adding RxRaisedButton and RxTextWidget

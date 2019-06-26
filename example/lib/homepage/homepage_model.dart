@@ -33,7 +33,7 @@ class HomePageModel {
     // When the user starts typing
     _textChangedCommand
         // Wait for the user to stop typing for 500ms
-        .debounce(new Duration(milliseconds: 500))
+        .debounceTime(new Duration(milliseconds: 500))
         // Then call the updateWeatherCommand
         .listen(_updateWeatherCommand);
 

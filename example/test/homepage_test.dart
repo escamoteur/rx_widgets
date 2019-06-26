@@ -11,6 +11,7 @@ import 'package:rx_widget_demo/model_provider.dart';
 import 'package:rx_widget_demo/service/weather_entry.dart';
 import 'package:collection/collection.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:test/test.dart' as dart_test;
 
 
 
@@ -174,12 +175,12 @@ main() {
       );
 
       when(model.updateWeatherCommand).thenAnswer((_)=>command);
-      when(model.updateWeatherCommand()).thenAnswer((_)=>command());
+      when(model.updateWeatherCommand).thenAnswer((_)=>command);
 
       command.queueResultsForNextExecuteCall([CommandResult<List<WeatherEntry>>(
                   [WeatherEntry("London", 10.0, 30.0, "sunny", 12)],null, false)]);
 
-      expect(command.results, emitsInOrder([ crm([WeatherEntry("London", 10.0, 30.0, "sunny", 12)], false, false) ]));
+      expect(command.results, dart_test.emitsInOrder([ crm([WeatherEntry("London", 10.0, 30.0, "sunny", 12)], false, false) ]));
 
       command.results.listen((data)=> print("Received: " + data.data.toString()));
 
@@ -222,7 +223,7 @@ main() {
       );
 
       when(model.updateWeatherCommand).thenAnswer((_)=>commandUpdate); //Allways needed because RxLoader binds to it
-      when(model.updateWeatherCommand()).thenAnswer((_)=>commandUpdate());
+      when(model.updateWeatherCommand).thenAnswer((_)=>commandUpdate);
 
 
       await tester.pumpWidget(widget); // Build initial State
@@ -300,10 +301,10 @@ main() {
 
 
 
-  StreamMatcher crm(List<WeatherEntry> data, bool hasError, bool isExceuting)
+  dart_test.StreamMatcher crm(List<WeatherEntry> data, bool hasError, bool isExceuting)
   {
-      return new StreamMatcher((x) async {
-                                              CommandResult<List<WeatherEntry>> event =  await x.next;
+      return new dart_test.StreamMatcher((x) async {
+                                              var event =  await x.next as CommandResult<List<WeatherEntry>>;
                                               if (event.data != null)
                                               {
                                                  if (!ListEquality().equals(event.data, data))
