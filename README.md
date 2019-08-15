@@ -124,7 +124,7 @@ RxSpinner is great for simple Applications where you just want to show or hide a
 /// If this is null a `Container` will be created instead.
 /// [placeHolderBuilder] : Builder that will be called as soon as an event with `data==null` is received. 
 /// If this is null a `Container` will be created instead.
-/// [dataBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
+/// [errorBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
 /// If this is null a `Container` will be created instead.
 ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
 ///  they are ignored if the platform style is iOS.
