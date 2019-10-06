@@ -61,7 +61,7 @@ class RxSpinner extends StatelessWidget {
           );
 
     return new WidgetSelector(
-      buildEvents: busyEvents,
+      stream: busyEvents,
       onTrue: new Center(
           child: new Container(
               width: this.radius * 2, height: this.radius * 2, child: spinner)),
