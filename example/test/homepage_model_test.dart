@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:mockito/mockito.dart';
 import 'package:mockito/src/mock.dart';
 import 'package:quiver/testing/async.dart';
@@ -12,7 +11,9 @@ class MockService extends Mock implements WeatherService {}
 
 main() {
   group('HomePageModel', () {
-    test('should immediately fetch the weather with an empty string when the HomePageModel gets created', () async {
+    test(
+        'should immediately fetch the weather with an empty string when the HomePageModel gets created',
+        () async {
       final service = new MockService();
       final model = new HomePageModel(service); // ignore: unused_local_variable
 
@@ -21,8 +22,6 @@ main() {
 
       expect(model.updateWeatherCommand.results, emits([]));
     });
-
-
 
     test('should not fetch if switch is off', () async {
       final service = new MockService();

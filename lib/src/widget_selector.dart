@@ -1,17 +1,14 @@
 import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'package:rx_command/rx_command.dart';
-import 'package:rx_widgets/rx_widgets.dart';
 
-
+import 'builder_functions.dart';
 
 /// `WidgetSelector`is a convenience class that will return one of two Widgets based on the output of a `Stream<bool>`
 /// This is pretty handy if you want to react to state change like enable/disable in you ViewModel and update
 /// the View accordingly.
 /// If you don't need builders for the alternative child widgets this class offers a more concise expression than `WidgetBuilderSelector`
-class WidgetSelector  extends StatelessWidget{
-
+class WidgetSelector extends StatelessWidget {
   final Stream<bool> buildEvents;
   final Widget onTrue;
   final Widget onFalse;
@@ -20,34 +17,32 @@ class WidgetSelector  extends StatelessWidget{
   /// `buildEvents` : `Stream<bool>`that signals that the this Widget should be updated
   /// `onTrue` : Widget that should be returned if an item with value true is received
   /// `onFalse`: Widget that should be returned if an item with value true is received
-  const WidgetSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key }) 
-          :   assert(buildEvents != null),assert(onTrue != null), assert(onFalse != null), super(key: key);
+  const WidgetSelector({this.buildEvents, this.onTrue, this.onFalse, Key key})
+      : assert(buildEvents != null),
+        assert(onTrue != null),
+        assert(onFalse != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new StreamBuilder(stream: buildEvents,
-                          builder: (BuildContext context, AsyncSnapshot<bool> event)
-                          {   
-                              if (event.hasData && event.data == true)
-                              {
-                                  return onTrue;
-                              }
-                              else
-                              {
-                                return onFalse;
-                              }
-                          }); 
+    return new StreamBuilder(
+        stream: buildEvents,
+        builder: (BuildContext context, AsyncSnapshot<bool> event) {
+          if (event.hasData && event.data == true) {
+            return onTrue;
+          } else {
+            return onFalse;
+          }
+        });
   }
-  
 }
 
 /// `WidgetBuilderSelector`is a convenience class that will one of two builder methods based on the output of a `Stream<bool>`
 /// This is pretty handy if you want to react to state change like enable/disable in you ViewModel and update
 /// the View accordingly.
-/// In comparrison to `WidgetSelector` this is best used if the alternative child widgets are large so that you don't want to have them created 
-/// without using them. 
-class WidgetBuilderSelector  extends StatelessWidget{
-
+/// In comparrison to `WidgetSelector` this is best used if the alternative child widgets are large so that you don't want to have them created
+/// without using them.
+class WidgetBuilderSelector extends StatelessWidget {
   final Stream<bool> buildEvents;
   final WidgetBuilder onTrue;
   final WidgetBuilder onFalse;
@@ -56,71 +51,68 @@ class WidgetBuilderSelector  extends StatelessWidget{
   /// `buildEvents` : `Stream<bool>`that signals that the this Widget should be updated
   /// `onTrue` : builder that should be executed if an item with value true is received
   /// `onFalse`: builder that should be executed if an item with value true is received
-  const WidgetBuilderSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key }) 
-          :  assert(buildEvents != null),assert(onTrue != null), assert(onFalse != null), super(key: key);
+  const WidgetBuilderSelector(
+      {this.buildEvents, this.onTrue, this.onFalse, Key key})
+      : assert(buildEvents != null),
+        assert(onTrue != null),
+        assert(onFalse != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new StreamBuilder(stream: buildEvents,
-                          builder: (BuildContext context, AsyncSnapshot<bool> event)
-                          {   
-                              if (event.hasData && event.data == true)
-                              {
-                                  return onTrue(context);
-                              }
-                              else
-                              {
-                                return onFalse(context);
-                              }
-                          }); 
+    return new StreamBuilder(
+        stream: buildEvents,
+        builder: (BuildContext context, AsyncSnapshot<bool> event) {
+          if (event.hasData && event.data == true) {
+            return onTrue(context);
+          } else {
+            return onFalse(context);
+          }
+        });
   }
-  
 }
 
-
 /// Spinner/Busyindicator that reacts on the output of a `Stream<CommandResult<T>>`. It's made especially to work together with
-/// `RxCommand` from the `rx_command`package. 
+/// `RxCommand` from the `rx_command`package.
 /// it starts running as soon as an item with  `isExecuting==true` is received
-/// until `isExecuting==true` is received. 
+/// until `isExecuting==true` is received.
 /// To react on other possible states (`data, nodata, error`) that can be emitted it offers three option `Builder` methods
-class RxCommandBuilder<T>  extends StatefulWidget{
-
+class RxCommandBuilder<T> extends StatefulWidget {
   final Stream<CommandResult<T>> commandResults;
-  final BuilderFunction<T> dataBuilder;
-  final BuilderFunction<Exception> errorBuilder;
-  final BuilderFunction1 busyBuilder;
-  final BuilderFunction1 placeHolderBuilder;
+  final RxBuilder<T> dataBuilder;
+  final ErrorBuilder<Exception> errorBuilder;
+  final EmptyBuilder busyBuilder;
+  final PlaceHolderBuilder placeHolderBuilder;
 
   final TargetPlatform platform;
 
-                         
   /// Creates a new `RxCommandBuilder` instance
   /// [commandResults] : `Stream<CommandResult<T>>` or a `RxCommand<T>` that issues `CommandResults`
   /// [busyBuilder] : Builder that will be called as soon as an event with `isExecuting==true`.
   /// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
   /// If this is null a `Container` will be created instead.
-  /// [placeHolderBuilder] : Builder that will be called as soon as an event with `data==null` is received. 
+  /// [placeHolderBuilder] : Builder that will be called as soon as an event with `data==null` is received.
   /// If this is null a `Container` will be created instead.
   /// [dataBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
   /// If this is null a `Container` will be created instead.
-  const RxCommandBuilder({Key key,
-                  this.commandResults, 
-                  this.platform, 
-                  this.busyBuilder,
-                  this.dataBuilder, 
-                  this.placeHolderBuilder, 
-                  this.errorBuilder,
-                  }) 
-          :  assert(commandResults != null), super(key: key);
+  const RxCommandBuilder({
+    Key key,
+    this.commandResults,
+    this.platform,
+    this.busyBuilder,
+    this.dataBuilder,
+    this.placeHolderBuilder,
+    this.errorBuilder,
+  })  : assert(commandResults != null),
+        super(key: key);
 
   @override
   _RxCommandBuilderState createState() {
-    return new  _RxCommandBuilderState<T>();
+    return new _RxCommandBuilderState<T>();
   }
 }
 
 class _RxCommandBuilderState<T> extends State<RxCommandBuilder<T>> {
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<CommandResult<T>>(
@@ -139,31 +131,24 @@ class _RxCommandBuilderState<T> extends State<RxCommandBuilder<T>> {
   }
 
   Widget _processItem(CommandResult<T> item) {
-    if (item.isExecuting)
-    {
+    if (item.isExecuting) {
       return widget.busyBuilder(context);
     }
-    if (item.hasData)
-    {
-      if (widget.dataBuilder != null)
-      {
-          return widget.dataBuilder(context, item.data);
+    if (item.hasData) {
+      if (widget.dataBuilder != null) {
+        return widget.dataBuilder(context, item.data);
       }
     }
 
-    if (!item.hasData && !item.hasError)
-    {
-      if (widget.placeHolderBuilder != null)
-      {
-          return widget.placeHolderBuilder(context);
+    if (!item.hasData && !item.hasError) {
+      if (widget.placeHolderBuilder != null) {
+        return widget.placeHolderBuilder(context);
       }
     }
-    
-    if (item.hasError)
-    {
-      if (widget.errorBuilder != null)
-      {
-          return widget.errorBuilder(context, item.error);
+
+    if (item.hasError) {
+      if (widget.errorBuilder != null) {
+        return widget.errorBuilder(context, item.error);
       }
     }
   }
