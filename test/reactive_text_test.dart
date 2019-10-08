@@ -20,7 +20,7 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets("ReactiveText - When have initialData", (tester) async {
@@ -39,7 +39,7 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets(
@@ -62,7 +62,7 @@ void main() {
     final keyFinder = find.byKey(errorKey);
     expect(keyFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets(
@@ -82,7 +82,7 @@ void main() {
     final finderContainer = find.byType(Container);
     expect(finderContainer, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets(
@@ -101,7 +101,7 @@ void main() {
     final finderContainer = find.byType(Container);
     expect(finderContainer, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets(
@@ -123,6 +123,6 @@ void main() {
     final finderContainer = find.byKey(emptyKey);
     expect(finderContainer, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 }

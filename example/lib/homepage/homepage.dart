@@ -21,63 +21,67 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(title: Text("WeatherDemo")),
       resizeToAvoidBottomPadding: false,
-      body: 
-        Column(children: <Widget>
-        [
+      body: Column(
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: 
-            TextField(
-                    key: AppKeys.textField,
-                    autocorrect: false,
-                    controller: _controller,
-                    decoration: InputDecoration(hintText: "Filter cities",),
-                    style:  TextStyle(fontSize: 20.0,),
-                    onChanged: ModelProvider.of(context).textChangedCommand,
-                    ),
+            child: TextField(
+              key: AppKeys.textField,
+              autocorrect: false,
+              controller: _controller,
+              decoration: InputDecoration(
+                hintText: "Filter cities",
+              ),
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+              onChanged: ModelProvider.of(context).textChangedCommand,
+            ),
           ),
           Expanded(
-                child: 
-                RxLoader<List<WeatherEntry>>(
-                        spinnerKey: AppKeys.loadingSpinner,
-                        radius: 25.0,
-                        commandResults: ModelProvider.of(context).updateWeatherCommand.results,
-                        dataBuilder: (context, data) => WeatherListView(data ,key: AppKeys.weatherList),
-                        placeHolderBuilder: (context) => Center(key: AppKeys.loaderPlaceHolder, child: Text("No Data")),
-                        errorBuilder: (context, ex) => Center(key: AppKeys.loaderError, child: Text("Error: ${ex.toString()}")),
-                        ),
+            child: RxLoader<List<WeatherEntry>>(
+              spinnerKey: AppKeys.loadingSpinner,
+              radius: 25.0,
+              commandResults:
+                  ModelProvider.of(context).updateWeatherCommand.results,
+              dataBuilder: (context, data) =>
+                  WeatherListView(data, key: AppKeys.weatherList),
+              placeHolderBuilder: (context) => Center(
+                  key: AppKeys.loaderPlaceHolder, child: Text("No Data")),
+              errorBuilder: (context, ex) => Center(
+                  key: AppKeys.loaderError,
+                  child: Text("Error: ${ex.toString()}")),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: 
-            Row(children: <Widget>
-            [
+            child: Row(
+              children: <Widget>[
                 Expanded(
-                    child: 
-                    // This might be solved with a Streambuilder to but it should show `WidgetSelector`
-                    WidgetSelector(
-                            buildEvents: ModelProvider.of(context).updateWeatherCommand.canExecute,   //We access our ViewModel through the inherited Widget
-                            onTrue:  RaisedButton(    
-                                            key: AppKeys.updateButtonEnabled,                           
-                                            child: Text("Update"), 
-                                            onPressed: ()  
-                                                {
-                                                  _controller.clear();
-                                                  ModelProvider.of(context).updateWeatherCommand();
-                                                }
-                                        ),
-                            onFalse:  RaisedButton(                               
-                                            key: AppKeys.updateButtonDisabled,                           
-                                            child: Text("Please Wait"), 
-                                            onPressed: null,
-                                            ),
-                            
-                        ),
+                  child:
+                      // This might be solved with a Streambuilder to but it should show `WidgetSelector`
+                      WidgetSelector(
+                    stream: ModelProvider.of(context)
+                        .updateWeatherCommand
+                        .canExecute, //We access our ViewModel through the inherited Widget
+                    onTrue: RaisedButton(
+                        key: AppKeys.updateButtonEnabled,
+                        child: Text("Update"),
+                        onPressed: () {
+                          _controller.clear();
+                          ModelProvider.of(context).updateWeatherCommand();
+                        }),
+                    onFalse: RaisedButton(
+                      key: AppKeys.updateButtonDisabled,
+                      child: Text("Please Wait"),
+                      onPressed: null,
+                    ),
+                  ),
                 ),
                 StateFullSwitch(
-                        state: true,
-                        onChanged: ModelProvider.of(context).switchChangedCommand,
-                   )
+                  state: true,
+                  onChanged: ModelProvider.of(context).switchChangedCommand,
+                )
               ],
             ),
           ),

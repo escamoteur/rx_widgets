@@ -21,7 +21,7 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets(
@@ -41,7 +41,7 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets(" When not receive any data - Expected text containing Loading",
@@ -64,7 +64,7 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets(
@@ -86,7 +86,7 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets("When ReactiveBuilder receive a erro", (tester) async {
@@ -107,7 +107,7 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets("when it is initialized with initialData value.", (tester) async {
@@ -129,6 +129,6 @@ void main() {
     expect(textFinderText, findsOneWidget);
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 }

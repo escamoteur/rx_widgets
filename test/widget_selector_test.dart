@@ -5,7 +5,7 @@ import 'package:rx_widgets/src/widget_selector.dart';
 
 void main() {
   testWidgets("ReactiveSelector - on true", (tester) async {
-    StreamController<bool> _controller = StreamController<bool>();
+    var _controller = StreamController<bool>();
 
     var widget = MaterialApp(
         home: WidgetSelector(
@@ -22,11 +22,11 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets("ReactiveSelector - on false", (tester) async {
-    StreamController<bool> _controller = StreamController<bool>();
+    var _controller = StreamController<bool>();
 
     var widget = MaterialApp(
         home: WidgetSelector(
@@ -43,11 +43,11 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets("ReactiveSelectorBuilder - on true", (tester) async {
-    StreamController<bool> _controller = StreamController<bool>();
+    var _controller = StreamController<bool>();
 
     var widget = MaterialApp(
         home: WidgetBuilderSelector(
@@ -64,11 +64,11 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 
   testWidgets("ReactiveSelectorBuilder - on false", (tester) async {
-    StreamController<bool> _controller = StreamController<bool>();
+    var _controller = StreamController<bool>();
 
     var widget = MaterialApp(
         home: WidgetBuilderSelector(
@@ -85,6 +85,6 @@ void main() {
 
     expect(textFinder, findsOneWidget);
 
-    _controller.close();
+    await _controller.close();
   });
 }
