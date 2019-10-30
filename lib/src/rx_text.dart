@@ -7,7 +7,7 @@ import 'package:rx_widgets/src/reactive_widget.dart';
 /// and reacts on it.
 class RxText extends ReactiveWidget<String> {
   final ErrorBuilder<String> errorBuilder;
-  final EmptyBuilder streamEmptyBuilder;
+  final PlaceHolderBuilder placeHolderBuilder;
 
   /// The text to display as a [TextSpan].
   /// If non-null, the style to use for this text.
@@ -94,7 +94,7 @@ class RxText extends ReactiveWidget<String> {
     Key key,
     String initialData,
     this.errorBuilder,
-    this.streamEmptyBuilder,
+    this.placeHolderBuilder,
     this.style,
     this.textAlign,
     this.textDirection,
@@ -134,8 +134,8 @@ class RxText extends ReactiveWidget<String> {
   }
 
   @override
-  Widget streamEmptyBuild(BuildContext context) {
-    if (streamEmptyBuilder != null) return streamEmptyBuilder(context);
+  Widget placeHolderBuild(BuildContext context) {
+    if (placeHolderBuilder != null) return placeHolderBuilder(context);
     return Container();
   }
 }

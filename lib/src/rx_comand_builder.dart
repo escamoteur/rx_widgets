@@ -11,7 +11,7 @@ class RxCommandBuilder<T> extends StatefulWidget {
   final Stream<CommandResult<T>> commandResults;
   final RxBuilder<T> dataBuilder;
   final ErrorBuilder<Exception> errorBuilder;
-  final EmptyBuilder busyBuilder;
+  final BusyBuilder busyBuilder;
   final PlaceHolderBuilder placeHolderBuilder;
 
   final TargetPlatform platform;

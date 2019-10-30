@@ -12,7 +12,7 @@ class WidgetSelector extends ReactiveWidget<bool> {
   final Widget onTrue;
   final Widget onFalse;
   final ErrorBuilder<String> errorBuilder;
-  final EmptyBuilder streamEmptyBuilder;
+  final PlaceHolderBuilder placeHolderBuilder;
 
   /// Creates a new WidgetSelector instance
   /// `stream` : `Stream<bool>`that signals that the this Widget should be updated
@@ -24,7 +24,7 @@ class WidgetSelector extends ReactiveWidget<bool> {
       this.onTrue,
       this.onFalse,
       this.errorBuilder,
-      this.streamEmptyBuilder,
+      this.placeHolderBuilder,
       bool initialValue,
       Key key})
       : assert(stream != null),
@@ -39,8 +39,8 @@ class WidgetSelector extends ReactiveWidget<bool> {
   }
 
   @override
-  Widget streamEmptyBuild(BuildContext context) {
-    if (streamEmptyBuilder != null) return streamEmptyBuilder(context);
+  Widget placeHolderBuild(BuildContext context) {
+    if (placeHolderBuilder != null) return placeHolderBuilder(context);
     return onFalse;
   }
 
@@ -60,7 +60,7 @@ class WidgetBuilderSelector extends ReactiveWidget<bool> {
   final WidgetBuilder onTrue;
   final WidgetBuilder onFalse;
   final ErrorBuilder<String> errorBuilder;
-  final EmptyBuilder streamEmptyBuilder;
+  final PlaceHolderBuilder placeHolderBuilder;
 
   /// Creates a new WidgetBuilderSelector instance
   /// `stream` : `Stream<bool>`that signals that the this Widget should be updated
@@ -71,7 +71,7 @@ class WidgetBuilderSelector extends ReactiveWidget<bool> {
     this.onTrue,
     this.onFalse,
     this.errorBuilder,
-    this.streamEmptyBuilder,
+    this.placeHolderBuilder,
     Key key,
     bool initialValue,
   })  : assert(stream != null),
@@ -86,8 +86,8 @@ class WidgetBuilderSelector extends ReactiveWidget<bool> {
   }
 
   @override
-  Widget streamEmptyBuild(BuildContext context) {
-    if (streamEmptyBuilder != null) return streamEmptyBuilder(context);
+  Widget placeHolderBuild(BuildContext context) {
+    if (placeHolderBuilder != null) return placeHolderBuilder(context);
     return onFalse(context);
   }
 

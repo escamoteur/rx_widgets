@@ -6,20 +6,20 @@ import 'package:flutter/widgets.dart';
 abstract class ReactiveWidget<T> extends StatefulWidget {
   final Stream<T> stream;
   final T initialData;
-  Widget build(BuildContext context, T data);
 
   @mustCallSuper
   const ReactiveWidget(this.stream, this.initialData, {Key key})
       : assert(stream != null),
         super(key: key);
 
+  Widget build(BuildContext context, T data);
   Widget errorBuild(BuildContext context, Object error) {
     return Center(
       child: Text(error),
     );
   }
 
-  Widget streamEmptyBuild(BuildContext context) {
+  Widget placeHolderBuild(BuildContext context) {
     if (Platform.isIOS) return Center(child: CupertinoActivityIndicator());
     return Center(child: CircularProgressIndicator());
   }
@@ -38,7 +38,7 @@ class _ReactiveWidgetState<T> extends State<ReactiveWidget<T>> {
         if (snapshot.hasError)
           return widget.errorBuild(context, snapshot.error);
         if (snapshot.hasData) return widget.build(context, snapshot.data);
-        return widget.streamEmptyBuild(context);
+        return widget.placeHolderBuild(context);
       },
     );
   }

@@ -52,7 +52,7 @@ void main() {
         home: ReactiveBuilder<String>(
       stream: _controller.stream,
       builder: (_, data) => Text(data),
-      streamEmptyBuilder: (_) => Container(
+      placeHolderBuilder: (_) => Container(
         child: Text("Loading"),
       ),
     ));

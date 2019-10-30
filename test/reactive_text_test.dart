@@ -114,7 +114,7 @@ void main() {
     var widget = MaterialApp(
         home: RxText(
       stream: _controller.stream,
-      streamEmptyBuilder: (_) => Text("Test", key: emptyKey),
+      placeHolderBuilder: (_) => Text("Test", key: emptyKey),
     ));
 
     await tester.pumpWidget(widget);
