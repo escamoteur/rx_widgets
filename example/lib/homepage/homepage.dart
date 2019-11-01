@@ -61,7 +61,7 @@ class HomePageState extends State<HomePage> {
                   child:
                       // This might be solved with a Streambuilder to but it should show `WidgetSelector`
                       WidgetSelector(
-                    stream: ModelProvider.of(context)
+                    buildEvents: ModelProvider.of(context)
                         .updateWeatherCommand
                         .canExecute, //We access our ViewModel through the inherited Widget
                     onTrue: RaisedButton(

@@ -25,6 +25,8 @@ class RxRaisedButton extends StatelessWidget {
   final Widget child;
   RxRaisedButton({
     Key key,
+    this.child,
+    this.rxCommand,
     this.onHighlightChanged,
     this.textTheme,
     this.textColor,
@@ -41,8 +43,6 @@ class RxRaisedButton extends StatelessWidget {
     this.shape,
     this.materialTapTargetSize,
     this.animationDuration,
-    this.child,
-    this.rxCommand,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
