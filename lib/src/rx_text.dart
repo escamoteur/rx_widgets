@@ -89,8 +89,8 @@ class RxText extends ReactiveWidget<String> {
   /// ```
   final String semanticsLabel;
 
-  RxText({
-    @required Stream<String> stream,
+  RxText(
+    Stream<String> stream, {
     Key key,
     String initialData,
     this.errorBuilder,

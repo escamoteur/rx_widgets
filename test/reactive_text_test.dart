@@ -9,7 +9,7 @@ void main() {
 
     var widget = MaterialApp(
         home: RxText(
-      stream: _controller.stream,
+      _controller.stream,
     ));
 
     _controller.add("Text");
@@ -28,7 +28,7 @@ void main() {
 
     var widget = MaterialApp(
         home: RxText(
-      stream: _controller.stream,
+      _controller.stream,
       initialData: "WelloWorld",
     ));
 
@@ -51,7 +51,7 @@ void main() {
 
     var widget = MaterialApp(
         home: RxText(
-      stream: _controller.stream,
+      _controller.stream,
       errorBuilder: (_, error) => Text(error.toString(), key: errorKey),
     ));
 
@@ -72,7 +72,7 @@ void main() {
 
     var widget = MaterialApp(
         home: RxText(
-      stream: _controller.stream,
+      _controller.stream,
     ));
 
     _controller.addError("Error");
@@ -92,7 +92,7 @@ void main() {
 
     var widget = MaterialApp(
         home: RxText(
-      stream: _controller.stream,
+      _controller.stream,
     ));
 
     await tester.pumpWidget(widget);
@@ -113,7 +113,7 @@ void main() {
 
     var widget = MaterialApp(
         home: RxText(
-      stream: _controller.stream,
+      _controller.stream,
       placeHolderBuilder: (_) => Text("Test", key: emptyKey),
     ));
 
