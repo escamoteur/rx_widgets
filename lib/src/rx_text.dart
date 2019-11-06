@@ -1,13 +1,15 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:rx_widgets/src/builder_functions.dart';
+import 'package:rx_widgets/src/reactive_widget.dart';
 
 /// A reimplementation of `Text` so it takes a [Stream<String>] instead of `String` as data
 /// and reacts on it.
-class RxText extends StatelessWidget {
-  /// The text to display as a [TextSpan].
-  ///
-  /// This will be null if [data] is provided instead.
-  final TextSpan textSpan;
+class RxText extends ReactiveWidget<String> {
+  final ErrorBuilder<String> errorBuilder;
+  final PlaceHolderBuilder placeHolderBuilder;
 
+  /// The text to display as a [TextSpan].
   /// If non-null, the style to use for this text.
   ///
   /// If the style's "inherit" property is true, the style will be merged with
@@ -24,7 +26,7 @@ class RxText extends StatelessWidget {
   /// [TextAlign.end] are interpreted.
   ///
   /// This is also used to disambiguate how to render bidirectional text. For
-  /// example, if the [data] is an English phrase followed by a Hebrew phrase,
+  /// example, if the data is an English phrase followed by a Hebrew phrase,
   /// in a [TextDirection.ltr] context the English phrase will be on the left
   /// and the Hebrew phrase to its right, while in a [TextDirection.rtl]
   /// context, the English phrase will be on the right and the Hebrew phrase on
@@ -39,7 +41,7 @@ class RxText extends StatelessWidget {
   /// It's rarely necessary to set this property. By default its value
   /// is inherited from the enclosing app with `Localizations.localeOf(context)`.
   ///
-  /// See [RenderParagraph.locale] for more information.
+  /// See Flutter RenderParagraph.locale for more information.
   final Locale locale;
 
   /// Whether the text should break at soft line breaks.
@@ -87,12 +89,12 @@ class RxText extends StatelessWidget {
   /// ```
   final String semanticsLabel;
 
-  /// A stream of string that the `Text` responds to
-  final Stream<String> stream;
-
   RxText(
-    this.stream, {
+    Stream<String> stream, {
     Key key,
+    String initialData,
+    this.errorBuilder,
+    this.placeHolderBuilder,
     this.style,
     this.textAlign,
     this.textDirection,
@@ -102,33 +104,38 @@ class RxText extends StatelessWidget {
     this.textScaleFactor,
     this.maxLines,
     this.semanticsLabel,
-  })  : assert(stream != null && stream is Stream<String>),
-        textSpan = null,
-        super(key: key);
+  }) : super(
+          stream,
+          initialData,
+          key: key,
+        );
 
   @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: this.stream,
-      initialData: "",
-      builder: (context, snapshot) {
-        if (snapshot.hasData)
-          return Text(
-            snapshot.data.toString(),
-            locale: this.locale,
-            key: this.key,
-            maxLines: this.maxLines,
-            overflow: this.overflow,
-            semanticsLabel: this.semanticsLabel,
-            softWrap: this.softWrap,
-            style: this.style,
-            textAlign: this.textAlign,
-            textDirection: this.textDirection,
-            textScaleFactor: this.textScaleFactor,
-          );
-        else
-          return Container();
-      },
+  Widget build(BuildContext context, String data) {
+    return Text(
+      data,
+      locale: this.locale,
+      key: this.key,
+      maxLines: this.maxLines,
+      overflow: this.overflow,
+      semanticsLabel: this.semanticsLabel,
+      softWrap: this.softWrap,
+      style: this.style,
+      textAlign: this.textAlign,
+      textDirection: this.textDirection,
+      textScaleFactor: this.textScaleFactor,
     );
+  }
+
+  @override
+  Widget errorBuild(BuildContext context, Object error) {
+    if (errorBuilder != null) return errorBuilder(context, error);
+    return Container();
+  }
+
+  @override
+  Widget placeHolderBuild(BuildContext context) {
+    if (placeHolderBuilder != null) return placeHolderBuilder(context);
+    return Container();
   }
 }

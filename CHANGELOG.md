@@ -1,3 +1,9 @@
+## [2.5.0] - 11.01.2019
+
+* Added ReactiveBuilder.
+* Updated documentation.
+* RxText and WidgetSelector improved.
+
 ## [2.2.0+1] - 26.6.2019
 
 * Small fixes in Example App
