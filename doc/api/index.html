@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="made with love by dartdoc 0.20.1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.28.4">
   <meta name="description" content="rx_widgets API docs, for the Dart programming language.">
   <title>rx_widgets - Dart API docs</title>
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-
+  
 </head>
 
 <body>
@@ -20,6 +21,7 @@
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="https://github.com/escamoteur/rx_widgets">rx_widgets package</a></li>
   </ol>
@@ -31,76 +33,76 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
-    <h5><span class="package-name">rx_widgets</span> <span class="package-kind">package</span></h5>
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="https://github.com/escamoteur/rx_widgets">rx_widgets package</a></li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">rx_widgets</span> <span class="package-kind">package</span></h5>
     <ol>
           <li class="section-title">Libraries</li>
           <li><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></li>
     </ol>
   </div>
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
-        <h1>rx_widgets</h1>
-<p><code>rx_widgets</code> is a package with stream based Flutter Widgets and Widget helper/convenience classes that facilitate an reactive programming style especially in combination with <a href="https://github.com/ReactiveX/rxdart">RxDart</a> and <a href="https://github.com/escamoteur/rx_command">RxCommands</a>.</p>
+        <h1 id="rxwidgets">RxWidgets</h1>
+<p><a href="https://pub.dev/packages/rx_widgets"><img src="https://img.shields.io/pub/v/rx_widgets.svg" alt="Pub"></a></p>
+<h2 id="about">About</h2>
+<p>A package with stream based Flutter Widgets that facilitate an reactive programming style.</p>
+<p>Was built to be used especially in combination with <a href="https://github.com/ReactiveX/rxdart">RxDart</a> and <a href="https://github.com/escamoteur/rx_command">RxCommands</a>.</p>
 <blockquote>
 <p>If you have any ideas for additional stream based Widget, open an issue
 PRs are always welcome ;-)</p></blockquote>
-<h2>Getting Started</h2>
+<h2 id="getting-started">Getting Started</h2>
 <p>Add to your <code>pubspec.yaml</code> dependencies to  <code>rx_widgets</code></p>
-<h2>Available Classes</h2>
-<h3>RxRaisedButton</h3>
-<p>Creates a RaisedButton that has an rxCommand instead of onPressed. It gets disabled if the command has canExecute:false or when isExecuting:true</p>
-<pre class="language-Dart"><code class="language-Dart">/// an extended `RaisedButton` where the `onPressed` is replaced with `rxCommand`
-/// and it gets disabled if the `rxCommand` has the `canExecute` set to `false` or when it is executing
-const RxRaisedButton({
-    @required this.rxCommand,
+<h2 id="widgets-available">Widgets Available</h2><ul><li><a href="#rxraisedbutton">RxRaisedButton</a></li><li><a href="#rxtext">RxText</a></li><li><a href="#rxloader">RxLoader</a></li><li><a href="#rxspinner">RxSpinner</a></li><li><a href="#widgetselector">WidgetSelector</a></li><li><a href="#rxcommandbuilder">RxCommandBuilder</a></li><li><a href="#reactivebuilder">ReactiveBuilder</a></li></ul>
+<h3 id="rxraisedbutton">RxRaisedButton</h3>
+<p>Creates a <code>RaisedButton</code> that has an <code>rxCommand</code> instead of <code>onPressed</code>. It gets disabled if the command has canExecute:false or when isExecuting:true</p>
+<p>An extended <code>RaisedButton</code> where the <code>onPressed</code> is replaced with <code>rxCommand</code> and it gets disabled if the <code>rxCommand</code> has the <code>canExecute</code> set to <code>false</code> or when it is executing.</p>
+<pre class="language-Dart"><code class="language-Dart">RxRaisedButton({
     Key key,
-    ValueChanged&lt;bool&gt; onHighlightChanged,
-    ButtonTextTheme textTheme,
-    Color textColor,
-    Color disabledTextColor,
-    Color color,
-    Color disabledColor,
-    Color highlightColor,
-    Color splashColor,
-    Brightness colorBrightness,
-    double elevation,
-    double highlightElevation,
-    double disabledElevation,
-    EdgeInsetsGeometry padding,
-    ShapeBorder shape,
-    Clip clipBehavior = Clip.none,
-    MaterialTapTargetSize materialTapTargetSize,
-    Duration animationDuration,
-    Widget child,
-  }) : super(
-          key: key,
-          onPressed: null,
-          onHighlightChanged: onHighlightChanged,
-          textTheme: textTheme,
-          textColor: textColor,
-          disabledTextColor: disabledTextColor,
-          color: color,
-          disabledColor: disabledColor,
-          highlightColor: highlightColor,
-          splashColor: splashColor,
-          colorBrightness: colorBrightness,
-          elevation: elevation,
-          highlightElevation: highlightElevation,
-          disabledElevation: disabledElevation,
-          padding: padding,
-          shape: shape,
-          clipBehavior: clipBehavior,
-          materialTapTargetSize: materialTapTargetSize,
-          animationDuration: animationDuration,
-          child: child,
-        );
+    // The RxCommand.
+    this.rxCommand,
+    this.child,
+    this.onHighlightChanged,
+    this.textTheme,
+    this.textColor,
+    this.disabledTextColor,
+    this.color,
+    this.disabledColor,
+    this.highlightColor,
+    this.splashColor,
+    this.colorBrightness,
+    this.elevation,
+    this.highlightElevation,
+    this.disabledElevation,
+    this.padding,
+    this.shape,
+    this.materialTapTargetSize,
+    this.animationDuration,
+  }) : super(key: key);
 </code></pre>
-<h3>RxText</h3>
-<p>a Text that takes in a <code>Stream&lt;String&gt;</code> and displays it. An example of usage can be when showing status message , or results of some requests. </p>
-<pre class="language-Dart"><code class="language-Dart">    RxText(
-    this.stream, {
+<h3 id="rxtext">RxText</h3>
+<p>A <code>Text</code> that takes in a <code>Stream&lt;String&gt;</code> and displays it. An example of usage can be when showing status message , or results of some requests. </p>
+<p><strong>errorBuilder</strong>  is a method that is called when the stream receives an error. By default this method returns a Text containing the error.</p>
+<p><strong>placeHolderBuilder</strong> is a method that is called when the stream has no data. By default this method returns a CircularProgressIndicator.
+<strong>initialData</strong> parameter that can be used to provide a starting value, just like in StreamBuilder.</p>
+<pre class="language-Dart"><code class="language-Dart">    RxText({
+    // New parameters.
+    @required Stream&lt;String&gt; stream,
+    String initialData,
+    this.errorBuilder,
+    this.placeHolderBuilder,
+    
+    // Normal Text parameters.
     Key key,
     this.style,
     this.textAlign,
@@ -111,123 +113,151 @@ const RxRaisedButton({
     this.textScaleFactor,
     this.maxLines,
     this.semanticsLabel,
-  })  : assert(stream != null &amp;&amp; stream is Stream&lt;String&gt;),
-        textSpan = null,
-        super(key: key);
+  })
 </code></pre>
-<h3>RxSpinner</h3>
+<h3 id="rxspinner">RxSpinner</h3>
 <p>Spinner/Busy indicator that reacts on the output of a <code>Stream&lt;bool&gt;</code> it starts running as soon as a <code>true</code> value is received until the next <code>false</code>is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as <code>normal</code> parameter. <code>RxSpinner</code> also adapts to the current or specified platform look. Needless to say that <code>RxSpinner</code> is ideal in combination with <code>RxCommand's</code> <code>isExecuting</code> Observable </p>
-<pre class="language-Dart"><code class="language-Dart">  /// Creates a new RxSpinner instance
-  /// `busyEvents` : `Stream&lt;bool&gt;` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget 
-  ///  and starts running undtil it receives a `false`value.
-  /// `platform`  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
-  /// `radius`    : radius of the Spinner  
-  /// `normal`    : Widget that should be displayed while the Spinner is not active. If this is null a `Container` will be created instead.
-  ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
-  ///  they are ignored if the platform style is iOS.
-  const RxSpinner({this.busyEvents, 
-                  this.platform, 
-                  this.radius = 20.0,  
-                  this.backgroundColor,
-                  this.value,
-                  this.valueColor,
-                  this.strokeWidth: 4.0,
-                  this.normal, 
-                  Key key }) 
-          :  assert(busyEvents != null), super(key: key);
+<p><strong>busyEvents</strong> <code>Stream&lt;bool&gt;</code> that controls the activity of the Spinner. On receiving <code>true</code> it replaces the <code>normal</code> widget and starts running undtil it receives a <code>false</code>value.</p>
+<p><strong>platform</strong> defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used.</p>
+<p><strong>radius</strong> is the radius of the Spinner.</p>
+<p><strong>normal</strong> is a Widget that should be displayed while the Spinner is not active. If this is null a <code>Container</code> will be created instead.
+All other parameters please see <a href="https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html">https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html</a>.</p>
+<p><code>RxSpinner</code> are ignored if the platform style is iOS.</p>
+<pre class="language-Dart"><code class="language-Dart">RxSpinner({    
+    this.busyEvents, 
+    this.platform, 
+    this.radius = 20.0,  
+    this.backgroundColor,
+    this.value,
+    this.valueColor,
+    this.strokeWidth: 4.0,
+    this.normal, 
+    Key key })         
 </code></pre>
-<h3>RxLoader</h3>
+<h3 id="rxloader">RxLoader</h3>
 <p>RxSpinner is great for simple Applications where you just want to show or hide a Spinner. But often especially when loading data you want to deal with errors and show an alternative Widget if no data arrived. Since <code>RxCommand</code> offers not only three separate Observables for state changes and results but is also an <code>Observable&lt;CommandResult&lt;T&gt;</code> itself that emits  <code>CommandResult</code> that bundle all state and data in one Object <code>RxLoader</code>leverage this to support the Flutter update mechanic better.</p>
-<pre class="language-Dart"><code class="language-Dart">/// Creates a new `RxLoader` instance
-/// [busyEvents] : `Stream&lt;bool&gt;` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget 
-///  and starts running undtil it receives a `false`value.
-/// [platform]  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
-/// [radius]    : radius of the Spinner  
-/// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
-/// If this is null a `Container` will be created instead.
-/// [placeHolderBuilder] : Builder that will be called as soon as an event with `data==null` is received. 
-/// If this is null a `Container` will be created instead.
-/// [dataBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
-/// If this is null a `Container` will be created instead.
-///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html 
-///  they are ignored if the platform style is iOS.
-const RxLoader({this.commandResults, 
-                this.platform, 
-                this.radius = 20.0,  
-                this.backgroundColor,
-                this.value,
-                this.valueColor,
-                this.strokeWidth: 4.0,
-                this.dataBuilder, 
-                this.placeHolderBuilder, 
-                this.errorBuilder,
-                Key key }) 
-        :  assert(commandResults != null), super(key: key);
+<p><strong>busyEvents</strong> <code>Stream&lt;bool&gt;</code> that controls the activity of the Spinner. On receiving <code>true</code> it replaces the <code>normal</code> widget and starts running undtil it receives a <code>false</code>value.</p>
+<p><strong>platform</strong> defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used.</p>
+<p><strong>radius</strong> radius of the Spinner.</p>
+<p><strong>dataBuilder</strong> Builder that will be called as soon as an event with data is received. It will get passed the <code>data</code> feeld of the CommandResult.</p>
+<p><strong>placeHolderBuilder</strong> Builder that will be called as soon as an event with <code>data==null</code> is received. </p>
+<p><strong>errorBuilder</strong> Builder that will be called as soon as an event with an <code>error</code> is received. It will get passed the <code>error</code> feeld of the CommandResult.</p>
+<p>All other parameters please see <a href="https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html">https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html</a>.
+<code>RxLoader</code> are ignored if the platform style is iOS.</p>
+<pre class="language-Dart"><code class="language-Dart">RxLoader({
+    Key key 
+    this.commandResults, 
+    this.platform, 
+    this.radius = 20.0,  
+    this.backgroundColor,
+    this.value,
+    this.valueColor,
+    this.strokeWidth: 4.0,
+    this.dataBuilder, 
+    this.placeHolderBuilder, 
+    this.errorBuilder,
+})
 </code></pre>
-<h3>WidgetSelector</h3>
+<h3 id="widgetselector">WidgetSelector</h3>
 <p><code>WidgetSelector</code>is a convenience class that will return one of two Widgets based on the output of a <code>Stream&lt;bool&gt;</code> This is pretty handy if you want to react to state change like enable/disable in you ViewModel and update the View accordingly.</p>
 <p>If you don't need builders for the alternative child widgets this class offers a more concise expression than <code>WidgetBuilderSelector</code></p>
-<pre class="language-Dart"><code class="language-Dart">  /// Creates a new WidgetSelector instance
-  /// `buildEvents` : `Stream&lt;bool&gt;`that signals that the this Widget should be updated
-  /// `onTrue` : Widget that should be returned if an item with value true is received
-  /// `onFalse`: Widget that should be returned if an item with value true is received
-  const WidgetSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key }) 
-          :   assert(buildEvents != null),assert(onTrue != null), 
-              assert(onFalse != null), super(key: key);
+<p><strong>buildEvents</strong> <code>Stream&lt;bool&gt;</code>that signals that the this Widget should be updated.</p>
+<p><strong>onTrue</strong> Widget that should be returned if an item with value true is received.</p>
+<p><strong>onFalse</strong> Widget that should be returned if an item with value true is received.</p>
+<p><strong>errorBuilder</strong> Builder that will be called as soon as an event with an <code>error</code> is received. It will get passed the <code>error</code> feeld of the CommandResult.</p>
+<p><strong>placeHolderBuilder</strong> Builder that will be called as soon as an event with <code>data==null</code> is 
+received.</p>
+<p><strong>initialData</strong> can be used to provide an initial value just as it does in StreamBuilder.</p>
+<pre class="language-Dart"><code class="language-Dart">  WidgetSelector(
+      {Key key,
+      Stream&lt;bool&gt; buildEvents,
+      this.onTrue,
+      this.onFalse,
+      this.errorBuilder,
+      this.placeHolderBuilder,
+      bool initialValue,
+      })
 </code></pre>
+<h4 id="widgetselector-example">WidgetSelector Example</h4>
 <p>This is an example where it is used to enable/disable a Button</p>
-<pre class="language-Dart"><code class="language-Dart">new WidgetSelector(buildEvents: TheViewModel.of(context).updateWeatherCommand.canExecute, 
-    onTrue:  new RaisedButton(                               
-                    child: new Text("Update"), 
-                    color: new Color.fromARGB(255, 33, 150, 243),
-                    textColor: new Color.fromARGB(255, 255, 255, 255),
-                    onPressed: TheViewModel.of(context).updateWeatherCommand,
-                    ),
-    onFalse:  new RaisedButton(                               
-                    child: new Text("Update"), 
-                    color: new Color.fromARGB(255, 33, 150, 243),
-                    textColor: new Color.fromARGB(255, 255, 255, 255),
-                    onPressed: null,
-                    ),
-            
-        ),
+<pre class="language-Dart"><code class="language-Dart">WidgetSelector(
+      buildEvents: myStream,
+      onTrue: RaisedButton(
+          child: Text("Update"),
+          onPressed: () {
+            // Action
+          }),
+      onFalse: RaisedButton(
+        child: Text("Please Wait"),
+        onPressed: null,
+      ),
+    );
 </code></pre>
-<h3>WidgetBuilderSelector</h3>
+<h3 id="widgetbuilderselector">WidgetBuilderSelector</h3>
 <p> Like <code>WidgetSelector</code> but instead return Widgets it executes one of two provided builder functions. 
  In comparison to <code>WidgetSelector</code> this is best used if the alternative child widgets are large so that you don't want to have them always created without using them. </p>
-<pre class="language-Dart"><code class="language-Dart">/// Creates a new WidgetBuilderSelector instance
-/// `buildEvents` : `Stream&lt;bool&gt;`that signals that the this Widget should be updated
-/// `onTrue` : builder that should be executed if an item with value true is received
-/// `onFalse`: builder that should be executed if an item with value true is received
-const WidgetBuilderSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key }) 
-        :  assert(buildEvents != null),assert(onTrue != null), assert(onFalse != null), super(key: key);
-</code></pre>
-<h3>RxCommandBuilder</h3>
+<h3 id="rxcommandbuilder">RxCommandBuilder</h3>
 <p>If you are working with <code>RxCommands</code> this is a special Builder that lets you define different builder for the different states an RxCommand can issue.
 If you don't specify one of the builders it will create a <code>Container</code> for that state.</p>
-<pre class="language-dart"><code>/// Creates a new `RxCommandBuilder` instance
-/// [commandResults] : `Stream&lt;CommandResult&lt;T&gt;&gt;` or a `RxCommand&lt;T&gt;` that issues `CommandResults`
-/// [busyBuilder] : Builder that will be called as soon as an event with `isExecuting==true`.
-/// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
-/// If this is null a `Container` will be created instead.
-/// [placeHolderBuilder] : Builder that will be called as soon as an event with `data==null` is received. 
-/// If this is null a `Container` will be created instead.
-/// [dataBuilder] : Builder that will be called as soon as an event with an `error` is received. It will get passed the `error` feeld of the CommandResult.
-/// If this is null a `Container` will be created instead.
-const RxCommandBuilder({Key key,
-                this.commandResults, 
-                this.platform, 
-                this.radius = 20.0,  
-                this.backgroundColor,
-                this.value,
-                this.valueColor,
-                this.strokeWidth: 4.0,
-                this.busyBuilder,
-                this.dataBuilder, 
-                this.placeHolderBuilder, 
-                this.errorBuilder,
-                }) 
-        :  assert(commandResults != null), super(key: key);
+<p><strong>commandResults</strong> <code>Stream&lt;bool&gt;</code> .<code>Stream&lt;CommandResult&lt;T&gt;&gt;</code> or a <code>RxCommand&lt;T&gt;</code> that issues <code>CommandResults</code></p>
+<p><strong>busyBuilder</strong> Builder that will be called as soon as an event with <code>isExecuting==true</code>.</p>
+<p><strong>dataBuilder</strong> Builder that will be called as soon as an event with data is received. It will get passed the <code>data</code> feeld of the CommandResult. It will get passed the <code>data</code> feeld of the CommandResult.</p>
+<p><strong>placeHolderBuilder</strong> Builder that will be called as soon as an event with <code>data==null</code> is received. <strong>If this is null</strong> a <code>Container</code> will be created instead.  </p>
+<p><strong>errorBuilder</strong> Builder that will be called as soon as an event with an <code>error</code> is received. It will get passed the <code>error</code> feeld of the CommandResult.</p>
+<pre class="language-dart"><code class="language-dart">const RxCommandBuilder({Key key,
+        this.commandResults, 
+        this.platform, 
+        this.radius = 20.0,  
+        this.backgroundColor,
+        this.value,
+        this.valueColor,
+        this.strokeWidth: 4.0,
+        this.busyBuilder,
+        this.dataBuilder, 
+        this.placeHolderBuilder, 
+        this.errorBuilder,
+        }) 
+</code></pre>
+<h3 id="reactivebuilder">ReactiveBuilder</h3>
+<p>Widget built to encapsulate StreamBuilder.</p>
+<p><strong>stream</strong> <code>Stream&lt;T&gt;</code> that controls the widget.</p>
+<p><strong>initialData</strong> can be used to provide an initial value just as it does in StreamBuilder.</p>
+<p><strong>builder</strong> lis a method that will be cal when the stream receive data.</p>
+<p><strong>placeHolderBuilder</strong> is a method that will be cal when the stream is initialized without data or when receive a null data. By default this method returns a CircularProgressIndicator.</p>
+<p><strong>errorBuilder</strong> is a method that will be call when the stream receive a error. By default this method returns a Text containing the error. </p>
+<pre class="language-dart"><code class="language-dart">const ReactiveBuilder({
+    Key key,
+    @required Stream&lt;T&gt; stream,
+    T initialData,
+    @required this.builder,
+    this.placeHolderBuilder,
+    this.errorBuilder,
+  })
+</code></pre>
+<h4 id="reactivebuilder-example">ReactiveBuilder Example</h4>
+<pre class="language-dart"><code class="language-dart">class Animal {
+  String name;
+  int age;
+}
+
+class Example extends StatelessWidget {
+  final Stream&lt;Animal&gt; stream;
+
+  Example(this.stream);
+
+  @override
+  Widget build(BuildContext context) {
+    return ReactiveBuilder&lt;Animal&gt;(
+      stream: stream,
+      builder: (BuildContext context, data) {
+        return ListTile(
+          title: Text(data.name),
+          subtitle: Text("${data.age}"),
+        );
+      },
+    );
+  }
+}
 </code></pre>
       </section>
       
@@ -235,7 +265,7 @@ const RxCommandBuilder({Key key,
             <h2>Libraries</h2>
           <dl>
             <dt id="rx_widgets">
-              <span class="name"><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></span>
+              <span class="name"><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></span>             
             </dt>
             <dd>
               
@@ -244,13 +274,17 @@ const RxCommandBuilder({Key key,
 
   </div> <!-- /.main-content -->
 
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
+
 </main>
 
 <footer>
   <span class="no-break">
-    rx_widgets 2.0.1
+    rx_widgets 2.5.0
   </span>
 
+  
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

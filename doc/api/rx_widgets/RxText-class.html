@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the RxText class from the rx_widgets library, for the Dart programming language.">
   <title>RxText class - rx_widgets library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-
+  
 </head>
 
 <body>
@@ -35,10 +36,23 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">rx_widgets</a></li>
+      <li><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></li>
+      <li class="self-crumb">RxText class</li>
+    </ol>
+    
     <h5>rx_widgets library</h5>
     <ol>
       <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#classes">Classes</a></li>
+      <li><a href="rx_widgets/ReactiveBuilder-class.html">ReactiveBuilder</a></li>
       <li><a href="rx_widgets/RxCommandBuilder-class.html">RxCommandBuilder</a></li>
       <li><a href="rx_widgets/RxLoader-class.html">RxLoader</a></li>
       <li><a href="rx_widgets/RxRaisedButton-class.html">RxRaisedButton</a></li>
@@ -51,15 +65,13 @@
     
     
     
-      <li class="section-title"><a href="rx_widgets/rx_widgets-library.html#typedefs">Typedefs</a></li>
-      <li><a href="rx_widgets/BuilderFunction.html">BuilderFunction</a></li>
-      <li><a href="rx_widgets/BuilderFunction1.html">BuilderFunction1</a></li>
+    
     
     </ol>
   </div>
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>RxText class</h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">RxText</span> class </h1></div>
 
     <section class="desc markdown">
       <p>A reimplementation of <code>Text</code> so it takes a <code>Stream&lt;String&gt;</code> instead of <code>String</code> as data
@@ -72,7 +84,7 @@ and reacts on it.</p>
 
       <dl class="constructor-summary-list">
         <dt id="RxText" class="callable">
-          <span class="name"><a href="rx_widgets/RxText/RxText.html">RxText</a></span><span class="signature">(<span class="parameter" id="-param-stream"><span class="type-annotation">Stream<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">stream</span>, {</span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-style"><span class="type-annotation">TextStyle</span> <span class="parameter-name">style</span>, </span> <span class="parameter" id="-param-textAlign"><span class="type-annotation">TextAlign</span> <span class="parameter-name">textAlign</span>, </span> <span class="parameter" id="-param-textDirection"><span class="type-annotation">TextDirection</span> <span class="parameter-name">textDirection</span>, </span> <span class="parameter" id="-param-locale"><span class="type-annotation">Locale</span> <span class="parameter-name">locale</span>, </span> <span class="parameter" id="-param-softWrap"><span class="type-annotation">bool</span> <span class="parameter-name">softWrap</span>, </span> <span class="parameter" id="-param-overflow"><span class="type-annotation">TextOverflow</span> <span class="parameter-name">overflow</span>, </span> <span class="parameter" id="-param-textScaleFactor"><span class="type-annotation">double</span> <span class="parameter-name">textScaleFactor</span>, </span> <span class="parameter" id="-param-maxLines"><span class="type-annotation">int</span> <span class="parameter-name">maxLines</span>, </span> <span class="parameter" id="-param-semanticsLabel"><span class="type-annotation">String</span> <span class="parameter-name">semanticsLabel</span></span> })</span>
+          <span class="name"><a href="rx_widgets/RxText/RxText.html">RxText</a></span><span class="signature">(<span class="parameter" id="-param-stream"><span class="type-annotation">Stream<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">stream</span>, {</span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-initialData"><span class="type-annotation">String</span> <span class="parameter-name">initialData</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation">ErrorBuilder<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">errorBuilder</span>, </span> <span class="parameter" id="-param-placeHolderBuilder"><span class="type-annotation">PlaceHolderBuilder</span> <span class="parameter-name">placeHolderBuilder</span>, </span> <span class="parameter" id="-param-style"><span class="type-annotation">TextStyle</span> <span class="parameter-name">style</span>, </span> <span class="parameter" id="-param-textAlign"><span class="type-annotation">TextAlign</span> <span class="parameter-name">textAlign</span>, </span> <span class="parameter" id="-param-textDirection"><span class="type-annotation">TextDirection</span> <span class="parameter-name">textDirection</span>, </span> <span class="parameter" id="-param-locale"><span class="type-annotation">Locale</span> <span class="parameter-name">locale</span>, </span> <span class="parameter" id="-param-softWrap"><span class="type-annotation">bool</span> <span class="parameter-name">softWrap</span>, </span> <span class="parameter" id="-param-overflow"><span class="type-annotation">TextOverflow</span> <span class="parameter-name">overflow</span>, </span> <span class="parameter" id="-param-textScaleFactor"><span class="type-annotation">double</span> <span class="parameter-name">textScaleFactor</span>, </span> <span class="parameter" id="-param-maxLines"><span class="type-annotation">int</span> <span class="parameter-name">maxLines</span>, </span> <span class="parameter" id="-param-semanticsLabel"><span class="type-annotation">String</span> <span class="parameter-name">semanticsLabel</span></span> })</span>
         </dt>
         <dd>
           
@@ -84,120 +96,137 @@ and reacts on it.</p>
       <h2>Properties</h2>
 
       <dl class="properties">
+        <dt id="errorBuilder" class="property">
+          <span class="name"><a href="rx_widgets/RxText/errorBuilder.html">errorBuilder</a></span>
+          <span class="signature">&#8594; ErrorBuilder<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
+</dd>
         <dt id="locale" class="property">
           <span class="name"><a href="rx_widgets/RxText/locale.html">locale</a></span>
-          <span class="signature">&#8594; Locale</span>
+          <span class="signature">&#8594; Locale</span>         
         </dt>
         <dd>
           Used to select a font when the same Unicode character can
 be rendered differently, depending on the locale. <a href="rx_widgets/RxText/locale.html">[...]</a>
-          <div class="features">final</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="maxLines" class="property">
           <span class="name"><a href="rx_widgets/RxText/maxLines.html">maxLines</a></span>
-          <span class="signature">&#8594; int</span>
+          <span class="signature">&#8594; int</span>         
         </dt>
         <dd>
           An optional maximum number of lines for the text to span, wrapping if necessary.
 If the text exceeds the given number of lines, it will be truncated according
-to <code>overflow</code>. <a href="rx_widgets/RxText/maxLines.html">[...]</a>
-          <div class="features">final</div>
+to <a href="rx_widgets/RxText/overflow.html">overflow</a>. <a href="rx_widgets/RxText/maxLines.html">[...]</a>
+                  <div class="features">final</div>
 </dd>
         <dt id="overflow" class="property">
           <span class="name"><a href="rx_widgets/RxText/overflow.html">overflow</a></span>
-          <span class="signature">&#8594; TextOverflow</span>
+          <span class="signature">&#8594; TextOverflow</span>         
         </dt>
         <dd>
           How visual overflow should be handled.
-          <div class="features">final</div>
+                  <div class="features">final</div>
+</dd>
+        <dt id="placeHolderBuilder" class="property">
+          <span class="name"><a href="rx_widgets/RxText/placeHolderBuilder.html">placeHolderBuilder</a></span>
+          <span class="signature">&#8594; PlaceHolderBuilder</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">final</div>
 </dd>
         <dt id="semanticsLabel" class="property">
           <span class="name"><a href="rx_widgets/RxText/semanticsLabel.html">semanticsLabel</a></span>
-          <span class="signature">&#8594; String</span>
+          <span class="signature">&#8594; String</span>         
         </dt>
         <dd>
           An alternative semantics label for this text. <a href="rx_widgets/RxText/semanticsLabel.html">[...]</a>
-          <div class="features">final</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="softWrap" class="property">
           <span class="name"><a href="rx_widgets/RxText/softWrap.html">softWrap</a></span>
-          <span class="signature">&#8594; bool</span>
+          <span class="signature">&#8594; bool</span>         
         </dt>
         <dd>
           Whether the text should break at soft line breaks. <a href="rx_widgets/RxText/softWrap.html">[...]</a>
-          <div class="features">final</div>
-</dd>
-        <dt id="stream" class="property">
-          <span class="name"><a href="rx_widgets/RxText/stream.html">stream</a></span>
-          <span class="signature">&#8594; Stream<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
-        </dt>
-        <dd>
-          A stream of string that the <code>Text</code> responds to
-          <div class="features">final</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="style" class="property">
           <span class="name"><a href="rx_widgets/RxText/style.html">style</a></span>
-          <span class="signature">&#8594; TextStyle</span>
+          <span class="signature">&#8594; TextStyle</span>         
         </dt>
         <dd>
-          If non-null, the style to use for this text. <a href="rx_widgets/RxText/style.html">[...]</a>
-          <div class="features">final</div>
+          The text to display as a <code>TextSpan</code>.
+If non-null, the style to use for this text. <a href="rx_widgets/RxText/style.html">[...]</a>
+                  <div class="features">final</div>
 </dd>
         <dt id="textAlign" class="property">
           <span class="name"><a href="rx_widgets/RxText/textAlign.html">textAlign</a></span>
-          <span class="signature">&#8594; TextAlign</span>
+          <span class="signature">&#8594; TextAlign</span>         
         </dt>
         <dd>
           How the text should be aligned horizontally.
-          <div class="features">final</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="textDirection" class="property">
           <span class="name"><a href="rx_widgets/RxText/textDirection.html">textDirection</a></span>
-          <span class="signature">&#8594; TextDirection</span>
+          <span class="signature">&#8594; TextDirection</span>         
         </dt>
         <dd>
           The directionality of the text. <a href="rx_widgets/RxText/textDirection.html">[...]</a>
-          <div class="features">final</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="textScaleFactor" class="property">
           <span class="name"><a href="rx_widgets/RxText/textScaleFactor.html">textScaleFactor</a></span>
-          <span class="signature">&#8594; double</span>
+          <span class="signature">&#8594; double</span>         
         </dt>
         <dd>
           The number of font pixels for each logical pixel. <a href="rx_widgets/RxText/textScaleFactor.html">[...]</a>
-          <div class="features">final</div>
-</dd>
-        <dt id="textSpan" class="property">
-          <span class="name"><a href="rx_widgets/RxText/textSpan.html">textSpan</a></span>
-          <span class="signature">&#8594; TextSpan</span>
-        </dt>
-        <dd>
-          The text to display as a <code>TextSpan</code>. <a href="rx_widgets/RxText/textSpan.html">[...]</a>
-          <div class="features">final</div>
+                  <div class="features">final</div>
 </dd>
         <dt id="hashCode" class="property inherited">
           <span class="name"><a href="rx_widgets/RxText/hashCode.html">hashCode</a></span>
-          <span class="signature">&#8594; int</span>
+          <span class="signature">&#8594; int</span>         
         </dt>
         <dd class="inherited">
           The hash code for this object. <a href="rx_widgets/RxText/hashCode.html">[...]</a>
-          <div class="features">read-only, inherited</div>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="initialData" class="property inherited">
+          <span class="name"><a href="rx_widgets/RxText/initialData.html">initialData</a></span>
+          <span class="signature">&#8594; String</span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">final, inherited</div>
 </dd>
         <dt id="key" class="property inherited">
           <span class="name"><a href="rx_widgets/RxText/key.html">key</a></span>
-          <span class="signature">&#8594; Key</span>
+          <span class="signature">&#8594; Key</span>         
         </dt>
         <dd class="inherited">
           Controls how one widget replaces another widget in the tree. <a href="rx_widgets/RxText/key.html">[...]</a>
-          <div class="features">final, inherited</div>
+                  <div class="features">final, inherited</div>
 </dd>
         <dt id="runtimeType" class="property inherited">
           <span class="name"><a href="rx_widgets/RxText/runtimeType.html">runtimeType</a></span>
-          <span class="signature">&#8594; Type</span>
+          <span class="signature">&#8594; Type</span>         
         </dt>
         <dd class="inherited">
           A representation of the runtime type of the object.
-          <div class="features">read-only, inherited</div>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="stream" class="property inherited">
+          <span class="name"><a href="rx_widgets/RxText/stream.html">stream</a></span>
+          <span class="signature">&#8594; Stream<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>         
+        </dt>
+        <dd class="inherited">
+          
+                  <div class="features">final, inherited</div>
 </dd>
       </dl>
     </section>
@@ -206,58 +235,123 @@ to <code>overflow</code>. <a href="rx_widgets/RxText/maxLines.html">[...]</a>
       <h2>Methods</h2>
       <dl class="callables">
         <dt id="build" class="callable">
-          <span class="name"><a href="rx_widgets/RxText/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span></span>)
+          <span class="name"><a href="rx_widgets/RxText/build.html">build</a></span><span class="signature">(<wbr><span class="parameter" id="build-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span>, </span> <span class="parameter" id="build-param-data"><span class="type-annotation">String</span> <span class="parameter-name">data</span></span>)
             <span class="returntype parameter">&#8594; Widget</span>
           </span>
-        </dt>
+                  </dt>
         <dd>
-          Describes the part of the user interface represented by this widget. <a href="rx_widgets/RxText/build.html">[...]</a>
           
+                  
+</dd>
+        <dt id="errorBuild" class="callable">
+          <span class="name"><a href="rx_widgets/RxText/errorBuild.html">errorBuild</a></span><span class="signature">(<wbr><span class="parameter" id="errorBuild-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span>, </span> <span class="parameter" id="errorBuild-param-error"><span class="type-annotation">Object</span> <span class="parameter-name">error</span></span>)
+            <span class="returntype parameter">&#8594; Widget</span>
+          </span>
+                  </dt>
+        <dd>
+          
+                  
+</dd>
+        <dt id="placeHolderBuild" class="callable">
+          <span class="name"><a href="rx_widgets/RxText/placeHolderBuild.html">placeHolderBuild</a></span><span class="signature">(<wbr><span class="parameter" id="placeHolderBuild-param-context"><span class="type-annotation">BuildContext</span> <span class="parameter-name">context</span></span>)
+            <span class="returntype parameter">&#8594; Widget</span>
+          </span>
+                  </dt>
+        <dd>
+          
+                  
 </dd>
         <dt id="createElement" class="callable inherited">
           <span class="name"><a href="rx_widgets/RxText/createElement.html">createElement</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; StatelessElement</span>
+            <span class="returntype parameter">&#8594; StatefulElement</span>
           </span>
-        </dt>
+                  </dt>
         <dd class="inherited">
-          Creates a <code>StatelessElement</code> to manage this widget's location in the tree. <a href="rx_widgets/RxText/createElement.html">[...]</a>
-          <div class="features">inherited</div>
+          Creates a <code>StatefulElement</code> to manage this widget's location in the tree. <a href="rx_widgets/RxText/createElement.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="createState" class="callable inherited">
+          <span class="name"><a href="rx_widgets/RxText/createState.html">createState</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; _ReactiveWidgetState<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Creates the mutable state for this widget at a given location in the tree. <a href="rx_widgets/RxText/createState.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="debugDescribeChildren" class="callable inherited">
+          <span class="name"><a href="rx_widgets/RxText/debugDescribeChildren.html">debugDescribeChildren</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">DiagnosticsNode</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a list of <code>DiagnosticsNode</code> objects describing this node's
+children. <a href="rx_widgets/RxText/debugDescribeChildren.html">[...]</a>
+                  <div class="features">@protected, inherited</div>
 </dd>
         <dt id="debugFillProperties" class="callable inherited">
           <span class="name"><a href="rx_widgets/RxText/debugFillProperties.html">debugFillProperties</a></span><span class="signature">(<wbr><span class="parameter" id="debugFillProperties-param-properties"><span class="type-annotation">DiagnosticPropertiesBuilder</span> <span class="parameter-name">properties</span></span>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
-        </dt>
+                  </dt>
         <dd class="inherited">
-          
-          <div class="features">inherited</div>
+          Add additional properties associated with the node. <a href="rx_widgets/RxText/debugFillProperties.html">[...]</a>
+                  <div class="features">inherited</div>
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
           <span class="name"><a href="rx_widgets/RxText/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
-        </dt>
+                  </dt>
         <dd class="inherited">
           Invoked when a non-existent method or property is accessed. <a href="rx_widgets/RxText/noSuchMethod.html">[...]</a>
-          <div class="features">@pragma(&quot;vm:entry-point&quot;), inherited</div>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toDiagnosticsNode" class="callable inherited">
+          <span class="name"><a href="rx_widgets/RxText/toDiagnosticsNode.html">toDiagnosticsNode</a></span><span class="signature">(<wbr>{<span class="parameter" id="toDiagnosticsNode-param-name"><span class="type-annotation">String</span> <span class="parameter-name">name</span>, </span> <span class="parameter" id="toDiagnosticsNode-param-style"><span class="type-annotation">DiagnosticsTreeStyle</span> <span class="parameter-name">style</span></span> })
+            <span class="returntype parameter">&#8594; DiagnosticsNode</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a debug representation of the object that is used by debugging
+tools and by <a href="rx_widgets/RxText/toStringDeep.html">DiagnosticsNode.toStringDeep</a>. <a href="rx_widgets/RxText/toDiagnosticsNode.html">[...]</a>
+                  <div class="features">inherited</div>
 </dd>
         <dt id="toString" class="callable inherited">
-          <span class="name"><a href="rx_widgets/RxText/toString.html">toString</a></span><span class="signature">(<wbr>)
+          <span class="name"><a href="rx_widgets/RxText/toString.html">toString</a></span><span class="signature">(<wbr>{<span class="parameter" id="toString-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
             <span class="returntype parameter">&#8594; String</span>
           </span>
-        </dt>
+                  </dt>
         <dd class="inherited">
           Returns a string representation of this object.
-          <div class="features">inherited</div>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toStringDeep" class="callable inherited">
+          <span class="name"><a href="rx_widgets/RxText/toStringDeep.html">toStringDeep</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringDeep-param-prefixLineOne"><span class="type-annotation">String</span> <span class="parameter-name">prefixLineOne</span>: <span class="default-value">''</span>, </span> <span class="parameter" id="toStringDeep-param-prefixOtherLines"><span class="type-annotation">String</span> <span class="parameter-name">prefixOtherLines</span>, </span> <span class="parameter" id="toStringDeep-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this node and its descendants. <a href="rx_widgets/RxText/toStringDeep.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toStringShallow" class="callable inherited">
+          <span class="name"><a href="rx_widgets/RxText/toStringShallow.html">toStringShallow</a></span><span class="signature">(<wbr>{<span class="parameter" id="toStringShallow-param-joiner"><span class="type-annotation">String</span> <span class="parameter-name">joiner</span>: <span class="default-value">', '</span>, </span> <span class="parameter" id="toStringShallow-param-minLevel"><span class="type-annotation">DiagnosticLevel</span> <span class="parameter-name">minLevel</span>: <span class="default-value">DiagnosticLevel.debug</span></span> })
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a one-line detailed description of the object. <a href="rx_widgets/RxText/toStringShallow.html">[...]</a>
+                  <div class="features">inherited</div>
 </dd>
         <dt id="toStringShort" class="callable inherited">
           <span class="name"><a href="rx_widgets/RxText/toStringShort.html">toStringShort</a></span><span class="signature">(<wbr>)
             <span class="returntype parameter">&#8594; String</span>
           </span>
-        </dt>
+                  </dt>
         <dd class="inherited">
           A short, textual description of this widget.
-          <div class="features">inherited</div>
+                  <div class="features">inherited</div>
 </dd>
       </dl>
     </section>
@@ -269,10 +363,10 @@ to <code>overflow</code>. <a href="rx_widgets/RxText/maxLines.html">[...]</a>
           <span class="name"><a href="rx_widgets/RxText/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
             <span class="returntype parameter">&#8594; bool</span>
           </span>
-        </dt>
+                  </dt>
         <dd class="inherited">
           The equality operator. <a href="rx_widgets/RxText/operator_equals.html">[...]</a>
-          <div class="features">inherited</div>
+                  <div class="features">inherited</div>
 </dd>
       </dl>
     </section>
@@ -282,7 +376,7 @@ to <code>overflow</code>. <a href="rx_widgets/RxText/maxLines.html">[...]</a>
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
       <li class="section-title"><a href="rx_widgets/RxText-class.html#constructors">Constructors</a></li>
       <li><a href="rx_widgets/RxText/RxText.html">RxText</a></li>
@@ -290,27 +384,36 @@ to <code>overflow</code>. <a href="rx_widgets/RxText/maxLines.html">[...]</a>
       <li class="section-title">
         <a href="rx_widgets/RxText-class.html#instance-properties">Properties</a>
       </li>
+      <li><a href="rx_widgets/RxText/errorBuilder.html">errorBuilder</a></li>
       <li><a href="rx_widgets/RxText/locale.html">locale</a></li>
       <li><a href="rx_widgets/RxText/maxLines.html">maxLines</a></li>
       <li><a href="rx_widgets/RxText/overflow.html">overflow</a></li>
+      <li><a href="rx_widgets/RxText/placeHolderBuilder.html">placeHolderBuilder</a></li>
       <li><a href="rx_widgets/RxText/semanticsLabel.html">semanticsLabel</a></li>
       <li><a href="rx_widgets/RxText/softWrap.html">softWrap</a></li>
-      <li><a href="rx_widgets/RxText/stream.html">stream</a></li>
       <li><a href="rx_widgets/RxText/style.html">style</a></li>
       <li><a href="rx_widgets/RxText/textAlign.html">textAlign</a></li>
       <li><a href="rx_widgets/RxText/textDirection.html">textDirection</a></li>
       <li><a href="rx_widgets/RxText/textScaleFactor.html">textScaleFactor</a></li>
-      <li><a href="rx_widgets/RxText/textSpan.html">textSpan</a></li>
       <li class="inherited"><a href="rx_widgets/RxText/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="rx_widgets/RxText/initialData.html">initialData</a></li>
       <li class="inherited"><a href="rx_widgets/RxText/key.html">key</a></li>
       <li class="inherited"><a href="rx_widgets/RxText/runtimeType.html">runtimeType</a></li>
+      <li class="inherited"><a href="rx_widgets/RxText/stream.html">stream</a></li>
     
       <li class="section-title"><a href="rx_widgets/RxText-class.html#instance-methods">Methods</a></li>
       <li><a href="rx_widgets/RxText/build.html">build</a></li>
+      <li><a href="rx_widgets/RxText/errorBuild.html">errorBuild</a></li>
+      <li><a href="rx_widgets/RxText/placeHolderBuild.html">placeHolderBuild</a></li>
       <li class="inherited"><a href="rx_widgets/RxText/createElement.html">createElement</a></li>
+      <li class="inherited"><a href="rx_widgets/RxText/createState.html">createState</a></li>
+      <li class="inherited"><a href="rx_widgets/RxText/debugDescribeChildren.html">debugDescribeChildren</a></li>
       <li class="inherited"><a href="rx_widgets/RxText/debugFillProperties.html">debugFillProperties</a></li>
       <li class="inherited"><a href="rx_widgets/RxText/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="rx_widgets/RxText/toDiagnosticsNode.html">toDiagnosticsNode</a></li>
       <li class="inherited"><a href="rx_widgets/RxText/toString.html">toString</a></li>
+      <li class="inherited"><a href="rx_widgets/RxText/toStringDeep.html">toStringDeep</a></li>
+      <li class="inherited"><a href="rx_widgets/RxText/toStringShallow.html">toStringShallow</a></li>
       <li class="inherited"><a href="rx_widgets/RxText/toStringShort.html">toStringShort</a></li>
     
       <li class="section-title inherited"><a href="rx_widgets/RxText-class.html#operators">Operators</a></li>
@@ -325,9 +428,10 @@ to <code>overflow</code>. <a href="rx_widgets/RxText/maxLines.html">[...]</a>
 
 <footer>
   <span class="no-break">
-    rx_widgets 2.0.1
+    rx_widgets 2.5.0
   </span>
 
+  
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the WidgetBuilderSelector constructor from the Class WidgetBuilderSelector class from the rx_widgets library, for the Dart programming language.">
   <title>WidgetBuilderSelector constructor - WidgetBuilderSelector class - rx_widgets library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
-
+  
 </head>
 
 <body>
@@ -36,7 +37,20 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">rx_widgets</a></li>
+      <li><a href="rx_widgets/rx_widgets-library.html">rx_widgets</a></li>
+      <li><a href="rx_widgets/WidgetBuilderSelector-class.html">WidgetBuilderSelector</a></li>
+      <li class="self-crumb">WidgetBuilderSelector const constructor</li>
+    </ol>
+    
     <h5>WidgetBuilderSelector class</h5>
     <ol>
       <li class="section-title"><a href="rx_widgets/WidgetBuilderSelector-class.html#constructors">Constructors</a></li>
@@ -45,19 +59,29 @@
       <li class="section-title">
         <a href="rx_widgets/WidgetBuilderSelector-class.html#instance-properties">Properties</a>
       </li>
-      <li><a href="rx_widgets/WidgetBuilderSelector/buildEvents.html">buildEvents</a></li>
+      <li><a href="rx_widgets/WidgetBuilderSelector/errorBuilder.html">errorBuilder</a></li>
       <li><a href="rx_widgets/WidgetBuilderSelector/onFalse.html">onFalse</a></li>
       <li><a href="rx_widgets/WidgetBuilderSelector/onTrue.html">onTrue</a></li>
+      <li><a href="rx_widgets/WidgetBuilderSelector/placeHolderBuilder.html">placeHolderBuilder</a></li>
       <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/initialData.html">initialData</a></li>
       <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/key.html">key</a></li>
       <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/runtimeType.html">runtimeType</a></li>
+      <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/stream.html">stream</a></li>
     
       <li class="section-title"><a href="rx_widgets/WidgetBuilderSelector-class.html#instance-methods">Methods</a></li>
       <li><a href="rx_widgets/WidgetBuilderSelector/build.html">build</a></li>
+      <li><a href="rx_widgets/WidgetBuilderSelector/errorBuild.html">errorBuild</a></li>
+      <li><a href="rx_widgets/WidgetBuilderSelector/placeHolderBuild.html">placeHolderBuild</a></li>
       <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/createElement.html">createElement</a></li>
+      <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/createState.html">createState</a></li>
+      <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/debugDescribeChildren.html">debugDescribeChildren</a></li>
       <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/debugFillProperties.html">debugFillProperties</a></li>
       <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/toDiagnosticsNode.html">toDiagnosticsNode</a></li>
       <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/toString.html">toString</a></li>
+      <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/toStringDeep.html">toStringDeep</a></li>
+      <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/toStringShallow.html">toStringShallow</a></li>
       <li class="inherited"><a href="rx_widgets/WidgetBuilderSelector/toStringShort.html">toStringShort</a></li>
     
       <li class="section-title inherited"><a href="rx_widgets/WidgetBuilderSelector-class.html#operators">Operators</a></li>
@@ -68,39 +92,50 @@
     </ol>
   </div><!--/.sidebar-offcanvas-left-->
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>WidgetBuilderSelector constructor</h1>
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">WidgetBuilderSelector</span> constructor</h1></div>
 
     <section class="multi-line-signature">
       const
-      <span class="name ">WidgetBuilderSelector</span>(<wbr>{<span class="parameter" id="-param-buildEvents"><span class="type-annotation">Stream<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span> <span class="parameter-name">buildEvents</span>, </span> <span class="parameter" id="-param-onTrue"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">onTrue</span>, </span> <span class="parameter" id="-param-onFalse"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">onFalse</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span></span> })
+      <span class="name ">WidgetBuilderSelector</span>(<wbr>{<span class="parameter" id="-param-buildEvents"><span class="type-annotation">Stream<span class="signature">&lt;<wbr><span class="type-parameter">bool</span>&gt;</span></span> <span class="parameter-name">buildEvents</span>, </span> <span class="parameter" id="-param-onTrue"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">onTrue</span>, </span> <span class="parameter" id="-param-onFalse"><span class="type-annotation">WidgetBuilder</span> <span class="parameter-name">onFalse</span>, </span> <span class="parameter" id="-param-errorBuilder"><span class="type-annotation">ErrorBuilder<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">errorBuilder</span>, </span> <span class="parameter" id="-param-placeHolderBuilder"><span class="type-annotation">PlaceHolderBuilder</span> <span class="parameter-name">placeHolderBuilder</span>, </span> <span class="parameter" id="-param-key"><span class="type-annotation">Key</span> <span class="parameter-name">key</span>, </span> <span class="parameter" id="-param-initialValue"><span class="type-annotation">bool</span> <span class="parameter-name">initialValue</span></span> })
     </section>
 
     <section class="desc markdown">
       <p>Creates a new WidgetBuilderSelector instance
-<code>buildEvents</code> : <code>Stream&lt;bool&gt;</code>that signals that the this Widget should be updated
+<code>stream</code> : <code>Stream&lt;bool&gt;</code>that signals that the this Widget should be updated
 <code>onTrue</code> : builder that should be executed if an item with value true is received
-<code>onFalse</code>: builder that should be executed if an item with value true is received</p>
+<code>onFalse</code>: builder that should be executed if an item with value false is received</p>
     </section>
     
     <section class="summary source-code" id="source">
-      <h2><span>Implementation</span> </h2>
-      <pre class="language-dart"><code class="language-dart">const WidgetBuilderSelector({this.buildEvents,  this.onTrue,  this.onFalse, Key key })
-        :  assert(buildEvents != null),assert(onTrue != null), assert(onFalse != null), super(key: key);</code></pre>
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">const WidgetBuilderSelector({
+  Stream&lt;bool&gt; buildEvents,
+  this.onTrue,
+  this.onFalse,
+  this.errorBuilder,
+  this.placeHolderBuilder,
+  Key key,
+  bool initialValue,
+})  : assert(buildEvents != null),
+      assert(onTrue != null),
+      assert(onFalse != null),
+      super(buildEvents, initialValue, key: key);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
 
-  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
   </div><!--/.sidebar-offcanvas-->
 
 </main>
 
 <footer>
   <span class="no-break">
-    rx_widgets 2.0.1
+    rx_widgets 2.5.0
   </span>
 
+  
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
