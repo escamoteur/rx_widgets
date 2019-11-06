@@ -9,7 +9,7 @@ void main() {
 
     var widget = MaterialApp(
         home: WidgetSelector(
-      stream: _controller.stream,
+      buildEvents: _controller.stream,
       onFalse: Text("FALSE"),
       onTrue: Text("TRUE"),
     ));
@@ -30,7 +30,7 @@ void main() {
 
     var widget = MaterialApp(
         home: WidgetSelector(
-      stream: _controller.stream,
+      buildEvents: _controller.stream,
       onFalse: Text("FALSE"),
       onTrue: Text("TRUE"),
     ));
@@ -51,7 +51,7 @@ void main() {
 
     var widget = MaterialApp(
         home: WidgetBuilderSelector(
-      stream: _controller.stream,
+      buildEvents: _controller.stream,
       onTrue: (_) => Text("TRUE"),
       onFalse: (_) => Text("FALSE"),
     ));
@@ -72,7 +72,7 @@ void main() {
 
     var widget = MaterialApp(
         home: WidgetBuilderSelector(
-      stream: _controller.stream,
+      buildEvents: _controller.stream,
       onTrue: (_) => Text("TRUE"),
       onFalse: (_) => Text("FALSE"),
     ));

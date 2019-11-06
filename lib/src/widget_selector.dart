@@ -19,18 +19,18 @@ class WidgetSelector extends ReactiveWidget<bool> {
   /// `onTrue` : Widget that should be returned if an item with value true is received
   /// `onFalse`: Widget that should be returned if an item with value false is received
 
-  const WidgetSelector(
-      {Stream<bool> stream,
-      this.onTrue,
-      this.onFalse,
-      this.errorBuilder,
-      this.placeHolderBuilder,
-      bool initialValue,
-      Key key})
-      : assert(stream != null),
+  const WidgetSelector({
+    Key key,
+    Stream<bool> buildEvents,
+    this.onTrue,
+    this.onFalse,
+    this.errorBuilder,
+    this.placeHolderBuilder,
+    bool initialValue,
+  })  : assert(buildEvents != null),
         assert(onTrue != null),
         assert(onFalse != null),
-        super(stream, initialValue, key: key);
+        super(buildEvents, initialValue, key: key);
 
   @override
   Widget build(BuildContext context, data) {
@@ -67,17 +67,17 @@ class WidgetBuilderSelector extends ReactiveWidget<bool> {
   /// `onTrue` : builder that should be executed if an item with value true is received
   /// `onFalse`: builder that should be executed if an item with value false is received
   const WidgetBuilderSelector({
-    Stream<bool> stream,
+    Stream<bool> buildEvents,
     this.onTrue,
     this.onFalse,
     this.errorBuilder,
     this.placeHolderBuilder,
     Key key,
     bool initialValue,
-  })  : assert(stream != null),
+  })  : assert(buildEvents != null),
         assert(onTrue != null),
         assert(onFalse != null),
-        super(stream, initialValue, key: key);
+        super(buildEvents, initialValue, key: key);
 
   @override
   Widget build(BuildContext context, data) {
