@@ -81,5 +81,6 @@ class _RxCommandBuilderState<T> extends State<RxCommandBuilder<T>> {
         return widget.errorBuilder(context, item.error);
       }
     }
+    return SizedBox();
   }
 }

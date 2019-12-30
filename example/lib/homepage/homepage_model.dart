@@ -1,5 +1,6 @@
 
 import 'package:rx_command/rx_command.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:rx_widget_demo/service/weather_service.dart';
 import 'package:rx_widget_demo/service/weather_entry.dart';
 
@@ -33,14 +34,14 @@ class HomePageModel {
     // When the user starts typing
     _textChangedCommand
         // Wait for the user to stop typing for 500ms
-        .debounceTime(new Duration(milliseconds: 500))
+        .debounceTime( Duration(milliseconds: 500))
         // Then call the updateWeatherCommand
         .listen(_updateWeatherCommand);
 
     // Update data on startup
     _updateWeatherCommand('');
 
-    return new HomePageModel._(
+    return  HomePageModel._(
       _updateWeatherCommand,
       _switchChangedCommand,
       _textChangedCommand,

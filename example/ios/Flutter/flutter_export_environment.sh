@@ -1,8 +1,10 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/home/pedro/Development/flutter"
-export "FLUTTER_APPLICATION_PATH=/home/pedro/Documents/Github/flutter/rx_pasta/my_fork/my_fork/example"
-export "FLUTTER_TARGET=lib/main.dart"
+export "FLUTTER_ROOT=C:\Entwicklung\Flutter"
+export "FLUTTER_APPLICATION_PATH=C:\Entwicklung\packages\rx_widgets\example"
+export "FLUTTER_TARGET=lib\main.dart"
 export "FLUTTER_BUILD_DIR=build"
-export "SYMROOT=${SOURCE_ROOT}/../build/ios"
-export "FLUTTER_FRAMEWORK_DIR=/home/pedro/Development/flutter/bin/cache/artifacts/engine/ios"
+export "SYMROOT=${SOURCE_ROOT}/../build\ios"
+export "FLUTTER_FRAMEWORK_DIR=C:\Entwicklung\Flutter\bin\cache\artifacts\engine\ios"
+export "FLUTTER_BUILD_NAME=1.0.0"
+export "FLUTTER_BUILD_NUMBER=1"

@@ -14,7 +14,7 @@ class ModelProvider extends InheritedWidget {
         super(key: key, child: child);
 
   static HomePageModel of(BuildContext context) =>
-      (context.inheritFromWidgetOfExactType(ModelProvider) as ModelProvider)
+      (context.dependOnInheritedWidgetOfExactType<ModelProvider>())
           .model;
 
   @override
