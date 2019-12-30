@@ -1,4 +1,8 @@
-## [2.5.0] - 11.01.2019
+## [3.0.0] - 30.12.2019
+
+* Updated to use rx_command V5.0.1
+
+## [2.5.0] - 06.11.2019
 
 * Added ReactiveBuilder.
 * Updated documentation.
