@@ -55,15 +55,15 @@ class CommandWidget extends StatelessWidget with RxCommandHandlerMixin<void, Dat
   }
 
   @override
-  RxCommand<void, DateTime> get command => _command;
-
-  final _command = RxCommand.createSyncNoParam<DateTime>(() {
-    print('Executing command');
-    return DateTime.now();
-  });
-
-  @override
-  void listen(DateTime event) {
-    print('Got listened value: $event');
-  }
+  RxCommandListener<void, DateTime> get commandListener => RxCommandListener(
+    _command,
+    onValue: (value) {
+      print('received value: $value');
+    },
+  );
 }
+
+final _command = RxCommand.createSyncNoParam<DateTime>(() {
+  print('Executing command');
+  return DateTime.now();
+});

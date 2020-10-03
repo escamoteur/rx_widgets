@@ -1,16 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:rx_command/rx_command.dart';
 
-
 mixin RxCommandHandlerMixin<TParam, TResult> on StatelessWidget {
   final _state = _MixinState<TParam, TResult>();
 
   @override
   StatelessElement createElement() => _StatelessMixInElement<RxCommandHandlerMixin, TParam, TResult>(this);
 
-  void listen(TResult event) {}
-
-  RxCommand<TParam, TResult> get command;
+  RxCommandListener<TParam, TResult> get commandListener;
 }
 
 class _StatelessMixInElement<W extends RxCommandHandlerMixin, TParam, TResult> extends StatelessElement {
@@ -21,11 +18,7 @@ class _StatelessMixInElement<W extends RxCommandHandlerMixin, TParam, TResult> e
 
   @override
   void mount(Element parent, newSlot) {
-    final listener = RxCommandListener<TParam, TResult>(
-      widget.command,
-      onValue: widget.listen,
-    );
-    widget._state.init(listener);
+    widget._state.init(widget.commandListener);
     super.mount(parent, newSlot);
   }
 
