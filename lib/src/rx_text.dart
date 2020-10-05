@@ -1,11 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:rx_widgets/src/builder_functions.dart';
-import 'package:rx_widgets/src/reactive_widget.dart';
+
+import 'builder_functions.dart';
+import 'reactive_base_widget.dart';
+
 
 /// A reimplementation of `Text` so it takes a [Stream<String>] instead of `String` as data
 /// and reacts on it.
-class RxText extends ReactiveWidget<String> {
+class RxText extends ReactiveBaseWidget<String> {
   final ErrorBuilder<String> errorBuilder;
   final PlaceHolderBuilder placeHolderBuilder;
 

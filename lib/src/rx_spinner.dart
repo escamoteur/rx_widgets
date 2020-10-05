@@ -7,7 +7,7 @@ import 'package:rx_widgets/src/builder_functions.dart';
 import 'package:rx_widgets/src/widget_selector.dart';
 import 'package:flutter/material.dart';
 
-/// Spinner/Busyindicator that reacts on the output of a `Stream<bool>` it starts running as soon as a `true` value is received
+/// Spinner/Busy Indicator that reacts on the output of a `Stream<bool>` it starts running as soon as a `true` value is received
 /// until the next `false`is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as `normal` parameter.
 /// `RxSpinner` also adapts to the current or specified platform look.
 /// Needless to say that `RxSpinner` is ideal in combination with `RxCommand's` `isExecuting` Observable
@@ -26,8 +26,8 @@ class RxSpinner extends StatelessWidget {
 
   /// Creates a new RxSpinner instance
   /// `busyEvents` : `Stream<bool>` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget
-  ///  and starts running undtil it receives a `false`value.
-  /// `platform`  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
+  ///  and starts running until it receives a `false`value.
+  /// `platform`  : defines platform style of the Spinner. If this is null or not provided the style of the current platform will be used
   /// `radius`    : radius of the Spinner
   /// `normal`    : Widget that should be displayed while the Spinner is not active. If this is null a `Container` will be created instead.
   ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html
@@ -50,22 +50,22 @@ class RxSpinner extends StatelessWidget {
     var platformToUse = platform != null ? platform : defaultTargetPlatform;
 
     var spinner = (platformToUse == TargetPlatform.iOS)
-        ? new CupertinoActivityIndicator(
+        ? CupertinoActivityIndicator(
             radius: this.radius,
           )
-        : new CircularProgressIndicator(
+        : CircularProgressIndicator(
             backgroundColor: backgroundColor,
             strokeWidth: strokeWidth,
             valueColor: valueColor,
             value: value,
           );
 
-    return new WidgetSelector(
+    return WidgetSelector(
       buildEvents: busyEvents,
-      onTrue: new Center(
-          child: new Container(
+      onTrue: Center(
+          child: Container(
               width: this.radius * 2, height: this.radius * 2, child: spinner)),
-      onFalse: normal != null ? normal : new Container(),
+      onFalse: normal != null ? normal : Container(),
     );
   }
 }
@@ -98,7 +98,7 @@ class RxLoader<T> extends StatefulWidget {
 
   /// Creates a new `RxLoader` instance
   /// [commandResults] : `Stream<CommandResult<T>>` or a `RxCommand<T>` that issues `CommandResults`
-  /// [platform]  : defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used
+  /// [platform]  : defines platform style of the Spinner. If this is null or not provided the style of the current platform will be used
   /// [radius]    : radius of the Spinner
   /// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
   /// If this is null a `Container` will be created instead.
@@ -127,7 +127,7 @@ class RxLoader<T> extends StatefulWidget {
 
   @override
   _RxLoaderState createState() {
-    return new _RxLoaderState<T>(commandResults);
+    return _RxLoaderState<T>(commandResults);
   }
 }
 
@@ -136,7 +136,7 @@ class _RxLoaderState<T> extends State<RxLoader<T>> {
 
   Stream<CommandResult<T>> commandResults;
 
-  CommandResult<T> lastReceivedItem = new CommandResult<T>(null, null, false);
+  CommandResult<T> lastReceivedItem = CommandResult<T>(null, null, false);
 
   _RxLoaderState(this.commandResults);
 
@@ -174,11 +174,11 @@ class _RxLoaderState<T> extends State<RxLoader<T>> {
         widget.platform != null ? widget.platform : defaultTargetPlatform;
 
     var spinner = (platformToUse == TargetPlatform.iOS)
-        ? new CupertinoActivityIndicator(
+        ? CupertinoActivityIndicator(
             key: widget.spinnerKey,
             radius: this.widget.radius,
           )
-        : new CircularProgressIndicator(
+        : CircularProgressIndicator(
             key: widget.spinnerKey,
             backgroundColor: widget.backgroundColor,
             strokeWidth: widget.strokeWidth,
@@ -186,8 +186,8 @@ class _RxLoaderState<T> extends State<RxLoader<T>> {
             value: widget.value,
           );
     if (lastReceivedItem.isExecuting) {
-      return new Center(
-          child: new Container(
+      return Center(
+          child: Container(
               width: this.widget.radius * 2,
               height: this.widget.radius * 2,
               child: spinner));
@@ -212,6 +212,6 @@ class _RxLoaderState<T> extends State<RxLoader<T>> {
 
     // should never get here
     assert(false, "never should get here");
-    return new Container();
+    return Container();
   }
 }

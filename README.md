@@ -6,16 +6,15 @@
 
 A package with stream based Flutter Widgets that facilitate an reactive programming style.
  
-Was built to be used especially in combination with [RxDart](https://github.com/ReactiveX/rxdart) and [RxCommands](https://github.com/escamoteur/rx_command).
+Was built to be used especially in combination with [RxDart](https://github.com/ReactiveX/rxdart) 
+and [RxCommands](https://github.com/escamoteur/rx_command).
 
 >If you have any ideas for additional stream based Widget, open an issue
 >PRs are always welcome ;-)
 
-
 ## Getting Started
 
 Add to your `pubspec.yaml` dependencies to  `rx_widgets`
-
 
 ## Widgets Available
 - [RxRaisedButton](#rxraisedbutton)
@@ -25,6 +24,8 @@ Add to your `pubspec.yaml` dependencies to  `rx_widgets`
 - [WidgetSelector](#widgetselector)
 - [RxCommandBuilder](#rxcommandbuilder)
 - [ReactiveBuilder](#reactivebuilder)
+- [ReactiveWidget](#reactivewidget)
+- [RxCommandHandlerMixin](#rxcommandhandlermixin)
 
 ### RxRaisedButton
 Creates a `RaisedButton` that has an `rxCommand` instead of `onPressed`. It gets disabled if the command has canExecute:false or when isExecuting:true
@@ -53,7 +54,7 @@ RxRaisedButton({
     this.shape,
     this.materialTapTargetSize,
     this.animationDuration,
-  }) : super(key: key);
+  });
 ```
 
 
@@ -83,7 +84,7 @@ A `Text` that takes in a `Stream<String>` and displays it. An example of usage c
     this.textScaleFactor,
     this.maxLines,
     this.semanticsLabel,
-  })
+  });
 ```
 ### RxSpinner
 
@@ -92,7 +93,7 @@ Spinner/Busy indicator that reacts on the output of a `Stream<bool>` it starts r
 
 **busyEvents** `Stream<bool>` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget and starts running undtil it receives a `false`value.
 
-**platform** defines platorm style of the Spinner. If this is null or not provided the style of the current platform will be used.
+**platform** defines platform style of the Spinner. If this is null or not provided the style of the current platform will be used.
 
 **radius** is the radius of the Spinner.
 
@@ -102,6 +103,7 @@ All other parameters please see https://docs.flutter.io/flutter/material/Circula
 `RxSpinner` are ignored if the platform style is iOS.
 ```Dart
 RxSpinner({    
+    Key key, 
     this.busyEvents, 
     this.platform, 
     this.radius = 20.0,  
@@ -109,8 +111,7 @@ RxSpinner({
     this.value,
     this.valueColor,
     this.strokeWidth: 4.0,
-    this.normal, 
-    Key key })         
+    this.normal});         
 ```
 
 
@@ -147,10 +148,8 @@ RxLoader({
     this.dataBuilder, 
     this.placeHolderBuilder, 
     this.errorBuilder,
-})
+});
 ```
-
-
 
 
 ### WidgetSelector
@@ -180,7 +179,7 @@ received.
       this.errorBuilder,
       this.placeHolderBuilder,
       bool initialValue,
-      })
+      });
 ```
 
 #### WidgetSelector Example
@@ -241,7 +240,6 @@ const RxCommandBuilder({Key key,
         }) 
 ```
 
-
 ### ReactiveBuilder
 Widget built to encapsulate StreamBuilder.
 
@@ -293,3 +291,95 @@ class Example extends StatelessWidget {
   }
 }
 ```
+
+### ReactiveWidget
+Widget built to encapsulate StreamBuilder.
+
+Similar to **ReactiveBuilder** but doesn't require `BuiltContext` in its parameters
+
+**stream** `Stream<T>` that controls the widget.
+
+**initialData** can be used to provide an initial value just as it does in StreamBuilder.
+
+**widget** lis a method that will be cal when the stream receive data.
+
+**placeHolderWidget** is a method that will be cal when the stream is initialized without data or when receive a null data. By default this method returns a CircularProgressIndicator.
+
+**errorWidget** is a method that will be call when the stream receive a error. By default this method returns a Text containing the error.
+
+#### ReactiveWidget Example
+``` dart
+class Animal {
+  String name;
+  int age;
+}
+
+class Example extends StatelessWidget {
+  final Stream<Animal> stream;
+
+  Example(this.stream);
+
+  @override
+  Widget build(BuildContext context) {
+    return ReactiveBuilder<Animal>(
+      stream: stream,
+      builder: (data) {
+        return ListTile(
+          title: Text(data.name),
+          subtitle: Text("${data.age}"),
+        );
+      },
+    );
+  }
+}
+```
+
+
+### RxCommandHandlerMixin 
+
+Adds ability to listen om RxCommand events inside Stateless and Stateful Widgets.
+
+Add **RxCommandHandlerMixin** to your `Stateless Widget` or  
+**RxCommandStatefulHandlerMixin**  to your `Stateful Widget` and override 
+**RxCommandListener get commandListener**.  
+ 
+It will add your widget to get an ability to listen for events from command and make actions 
+specified in **RxCommandListener** when its streams fire events.
+
+Mixin will take care of RxCommandListener init dispose. This way you can keep your widget stateless. 
+Or if it is already stateful - don't need to write code for that. 
+
+#### RxCommandHandlerMixin Example
+
+```dart
+class CommandWidget extends StatelessWidget with RxCommandHandlerMixin {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: RaisedButton(
+          child: Text('Test Command'),
+          onPressed: _command,
+        ),
+      ),
+    );
+  }
+
+  @override
+  RxCommandListener get commandListener => RxCommandListener<void, DateTime>(
+    _command,
+    onValue: (value) => print('received value: $value'),
+    onError: (error) => print('error fired: $error'),
+  );
+}
+
+final _command = RxCommand.createSyncNoParam<DateTime>(() {
+  final now = DateTime.now();
+  if (now.millisecondsSinceEpoch.isEven) {
+    return now;
+  } else {
+    throw Exception('MillisecondsSinceEpoch is not even');
+  }
+});
+```
+

@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:rx_widgets/src/builder_functions.dart';
-import 'package:rx_widgets/src/reactive_widget.dart';
 
-class ReactiveBuilder<T> extends ReactiveWidget<T> {
+import 'builder_functions.dart';
+import 'reactive_base_widget.dart';
+
+class ReactiveBuilder<T> extends ReactiveBaseWidget<T> {
   final RxBuilder<T> builder;
   final ErrorBuilder<T> errorBuilder;
   final PlaceHolderBuilder placeHolderBuilder;

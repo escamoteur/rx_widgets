@@ -1,14 +1,16 @@
 import 'dart:async';
+
 import 'package:flutter/widgets.dart';
-import 'package:rx_widgets/src/reactive_widget.dart';
+
 import 'builder_functions.dart';
+import 'reactive_base_widget.dart';
 
 /// `WidgetSelector`is a convenience class that will return one of two Widgets based on the output of a `Stream<bool>`
 /// This is pretty handy if you want to react to state change like enable/disable in you ViewModel and update
 /// the View accordingly.
 /// If you don't need builders for the alternative child widgets this class offers a more concise expression than `WidgetBuilderSelector`
 
-class WidgetSelector extends ReactiveWidget<bool> {
+class WidgetSelector extends ReactiveBaseWidget<bool> {
   final Widget onTrue;
   final Widget onFalse;
   final ErrorBuilder<String> errorBuilder;
@@ -54,7 +56,7 @@ class WidgetSelector extends ReactiveWidget<bool> {
 /// the View accordingly.
 /// In comparison to `WidgetSelector` this is best used if the alternative child widgets are large so that you don't want to have them created
 /// without using them.
-class WidgetBuilderSelector extends ReactiveWidget<bool> {
+class WidgetBuilderSelector extends ReactiveBaseWidget<bool> {
   final WidgetBuilder onTrue;
   final WidgetBuilder onFalse;
   final ErrorBuilder<String> errorBuilder;
