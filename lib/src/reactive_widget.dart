@@ -35,10 +35,16 @@ class _ReactiveWidgetState<T> extends State<ReactiveWidget<T>> {
       initialData: widget.initialData,
       stream: widget.stream,
       builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
-        if (snapshot.hasError)
-          return widget.errorBuild(context, snapshot.error);
-        if (snapshot.hasData) return widget.build(context, snapshot.data);
-        return widget.placeHolderBuild(context);
+        if (snapshot.hasError) {
+          if (widget.errorBuild != null) {
+            return widget.errorBuild(context, snapshot.error);
+          }
+        }
+        if (snapshot.hasData)
+          return widget.build(context, snapshot.data);
+        if (widget.placeHolderBuild != null)
+          return widget.placeHolderBuild(context);
+        return SizedBox();
       },
     );
   }

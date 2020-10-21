@@ -52,9 +52,17 @@ class _RxCommandBuilderState<T> extends State<RxCommandBuilder<T>> {
           final item = snapshot.data;
           return _processItem(item);
         } else if (snapshot.hasError) {
-          return widget.errorBuilder(context, snapshot.error);
+          if ( widget.errorBuilder != null) {
+            return widget.errorBuilder(context, snapshot.error);
+          } else {
+            return Container();
+          }
         } else {
-          return widget.placeHolderBuilder(context);
+          if (widget.placeHolderBuilder != null) {
+            return widget.placeHolderBuilder(context);
+          } else {
+            return Container();
+          }
         }
       },
     );
@@ -62,7 +70,9 @@ class _RxCommandBuilderState<T> extends State<RxCommandBuilder<T>> {
 
   Widget _processItem(CommandResult<T> item) {
     if (item.isExecuting) {
-      return widget.busyBuilder(context);
+      if ( widget.busyBuilder != null) {
+        return widget.busyBuilder(context);
+      }
     }
     if (item.hasData) {
       if (widget.dataBuilder != null) {
