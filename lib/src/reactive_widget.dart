@@ -1,45 +1,36 @@
-import 'dart:io';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-abstract class ReactiveWidget<T> extends StatefulWidget {
-  final Stream<T> stream;
-  final T initialData;
+import 'builder_functions.dart';
+import 'reactive_base_widget.dart';
 
-  @mustCallSuper
-  const ReactiveWidget(this.stream, this.initialData, {Key key})
-      : assert(stream != null),
-        super(key: key);
+class ReactiveWidget<T> extends ReactiveBaseWidget<T> {
+  final RxWidget<T> widget;
+  final RxErrorWidget<T> errorWidget;
+  final Widget placeHolderWidget;
 
-  Widget build(BuildContext context, T data);
-  Widget errorBuild(BuildContext context, Object error) {
-    return Center(
-      child: Text(error),
-    );
-  }
+  const ReactiveWidget({
+    Key key,
+    @required Stream<T> stream,
+    T initialData,
+    @required this.widget,
+    this.placeHolderWidget,
+    this.errorWidget,
+  })  : assert(stream != null),
+        assert(widget != null),
+        super(stream, initialData, key: key);
 
+  @override
+  Widget build(BuildContext context, T data) => widget(data);
+
+  @override
   Widget placeHolderBuild(BuildContext context) {
-    if (Platform.isIOS) return Center(child: CupertinoActivityIndicator());
-    return Center(child: CircularProgressIndicator());
+    if (placeHolderWidget != null) return placeHolderWidget;
+    return super.placeHolderBuild(context);
   }
 
   @override
-  _ReactiveWidgetState<T> createState() => _ReactiveWidgetState<T>();
-}
-
-class _ReactiveWidgetState<T> extends State<ReactiveWidget<T>> {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<T>(
-      initialData: widget.initialData,
-      stream: widget.stream,
-      builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
-        if (snapshot.hasError)
-          return widget.errorBuild(context, snapshot.error);
-        if (snapshot.hasData) return widget.build(context, snapshot.data);
-        return widget.placeHolderBuild(context);
-      },
-    );
+  Widget errorBuild(BuildContext context, Object error) {
+    if (errorWidget != null) return errorWidget(error);
+    return super.errorBuild(context, error);
   }
 }

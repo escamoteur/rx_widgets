@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:rx_widget_demo/homepage/homepage.dart';
 import 'package:rx_widget_demo/homepage/homepage_model.dart';
 import 'package:rx_widget_demo/model_provider.dart';
@@ -6,10 +7,10 @@ import 'package:rx_widget_demo/service/weather_service.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
-  final weatherService = new WeatherService(new http.Client());
-  final homePageModel = new HomePageModel(weatherService);
+  final weatherService = WeatherService(http.Client());
+  final homePageModel = HomePageModel(weatherService);
 
-  runApp(new MyApp(
+  runApp(MyApp(
     model: homePageModel,
   ));
 }
@@ -21,18 +22,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new ModelProvider(
+    return ModelProvider(
       model: model,
-      child: new MaterialApp(
+      child: MaterialApp(
         title: 'Flutter Demo',
-        theme: new ThemeData.dark().copyWith(
+        theme: ThemeData.dark().copyWith(
           disabledColor: Colors.white12,
-          primaryColor: new Color(0xFF1C262A),
-          buttonColor: new Color(0xFF1C262A),
-          accentColor: new Color(0xFFA7D9D5),
-          scaffoldBackgroundColor: new Color.fromRGBO(38, 50, 56, 1.0),
+          primaryColor: Color(0xFF1C262A),
+          buttonColor: Color(0xFF1C262A),
+          accentColor: Color(0xFFA7D9D5),
+          scaffoldBackgroundColor: Color.fromRGBO(38, 50, 56, 1.0),
         ),
-        home: new HomePage(),
+        home: HomePage(),
       ),
     );
   }

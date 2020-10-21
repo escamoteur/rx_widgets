@@ -42,15 +42,10 @@ class HomePageState extends State<HomePage> {
             child: RxLoader<List<WeatherEntry>>(
               spinnerKey: AppKeys.loadingSpinner,
               radius: 25.0,
-              commandResults:
-                  ModelProvider.of(context).updateWeatherCommand.results,
-              dataBuilder: (context, data) =>
-                  WeatherListView(data, key: AppKeys.weatherList),
-              placeHolderBuilder: (context) => Center(
-                  key: AppKeys.loaderPlaceHolder, child: Text("No Data")),
-              errorBuilder: (context, ex) => Center(
-                  key: AppKeys.loaderError,
-                  child: Text("Error: ${ex.toString()}")),
+              commandResults: ModelProvider.of(context).updateWeatherCommand.results,
+              dataBuilder: (context, data) => WeatherListView(data, key: AppKeys.weatherList),
+              placeHolderBuilder: (context) => Center(key: AppKeys.loaderPlaceHolder, child: Text("No Data")),
+              errorBuilder: (context, ex) => Center(key: AppKeys.loaderError, child: Text("Error: ${ex.toString()}")),
             ),
           ),
           Padding(
@@ -58,19 +53,19 @@ class HomePageState extends State<HomePage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child:
-                      // This might be solved with a Streambuilder to but it should show `WidgetSelector`
-                      WidgetSelector(
+                  // This might be solved with a StreamBuilder to but it should show `WidgetSelector`
+                  child: WidgetSelector(
                     buildEvents: ModelProvider.of(context)
                         .updateWeatherCommand
                         .canExecute, //We access our ViewModel through the inherited Widget
                     onTrue: RaisedButton(
-                        key: AppKeys.updateButtonEnabled,
-                        child: Text("Update"),
-                        onPressed: () {
-                          _controller.clear();
-                          ModelProvider.of(context).updateWeatherCommand();
-                        }),
+                      key: AppKeys.updateButtonEnabled,
+                      child: Text("Update"),
+                      onPressed: () {
+                        _controller.clear();
+                        ModelProvider.of(context).updateWeatherCommand();
+                      },
+                    ),
                     onFalse: RaisedButton(
                       key: AppKeys.updateButtonDisabled,
                       child: Text("Please Wait"),
