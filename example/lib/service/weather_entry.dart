@@ -19,14 +19,15 @@ class WeatherEntry {
       : cityName = city.name,
         wind = city.wind.speed,
         temperature = city.main.temp,
-        description = city.weather[0]?.description,
+        description = city.weather[0].description,
         weatherId = city.weather[0].id;
 
-   @override
-   bool operator == (other) {
-     return cityName == other.cityName;
-   } 
+  @override
+  bool operator ==(other) {
+    if (other is! WeatherEntry) return false;
+    return cityName == other.cityName;
+  }
 
-   @override
-   int get hashCode => cityName.hashCode;
+  @override
+  int get hashCode => cityName.hashCode;
 }

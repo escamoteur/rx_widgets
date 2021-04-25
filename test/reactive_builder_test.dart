@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,9 +7,9 @@ import 'package:rx_widgets/src/reactive_builder.dart';
 
 void main() {
   testWidgets("When stream receive a data ", (tester) async {
-    var _controller = StreamController<String>();
+    final _controller = StreamController<String>();
 
-    var widget = ReactiveBuilder<String>(
+    final widget = ReactiveBuilder<String>(
       stream: _controller.stream,
       builder: (_, data) => MaterialApp(home: Text(data)),
     );
@@ -89,15 +90,16 @@ void main() {
     await _controller.close();
   });
 
-  testWidgets("When ReactiveBuilder receive a erro", (tester) async {
-    var _controller = StreamController<String>();
+  testWidgets("When ReactiveBuilder receive a error", (tester) async {
+    final _controller = StreamController<String>();
 
-    var widget = MaterialApp(
-        home: ReactiveBuilder<String>(
-      stream: _controller.stream,
-      builder: (_, data) => Text(data),
-      errorBuilder: (_, error) => Text(error),
-    ));
+    final widget = MaterialApp(
+      home: ReactiveBuilder<String>(
+        stream: _controller.stream,
+        builder: (_, data) => Text(data),
+        errorBuilder: (_, error) => Text(error.toString()),
+      ),
+    );
 
     _controller.addError("Custom Error");
     await tester.pumpWidget(widget);

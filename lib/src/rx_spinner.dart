@@ -1,11 +1,12 @@
 import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:rx_command/rx_command.dart';
 import 'package:rx_widgets/src/builder_functions.dart';
 import 'package:rx_widgets/src/widget_selector.dart';
-import 'package:flutter/material.dart';
 
 /// Spinner/Busy Indicator that reacts on the output of a `Stream<bool>` it starts running as soon as a `true` value is received
 /// until the next `false`is emitted. If the Spinner should replace another Widget while Spinning this widget can be passed as `normal` parameter.
@@ -13,16 +14,16 @@ import 'package:flutter/material.dart';
 /// Needless to say that `RxSpinner` is ideal in combination with `RxCommand's` `isExecuting` Observable
 class RxSpinner extends StatelessWidget {
   final Stream<bool> busyEvents;
-  final Widget normal;
+  final Widget? normal;
 
-  final TargetPlatform platform;
+  final TargetPlatform? platform;
 
   final double radius;
 
-  final Color backgroundColor;
-  final Animation<Color> valueColor;
+  final Color? backgroundColor;
+  final Animation<Color>? valueColor;
   final double strokeWidth;
-  final double value;
+  final double? value;
 
   /// Creates a new RxSpinner instance
   /// `busyEvents` : `Stream<bool>` that controls the activity of the Spinner. On receiving `true` it replaces the `normal` widget
@@ -33,7 +34,7 @@ class RxSpinner extends StatelessWidget {
   ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html
   ///  they are ignored if the platform style is iOS.
   const RxSpinner(
-      {this.busyEvents,
+      {required this.busyEvents,
       this.platform,
       this.radius = 20.0,
       this.backgroundColor,
@@ -41,9 +42,8 @@ class RxSpinner extends StatelessWidget {
       this.valueColor,
       this.strokeWidth: 4.0,
       this.normal,
-      Key key})
-      : assert(busyEvents != null),
-        super(key: key);
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,34 +70,29 @@ class RxSpinner extends StatelessWidget {
   }
 }
 
-/*
-typedef BuilderFunction<T> = Widget Function(BuildContext context, T data);
-typedef BuilderFunction1 = Widget Function(BuildContext context);
-*/
-/// Spinner/Busyindicator that reacts on the output of a `Stream<CommandResult<T>>`. It's made especially to work together with
-/// `RxCommand` from the `rx_command`package.
-/// it starts running as soon as an item with  `isExecuting==true` is received
-/// until `isExecuting==true` is received.
-/// To react on other possible states (`data, nodata, error`) that can be emitted it offers three option `Builder` methods
-class RxLoader<T> extends StatefulWidget {
-  final Stream<CommandResult<T>> commandResults;
-  final RxBuilder<T> dataBuilder;
-  final ErrorBuilder<Exception> errorBuilder;
-  final PlaceHolderBuilder placeHolderBuilder;
+/// Spinner/Busy indicator that reacts on the output of a `Stream<CommandResult<dynamic, R>>`.
+/// It's made especially to work together with `RxCommand` from the `rx_command`package.
+/// It starts running as soon as an item with  `isExecuting==true` is received until `isExecuting==true` is received.
+/// To react on other possible states (`data, no data, error`) that can be emitted it offers three option `Builder` methods
+class RxLoader<R> extends StatefulWidget {
+  final Stream<CommandResult<dynamic, R>> commandResults;
+  final RxBuilder<R>? dataBuilder;
+  final ErrorBuilder<Exception>? errorBuilder;
+  final PlaceHolderBuilder? placeHolderBuilder;
 
-  final TargetPlatform platform;
+  final TargetPlatform? platform;
 
   final double radius;
 
-  final Color backgroundColor;
-  final Animation<Color> valueColor;
+  final Color? backgroundColor;
+  final Animation<Color>? valueColor;
   final double strokeWidth;
-  final double value;
+  final double? value;
 
-  final Key spinnerKey;
+  final Key? spinnerKey;
 
   /// Creates a new `RxLoader` instance
-  /// [commandResults] : `Stream<CommandResult<T>>` or a `RxCommand<T>` that issues `CommandResults`
+  /// [commandResults] : `Stream<CommandResult<dynamic, R>>` or a `RxCommand<dynamic, R>` that issues `CommandResults`
   /// [platform]  : defines platform style of the Spinner. If this is null or not provided the style of the current platform will be used
   /// [radius]    : radius of the Spinner
   /// [dataBuilder] : Builder that will be called as soon as an event with data is received. It will get passed the `data` feeld of the CommandResult.
@@ -110,9 +105,9 @@ class RxLoader<T> extends StatefulWidget {
   ///  all other parameters please see https://docs.flutter.io/flutter/material/CircularProgressIndicator-class.html
   ///  they are ignored if the platform style is iOS.
   const RxLoader({
-    Key key,
+    Key? key,
     this.spinnerKey,
-    this.commandResults,
+    required this.commandResults,
     this.platform,
     this.radius = 20.0,
     this.backgroundColor,
@@ -122,21 +117,21 @@ class RxLoader<T> extends StatefulWidget {
     this.dataBuilder,
     this.placeHolderBuilder,
     this.errorBuilder,
-  })  : assert(commandResults != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   _RxLoaderState createState() {
-    return _RxLoaderState<T>(commandResults);
+    return _RxLoaderState<R>(commandResults);
   }
 }
 
-class _RxLoaderState<T> extends State<RxLoader<T>> {
-  StreamSubscription<CommandResult<T>> subscription;
+class _RxLoaderState<R> extends State<RxLoader<R>> {
+  StreamSubscription<CommandResult<dynamic, R>>? subscription;
 
-  Stream<CommandResult<T>> commandResults;
+  Stream<CommandResult<dynamic, R>> commandResults;
 
-  CommandResult<T> lastReceivedItem = CommandResult<T>(null, null, false);
+  CommandResult<dynamic, R> lastReceivedItem =
+      CommandResult<dynamic, R>(null, null, null, false);
 
   _RxLoaderState(this.commandResults);
 
@@ -151,7 +146,7 @@ class _RxLoaderState<T> extends State<RxLoader<T>> {
   }
 
   @override
-  void didUpdateWidget(RxLoader<T> oldWidget) {
+  void didUpdateWidget(RxLoader<R> oldWidget) {
     super.didUpdateWidget(oldWidget);
     subscription?.cancel();
 
@@ -194,19 +189,19 @@ class _RxLoaderState<T> extends State<RxLoader<T>> {
     }
     if (lastReceivedItem.hasData) {
       if (widget.dataBuilder != null) {
-        return widget.dataBuilder(context, lastReceivedItem.data);
+        return widget.dataBuilder!(context, lastReceivedItem.data!);
       }
     }
 
     if (!lastReceivedItem.hasData && !lastReceivedItem.hasError) {
       if (widget.placeHolderBuilder != null) {
-        return widget.placeHolderBuilder(context);
+        return widget.placeHolderBuilder!(context);
       }
     }
 
     if (lastReceivedItem.hasError) {
       if (widget.errorBuilder != null) {
-        return widget.errorBuilder(context, lastReceivedItem.error);
+        return widget.errorBuilder!(context, lastReceivedItem.error);
       }
     }
 
