@@ -1,16 +1,15 @@
 import 'dart:async';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'builder_functions.dart';
 import 'reactive_builder.dart';
 
-class RxList<T> extends ReactiveBuilder<BuiltList<T>> {
+class RxList<T> extends ReactiveBuilder<List<T>> {
   const RxList({
     Key key,
-    BuiltList<T> initialData,
-    @required Stream<BuiltList<T>> stream,
-    @required RxBuilder<BuiltList<T>> builder,
+    List<T> initialData,
+    @required Stream<List<T>> stream,
+    @required RxBuilder<List<T>> builder,
     PlaceHolderBuilder placeHolderBuilder,
     this.emptyListBuilder,
     ErrorBuilder<T> errorBuilder,
@@ -27,7 +26,7 @@ class RxList<T> extends ReactiveBuilder<BuiltList<T>> {
   final EmptyListBuilder emptyListBuilder;
 
   @override
-  Widget build(BuildContext context, BuiltList<T> data) {
+  Widget build(BuildContext context, List<T> data) {
     if (data.isEmpty) {
       if (emptyListBuilder != null) return emptyListBuilder(context);
 
