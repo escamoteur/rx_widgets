@@ -17,6 +17,7 @@ class RxList<T> extends ReactiveBuilder<List<T>> {
         assert(builder != null),
         super(
           key: key,
+          initialData: initialData,
           stream: stream,
           builder: builder,
           placeHolderBuilder: placeHolderBuilder,
