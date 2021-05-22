@@ -130,7 +130,7 @@ class RxText extends ReactiveBaseWidget<String> {
   }
 
   @override
-  Widget errorBuild(BuildContext context, Object? error) {
+  Widget errorBuild(BuildContext context, Object error) {
     if (errorBuilder != null) return errorBuilder!(context, error);
     return Container();
   }

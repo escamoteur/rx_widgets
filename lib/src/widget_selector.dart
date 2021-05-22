@@ -42,7 +42,7 @@ class WidgetSelector extends ReactiveBaseWidget<bool> {
   }
 
   @override
-  Widget errorBuild(BuildContext context, Object? error) {
+  Widget errorBuild(BuildContext context, Object error) {
     if (errorBuilder != null) return errorBuilder!(context, error);
     return onFalse ?? SizedBox();
   }
@@ -102,7 +102,7 @@ class WidgetBuilderSelector extends ReactiveBaseWidget<bool> {
   }
 
   @override
-  Widget errorBuild(BuildContext context, Object? error) {
+  Widget errorBuild(BuildContext context, Object error) {
     if (errorBuilder != null) return errorBuilder!(context, error);
     return onFalseWidget(context);
   }

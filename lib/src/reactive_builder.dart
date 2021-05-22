@@ -27,7 +27,7 @@ class ReactiveBuilder<T> extends ReactiveBaseWidget<T> {
   }
 
   @override
-  Widget errorBuild(BuildContext context, Object? error) {
+  Widget errorBuild(BuildContext context, Object error) {
     if (errorBuilder != null) return errorBuilder!(context, error);
     return super.errorBuild(context, error);
   }

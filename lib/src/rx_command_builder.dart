@@ -8,10 +8,10 @@ import 'package:rx_widgets/src/builder_functions.dart';
 /// It's made especially to work together with `RxCommand` from the `rx_command`package.
 /// it starts running as soon as an item with `isExecuting==true` is received  until `isExecuting==true` is received.
 /// To react on other possible states (`data, no data, error`) that can be emitted it offers three option `Builder` methods.
-class RxCommandBuilder<R> extends StatelessWidget {
-  final Stream<CommandResult<dynamic, R>> commandResults;
+class RxCommandBuilder<T, R> extends StatelessWidget {
+  final Stream<CommandResult<T, R>> commandResults;
   final RxBuilder<R>? dataBuilder;
-  final ErrorBuilder<Exception>? errorBuilder;
+  final ErrorBuilder<CommandError<T>>? errorBuilder;
   final BusyBuilder? busyBuilder;
   final PlaceHolderBuilder? placeHolderBuilder;
   final TargetPlatform? platform;
@@ -37,10 +37,10 @@ class RxCommandBuilder<R> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<CommandResult<dynamic, R>>(
+    return StreamBuilder<CommandResult<T, R>>(
       stream: commandResults,
       builder: (context, snapshot) {
-        CommandResult<dynamic, R>? item;
+        CommandResult<T, R>? item;
         if (snapshot.hasData) {
           item = snapshot.data;
         } else if (snapshot.hasError) {
@@ -53,15 +53,14 @@ class RxCommandBuilder<R> extends StatelessWidget {
     );
   }
 
-  Widget _processItem(BuildContext context, CommandResult<dynamic, R> item) {
+  Widget _processItem(BuildContext context, CommandResult<T, R> item) {
     if (item.isExecuting) {
       if (busyBuilder != null) {
         return busyBuilder!(context);
       } else {
-        final spinner =
-            ((platform ?? defaultTargetPlatform) == TargetPlatform.iOS)
-                ? const CupertinoActivityIndicator()
-                : const CircularProgressIndicator();
+        final spinner = ((platform ?? defaultTargetPlatform) == TargetPlatform.iOS)
+            ? const CupertinoActivityIndicator()
+            : const CircularProgressIndicator();
         return Center(child: spinner);
       }
     }
@@ -76,7 +75,8 @@ class RxCommandBuilder<R> extends StatelessWidget {
 
     if (item.hasError) {
       if (errorBuilder != null) {
-        return errorBuilder!(context, item.error);
+        final commandError = item.error is CommandError<T> ? item.error! : CommandError<T>(item.paramData, item.error);
+        return errorBuilder!(context, commandError);
       } else {
         return const SizedBox();
       }

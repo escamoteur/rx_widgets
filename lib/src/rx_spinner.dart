@@ -62,9 +62,7 @@ class RxSpinner extends StatelessWidget {
 
     return WidgetSelector(
       buildEvents: busyEvents,
-      onTrue: Center(
-          child: Container(
-              width: this.radius * 2, height: this.radius * 2, child: spinner)),
+      onTrue: Center(child: Container(width: this.radius * 2, height: this.radius * 2, child: spinner)),
       onFalse: normal != null ? normal : Container(),
     );
   }
@@ -130,8 +128,7 @@ class _RxLoaderState<R> extends State<RxLoader<R>> {
 
   Stream<CommandResult<dynamic, R>> commandResults;
 
-  CommandResult<dynamic, R> lastReceivedItem =
-      CommandResult<dynamic, R>(null, null, null, false);
+  CommandResult<dynamic, R> lastReceivedItem = CommandResult<dynamic, R>(null, null, null, false);
 
   _RxLoaderState(this.commandResults);
 
@@ -165,8 +162,7 @@ class _RxLoaderState<R> extends State<RxLoader<R>> {
 
   @override
   Widget build(BuildContext context) {
-    var platformToUse =
-        widget.platform != null ? widget.platform : defaultTargetPlatform;
+    var platformToUse = widget.platform != null ? widget.platform : defaultTargetPlatform;
 
     var spinner = (platformToUse == TargetPlatform.iOS)
         ? CupertinoActivityIndicator(
@@ -181,11 +177,7 @@ class _RxLoaderState<R> extends State<RxLoader<R>> {
             value: widget.value,
           );
     if (lastReceivedItem.isExecuting) {
-      return Center(
-          child: Container(
-              width: this.widget.radius * 2,
-              height: this.widget.radius * 2,
-              child: spinner));
+      return Center(child: Container(width: this.widget.radius * 2, height: this.widget.radius * 2, child: spinner));
     }
     if (lastReceivedItem.hasData) {
       if (widget.dataBuilder != null) {
@@ -201,7 +193,7 @@ class _RxLoaderState<R> extends State<RxLoader<R>> {
 
     if (lastReceivedItem.hasError) {
       if (widget.errorBuilder != null) {
-        return widget.errorBuilder!(context, lastReceivedItem.error);
+        return widget.errorBuilder!(context, lastReceivedItem.error!);
       }
     }
 
