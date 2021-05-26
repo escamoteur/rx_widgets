@@ -11,7 +11,8 @@ mixin RxCommandHandlerMixin<T, R> on StatelessWidget {
   final _state = _MixinState<T, R>();
 
   @override
-  StatelessElement createElement() => _StatelessMixInElement<RxCommandHandlerMixin, T, R>(this);
+  StatelessElement createElement() =>
+      _StatelessMixInElement<RxCommandHandlerMixin, T, R>(this);
 
   RxCommandListener<T, R> get commandListener;
 }
@@ -25,19 +26,21 @@ mixin RxCommandStatefulHandlerMixin<T, R> on StatefulWidget {
   final _state = _MixinState<T, R>();
 
   @override
-  StatefulElement createElement() => _StatefulMixInElement<RxCommandStatefulHandlerMixin, T, R>(this);
+  StatefulElement createElement() =>
+      _StatefulMixInElement<RxCommandStatefulHandlerMixin, T, R>(this);
 
   RxCommandListener<T, R> get commandListener;
 }
 
-class _StatelessMixInElement<W extends RxCommandHandlerMixin, T, R> extends StatelessElement {
+class _StatelessMixInElement<W extends RxCommandHandlerMixin, T, R>
+    extends StatelessElement {
   _StatelessMixInElement(W widget) : super(widget);
 
   @override
-  W get widget => super.widget;
+  W get widget => super.widget as W;
 
   @override
-  void mount(Element parent, newSlot) {
+  void mount(Element? parent, newSlot) {
     widget._state.init(widget.commandListener);
     super.mount(parent, newSlot);
   }
@@ -49,15 +52,15 @@ class _StatelessMixInElement<W extends RxCommandHandlerMixin, T, R> extends Stat
   }
 }
 
-
-class _StatefulMixInElement<W extends RxCommandStatefulHandlerMixin, T, R> extends StatefulElement {
+class _StatefulMixInElement<W extends RxCommandStatefulHandlerMixin, T, R>
+    extends StatefulElement {
   _StatefulMixInElement(W widget) : super(widget);
 
   @override
-  W get widget => super.widget;
+  W get widget => super.widget as W;
 
   @override
-  void mount(Element parent, newSlot) {
+  void mount(Element? parent, newSlot) {
     widget._state.init(widget.commandListener);
     super.mount(parent, newSlot);
   }
@@ -69,9 +72,8 @@ class _StatefulMixInElement<W extends RxCommandStatefulHandlerMixin, T, R> exten
   }
 }
 
-
 class _MixinState<T, R> {
-  RxCommandListener<T, R> _listener;
+  RxCommandListener<T, R>? _listener;
 
   void init(RxCommandListener<T, R> listener) => _listener = listener;
 

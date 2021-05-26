@@ -1,40 +1,40 @@
-
 import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rx_widget_demo/service/weather_service.dart';
 import 'package:test/test.dart';
 
-class MockClient extends Mock implements http.Client {}
+import 'weather_service_test.mocks.dart';
 
-main() {
+// class MockClient extends Mock implements http.Client {}
+
+@GenerateMocks([http.Client])
+void main() {
   group('WeatherService', () {
     test('should return all items when empty filter provided', () async {
-      final client = new MockClient();
-      final service = new WeatherService(client);
-      when(client.get(WeatherService.url))
-          .thenAnswer((_) async => new http.Response(responseBody, 200));
-
+      final client = MockClient();
+      final service = WeatherService(client);
+      when(client.get(WeatherService.uri))
+          .thenAnswer((_) async => http.Response(responseBody, 200));
       final entries = await service.getWeatherEntriesForCity('');
-
       expect(entries.length, 3);
     });
 
     test('should return all items when null filter provided', () async {
-      final client = new MockClient();
-      final service = new WeatherService(client);
-      when(client.get(WeatherService.url))
-          .thenAnswer((_) async => new http.Response(responseBody, 200));
-
+      final client = MockClient();
+      final service = WeatherService(client);
+      when(client.get(WeatherService.uri))
+          .thenAnswer((_) async => http.Response(responseBody, 200));
       final entries = await service.getWeatherEntriesForCity(null);
 
       expect(entries.length, 3);
     });
 
     test('should filter the entries when given a city name', () async {
-      final client = new MockClient();
-      final service = new WeatherService(client);
-      when(client.get(WeatherService.url))
-          .thenAnswer((_) async => new http.Response(responseBody, 200));
+      final client = MockClient();
+      final service = WeatherService(client);
+      when(client.get(WeatherService.uri))
+          .thenAnswer((_) async => http.Response(responseBody, 200));
 
       final entries = await service.getWeatherEntriesForCity('Dole');
 
@@ -42,19 +42,19 @@ main() {
     });
 
     test('should throw an exception when the response is not 200', () async {
-      final client = new MockClient();
-      final service = new WeatherService(client);
-      when(client.get(WeatherService.url))
-          .thenAnswer((_) async => new http.Response('Error', 404));
+      final client = MockClient();
+      final service = WeatherService(client);
+      when(client.get(WeatherService.uri))
+          .thenAnswer((_) async => http.Response('Error', 404));
 
       expect(service.getWeatherEntriesForCity('Dole'), throwsException);
     });
 
     test('should throw an exception when the json is malformed', () async {
-      final client = new MockClient();
-      final service = new WeatherService(client);
-      when(client.get(WeatherService.url))
-          .thenAnswer((_) async => new http.Response('p[2p[1p[ppadsdaf', 200));
+      final client = MockClient();
+      final service = WeatherService(client);
+      when(client.get(WeatherService.uri))
+          .thenAnswer((_) async => http.Response('p[2p[1p[ppadsdaf', 200));
 
       expect(service.getWeatherEntriesForCity('Dole'), throwsException);
     });

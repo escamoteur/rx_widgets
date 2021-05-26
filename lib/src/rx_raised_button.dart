@@ -5,28 +5,29 @@ import 'package:rx_command/rx_command.dart';
 /// so the button gets disabled if the `rxCommand` has the `canExecute` set to `false` or when it is executing
 class RxRaisedButton extends StatelessWidget {
   final RxCommand<BuildContext, void> rxCommand;
-  final ValueChanged<bool> onHighlightChanged;
-  final ButtonTextTheme textTheme;
-  final Color textColor;
-  final Color disabledTextColor;
-  final Color color;
-  final Color disabledColor;
-  final Color highlightColor;
-  final Color splashColor;
-  final Brightness colorBrightness;
-  final double elevation;
-  final double highlightElevation;
-  final double disabledElevation;
-  final EdgeInsetsGeometry padding;
-  final ShapeBorder shape;
+  final ValueChanged<bool>? onHighlightChanged;
+  final ButtonTextTheme? textTheme;
+  final Color? textColor;
+  final Color? disabledTextColor;
+  final Color? color;
+  final Color? disabledColor;
+  final Color? highlightColor;
+  final Color? splashColor;
+  final Brightness? colorBrightness;
+  final double? elevation;
+  final double? highlightElevation;
+  final double? disabledElevation;
+  final EdgeInsetsGeometry? padding;
+  final ShapeBorder? shape;
   final Clip clipBehavior = Clip.none;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final Duration animationDuration;
-  final Widget child;
+  final MaterialTapTargetSize? materialTapTargetSize;
+  final Duration? animationDuration;
+  final Widget? child;
+
   RxRaisedButton({
-    Key key,
+    Key? key,
     this.child,
-    this.rxCommand,
+    required this.rxCommand,
     this.onHighlightChanged,
     this.textTheme,
     this.textColor,
@@ -44,13 +45,15 @@ class RxRaisedButton extends StatelessWidget {
     this.materialTapTargetSize,
     this.animationDuration,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: rxCommand.canExecute,
       builder: (context, snapshot) {
+        // ignore: deprecated_member_use
         return RaisedButton(
-          onPressed: snapshot.data ? rxCommand : null,
+          onPressed: snapshot.hasData ? () => rxCommand() : null,
           onHighlightChanged: onHighlightChanged,
           textTheme: textTheme,
           textColor: textColor,

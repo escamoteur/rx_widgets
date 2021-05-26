@@ -4,39 +4,43 @@ import 'package:rx_widget_demo/keys.dart';
 import 'package:rx_widget_demo/service/weather_entry.dart';
 import 'package:rx_widget_demo/weather_icons.dart';
 
-
 class WeatherListView extends StatelessWidget {
-  
   final List<WeatherEntry> data;
 
- 
-  WeatherListView(this.data, {Key key}) : super(key: key);
+  WeatherListView(this.data, {Key? key}) : super(key: key);
 
- 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-              key: AppKeys.cityList,
-              itemCount: data.length,
-              itemBuilder: (BuildContext context, int index) =>
-                               WeatherItem(entry: data[index]),
-            );
-   }
+      key: AppKeys.cityList,
+      itemCount: data.length,
+      itemBuilder: (BuildContext context, int index) =>
+          WeatherItem(entry: data[index]),
+    );
+  }
 }
 
 class WeatherItem extends StatelessWidget {
   final WeatherEntry entry;
 
-  WeatherItem({Key key, @required this.entry}) : super(key: key);
+  WeatherItem({Key? key, required this.entry}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-                  leading: Icon(_weatherIdToIcon(entry.weatherId), size: 28.0,),
-                  title: Text(entry.cityName),
-                  subtitle: Text(entry.description, style: TextStyle(fontStyle: FontStyle.italic),),
-                  trailing: Text('${entry.temperature.round()} °', style: TextStyle(fontSize: 20.0),
-                  ),
+      leading: Icon(
+        _weatherIdToIcon(entry.weatherId),
+        size: 28.0,
+      ),
+      title: Text(entry.cityName),
+      subtitle: Text(
+        entry.description,
+        style: TextStyle(fontStyle: FontStyle.italic),
+      ),
+      trailing: Text(
+        '${entry.temperature.round()} °',
+        style: TextStyle(fontSize: 20.0),
+      ),
     );
   }
 

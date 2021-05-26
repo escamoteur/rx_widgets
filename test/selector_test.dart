@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rx_widgets/src/widget_selector.dart';
@@ -8,11 +9,12 @@ void main() {
     var _controller = StreamController<bool>();
 
     var widget = MaterialApp(
-        home: WidgetSelector(
-      buildEvents: _controller.stream,
-      onFalse: Text("FALSE"),
-      onTrue: Text("TRUE"),
-    ));
+      home: WidgetSelector(
+        buildEvents: _controller.stream,
+        onFalse: Text("FALSE"),
+        onTrue: Text("TRUE"),
+      ),
+    );
 
     _controller.add(true);
     await tester.pumpWidget(widget);
@@ -71,11 +73,12 @@ void main() {
     var _controller = StreamController<bool>();
 
     var widget = MaterialApp(
-        home: WidgetBuilderSelector(
-      buildEvents: _controller.stream,
-      onTrue: (_) => Text("TRUE"),
-      onFalse: (_) => Text("FALSE"),
-    ));
+      home: WidgetBuilderSelector(
+        buildEvents: _controller.stream,
+        onTrue: (_) => Text("TRUE"),
+        onFalse: (_) => Text("FALSE"),
+      ),
+    );
 
     _controller.add(false);
     await tester.pumpWidget(widget);

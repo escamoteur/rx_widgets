@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-
-import 'package:rx_widget_demo/homepage/homepage.dart';
+import 'package:http/http.dart' as http;
+import 'package:rx_widget_demo/homepage/home_page.dart';
 import 'package:rx_widget_demo/homepage/homepage_model.dart';
 import 'package:rx_widget_demo/model_provider.dart';
 import 'package:rx_widget_demo/service/weather_service.dart';
-import 'package:http/http.dart' as http;
 
 void main() {
   final weatherService = WeatherService(http.Client());
   final homePageModel = HomePageModel(weatherService);
 
-  runApp(MyApp(
-    model: homePageModel,
-  ));
+  runApp(
+    MyApp(model: homePageModel),
+  );
 }
 
 class MyApp extends StatelessWidget {
   final HomePageModel model;
 
-  const MyApp({Key key, this.model}) : super(key: key);
+  const MyApp({Key? key, required this.model}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

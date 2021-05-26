@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'builder_functions.dart';
 import 'reactive_base_widget.dart';
 
-
 /// A reimplementation of `Text` so it takes a [Stream<String>] instead of `String` as data
 /// and reacts on it.
 class RxText extends ReactiveBaseWidget<String> {
-  final ErrorBuilder<String> errorBuilder;
-  final PlaceHolderBuilder placeHolderBuilder;
+  final ErrorBuilder<String>? errorBuilder;
+  final PlaceHolderBuilder? placeHolderBuilder;
 
   /// The text to display as a [TextSpan].
   /// If non-null, the style to use for this text.
@@ -18,10 +17,10 @@ class RxText extends ReactiveBaseWidget<String> {
   /// If the style's "inherit" property is true, the style will be merged with
   /// the closest enclosing [DefaultTextStyle]. Otherwise, the style will
   /// replace the closest enclosing [DefaultTextStyle].
-  final TextStyle style;
+  final TextStyle? style;
 
   /// How the text should be aligned horizontally.
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
 
   /// The directionality of the text.
   ///
@@ -36,7 +35,7 @@ class RxText extends ReactiveBaseWidget<String> {
   /// its left.
   ///
   /// Defaults to the ambient [Directionality], if any.
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// Used to select a font when the same Unicode character can
   /// be rendered differently, depending on the locale.
@@ -45,15 +44,15 @@ class RxText extends ReactiveBaseWidget<String> {
   /// is inherited from the enclosing app with `Localizations.localeOf(context)`.
   ///
   /// See Flutter RenderParagraph.locale for more information.
-  final Locale locale;
+  final Locale? locale;
 
   /// Whether the text should break at soft line breaks.
   ///
   /// If false, the glyphs in the text will be positioned as if there was unlimited horizontal space.
-  final bool softWrap;
+  final bool? softWrap;
 
   /// How visual overflow should be handled.
-  final TextOverflow overflow;
+  final TextOverflow? overflow;
 
   /// The number of font pixels for each logical pixel.
   ///
@@ -63,7 +62,7 @@ class RxText extends ReactiveBaseWidget<String> {
   /// The value given to the constructor as textScaleFactor. If null, will
   /// use the [MediaQueryData.textScaleFactor] obtained from the ambient
   /// [MediaQuery], or 1.0 if there is no [MediaQuery] in scope.
-  final double textScaleFactor;
+  final double? textScaleFactor;
 
   /// An optional maximum number of lines for the text to span, wrapping if necessary.
   /// If the text exceeds the given number of lines, it will be truncated according
@@ -76,7 +75,7 @@ class RxText extends ReactiveBaseWidget<String> {
   /// an explicit number for its [DefaultTextStyle.maxLines], then the
   /// [DefaultTextStyle] value will take precedence. You can use a [RichText]
   /// widget directly to entirely override the [DefaultTextStyle].
-  final int maxLines;
+  final int? maxLines;
 
   /// An alternative semantics label for this text.
   ///
@@ -90,12 +89,12 @@ class RxText extends ReactiveBaseWidget<String> {
   /// Text(r'$$', semanticsLabel: 'Double dollars')
   ///
   /// ```
-  final String semanticsLabel;
+  final String? semanticsLabel;
 
   RxText(
     Stream<String> stream, {
-    Key key,
-    String initialData,
+    Key? key,
+    String? initialData,
     this.errorBuilder,
     this.placeHolderBuilder,
     this.style,
@@ -132,13 +131,13 @@ class RxText extends ReactiveBaseWidget<String> {
 
   @override
   Widget errorBuild(BuildContext context, Object error) {
-    if (errorBuilder != null) return errorBuilder(context, error);
+    if (errorBuilder != null) return errorBuilder!(context, error);
     return Container();
   }
 
   @override
   Widget placeHolderBuild(BuildContext context) {
-    if (placeHolderBuilder != null) return placeHolderBuilder(context);
+    if (placeHolderBuilder != null) return placeHolderBuilder!(context);
     return Container();
   }
 }
