@@ -1,3 +1,6 @@
+## [4.0.1] - 26.05.2021
+
+* fix for exception when running on web https://github.com/escamoteur/rx_widgets/issues/19
 ## [4.0.0] - 26.05.2021
 
 * null safe version 
