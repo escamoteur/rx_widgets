@@ -6,3 +6,4 @@
 .pub/
 packages
 pubspec.lock
+example/ios/Flutter/flutter_export_environment.sh

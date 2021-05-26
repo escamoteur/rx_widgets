@@ -1,3 +1,7 @@
+## [4.0.0] - 26.05.2021
+
+* null safe version 
+
 ## [3.0.0] - 30.12.2019
 
 * Updated to use rx_command V5.0.1
