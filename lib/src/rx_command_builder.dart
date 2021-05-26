@@ -58,7 +58,8 @@ class RxCommandBuilder<T, R> extends StatelessWidget {
       if (busyBuilder != null) {
         return busyBuilder!(context);
       } else {
-        final spinner = ((platform ?? defaultTargetPlatform) == TargetPlatform.iOS)
+        final spinner = (!kIsWeb &&
+                (platform ?? defaultTargetPlatform) == TargetPlatform.iOS)
             ? const CupertinoActivityIndicator()
             : const CircularProgressIndicator();
         return Center(child: spinner);
@@ -75,7 +76,9 @@ class RxCommandBuilder<T, R> extends StatelessWidget {
 
     if (item.hasError) {
       if (errorBuilder != null) {
-        final commandError = item.error is CommandError<T> ? item.error! : CommandError<T>(item.paramData, item.error);
+        final commandError = item.error is CommandError<T>
+            ? item.error!
+            : CommandError<T>(item.paramData, item.error);
         return errorBuilder!(context, commandError);
       } else {
         return const SizedBox();
